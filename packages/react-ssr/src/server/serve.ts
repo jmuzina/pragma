@@ -1,14 +1,13 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 
 import path from "path";
 import { resolve } from "path";
 import { parseArgs } from "util";
-import { serve } from "bun";
-import StaticFilesMiddleware from "./StaticFilesMiddleware.js";
+import express from "express";
 
 // Parse command-line arguments using util.parseArgs
 const { values, positionals } = parseArgs({
-  args: Bun.argv.slice(2),
+  args: process.argv.slice(2),
   options: {
     port: {
       type: "string",
@@ -25,12 +24,12 @@ const { values, positionals } = parseArgs({
   allowPositionals: true,
 });
 
-const port = values.port || 5173;
+const port = parseInt(values.port, 10) || 5173;
 const rendererFilePath = positionals[0];
 
 if (!rendererFilePath) {
   console.error(
-    "Renderer file path is required. Usage: bun run script.ts [--port <port>] <rendererFilePath>",
+    "Renderer file path is required. Usage: node script.js [--port <port>] <rendererFilePath>",
   );
   process.exit(1);
 }
@@ -40,29 +39,31 @@ const cwd = process.cwd();
 const resolvedRendererFilePath = resolve(cwd, rendererFilePath);
 console.log("Current working directory: ", cwd);
 const staticDirs = [path.join(cwd, values.static), path.join(cwd, "public")];
-const staticFilesMiddleware = new StaticFilesMiddleware(staticDirs);
 
-serve({
-  async fetch(req: Request) {
-    const staticResponse = await staticFilesMiddleware.handleRequest(req);
-    if (staticResponse) {
-      return staticResponse;
-    }
+const app = express();
 
-    try {
-      const handler = await import(resolvedRendererFilePath).then(
-        (module) => module.handler,
-      );
-      const stream: ReadableStream = await handler(req, null);
-      return new Response(stream, {
-        headers: { "Content-Type": "text/html" },
-      });
-    } catch (error) {
-      console.error("Error loading renderer:", error);
-      return new Response("Internal Server Error", { status: 500 });
-    }
-  },
-  port,
+// Serve static files from specified directories
+staticDirs.forEach((dir) => {
+  console.log(`Serving static files from: ${dir}`);
+  app.use(express.static(dir));
 });
 
-console.log(`Server running at http://localhost:${port}`);
+// Dynamic request handling using renderer
+app.use(async (req, res, next) => {
+  try {
+    const handler = await import(resolvedRendererFilePath).then(
+      (module) => module.handler,
+    );
+    const stream = await handler(req, null);
+    res.setHeader("Content-Type", "text/html");
+    stream.pipe(res);
+  } catch (error) {
+    console.error("Error loading renderer:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
