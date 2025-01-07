@@ -1,18 +1,36 @@
-import React, {lazy, Suspense, useState} from "react";
+import React, {useEffect, Suspense, useState, lazy} from "react";
 import canonicalLogo from "./assets/canonical.svg";
 import reactLogo from "./assets/react.svg";
 import "./Application.css";
-import { Button } from "@canonical/ds-react-core";
+import {Button} from "@canonical/ds-react-core";
 
-const SlowComponent = React.lazy(() =>
-  import("./LazyComponent.js").then((module) => {
-    return new Promise<{ default: React.ComponentType<any> }>((resolve) => {
-      setTimeout(() => {
-        resolve(module);
-      }, 2000);
-    });
-  })
-);
+const DemoComponent = ({ timeout = 2000 }) => {
+  const LazyButton = lazy(async () => {
+    console.log("waiting for the button");
+    await new Promise((resolve) => setTimeout(resolve, timeout));
+    console.log("resolving button");
+
+    return {
+      default: () => <Button
+        appearance={"positive"}
+        label={"Click me"}
+        onClick={() => alert("clicked!")}
+      ></Button>,
+    };
+  });
+
+  useEffect(() => {
+    console.log("mounted");
+  }, []);
+
+  return (
+    <div>
+      <Suspense fallback={<>Loading...</>}>
+        <LazyButton/>
+      </Suspense>
+    </div>
+  );
+};
 
 function App() {
   const [count, setCount] = useState(0);
@@ -26,17 +44,15 @@ function App() {
           referrerPolicy="no-referrer"
           rel="noreferrer"
         >
-          <img src={canonicalLogo} className="logo" alt="Canonical logo" />
+          <img src={canonicalLogo} className="logo" alt="Canonical logo"/>
         </a>
         <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+          <img src={reactLogo} className="logo react" alt="React logo"/>
         </a>
       </div>
       <h1>Canonical Design System</h1>
       <h2>React Vite template</h2>
-      <Suspense fallback={<p>Loading...</p>}>
-        <SlowComponent/>
-      </Suspense>
+      <DemoComponent/>
       <div className="card">
         <Button
           label={`Count: ${count}`}
