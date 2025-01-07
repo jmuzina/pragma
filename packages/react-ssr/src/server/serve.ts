@@ -51,7 +51,7 @@ serve({
 
     try {
       const handler = await import(resolvedRendererFilePath).then(
-        (module) => module.handler,
+        (module) => module.default,
       );
       const stream: ReadableStream = await handler(req, null);
       return new Response(stream, {

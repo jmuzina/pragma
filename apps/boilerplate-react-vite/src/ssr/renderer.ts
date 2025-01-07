@@ -6,4 +6,4 @@ const Renderer = new JSXRenderer(Entrypoint, {
   htmlString,
 });
 
-export const handler = Renderer.render;
+export default Renderer.render;
