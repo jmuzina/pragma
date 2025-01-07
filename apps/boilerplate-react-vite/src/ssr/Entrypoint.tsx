@@ -10,15 +10,16 @@ function Entrypoint({ lang = "en", scriptTags, linkTags }: Props) {
   return (
     <html lang={lang}>
       <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charSet="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="icon" type="image/x-icon" href="../assets/react.svg"/>
         <title>React Server Components</title>
         {scriptTags}
         {linkTags}
       </head>
       <body>
         <div id="root">
-          <Application />
+          <Application/>
         </div>
       </body>
     </html>
