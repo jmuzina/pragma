@@ -1,7 +1,7 @@
 import { hydrateRoot } from "react-dom/client";
-import Application from "./Application.js";
-import "./index.css";
+import "../index.css";
 import { StrictMode } from "react";
+import Application from "../Application.js";
 
 hydrateRoot(
   document.getElementById("root") as HTMLElement,
@@ -9,3 +9,5 @@ hydrateRoot(
     <Application />
   </StrictMode>,
 );
+
+console.log("hydrated");

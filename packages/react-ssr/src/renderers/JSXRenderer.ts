@@ -42,7 +42,7 @@ export default class Renderer {
   async render(req: Request) {
     // await this.prepareLocale(req.headers.get("accept-language") || undefined);
     const jsx = createElement(this.Component, {
-      locale: this.locale,
+      lang: this.locale,
       scriptTags: this.extractor?.getScriptTags(),
       linkTags: this.extractor?.getLinkTags(),
       //messages: this.messages,

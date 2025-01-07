@@ -1,30 +1,20 @@
-import React, { useEffect, useState } from "react";
-import canonicalLogo from "/canonical.svg";
+import React, {useEffect, Suspense, useState, lazy} from "react";
+import canonicalLogo from "./assets/canonical.svg";
 import reactLogo from "./assets/react.svg";
 import "./Application.css";
-import { Button } from "@canonical/ds-react-core";
+import {Button} from "@canonical/ds-react-core";
 
-const DemoComponent = ({ timeout = 2000 }) => {
-  const LazyButton = React.lazy(async () => {
-    await new Promise((resolve) => setTimeout(resolve, timeout));
-
-    return {
-      default: () => <button>Click me</button>,
-    };
+function delayForDemo<T>(promise: Promise<T>, timeout: number = 2000) {
+  return new Promise(resolve => {
+    setTimeout(resolve, timeout);
+  }).then(() => {
+    console.log("resolving promise", promise);
+    return promise;
   });
+}
 
-  useEffect(() => {
-    console.log("mounted");
-  }, []);
+const LazyButton = lazy(() => delayForDemo(import('./LazyComponent.js')));
 
-  return (
-    <div>
-      <React.Suspense fallback={<>Waitttt</>}>
-        <LazyButton onClick={() => alert("clicked")} />
-      </React.Suspense>
-    </div>
-  );
-};
 
 function App() {
   const [count, setCount] = useState(0);
@@ -38,15 +28,17 @@ function App() {
           referrerPolicy="no-referrer"
           rel="noreferrer"
         >
-          <img src={canonicalLogo} className="logo" alt="Canonical logo" />
+          <img src={canonicalLogo} className="logo" alt="Canonical logo"/>
         </a>
         <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+          <img src={reactLogo} className="logo react" alt="React logo"/>
         </a>
       </div>
       <h1>Canonical Design System</h1>
       <h2>React Vite template</h2>
-      <DemoComponent />
+      <Suspense fallback={"Loading..."}>
+        <LazyButton/>
+      </Suspense>
       <div className="card">
         <Button
           label={`Count: ${count}`}
