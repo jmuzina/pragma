@@ -4,7 +4,15 @@ import reactLogo from "./assets/react.svg";
 import "./Application.css";
 import { Button } from "@canonical/ds-react-core";
 
-const LazyDemo = lazy(() => import("./LazyComponent.js"));
+const SlowComponent = React.lazy(() =>
+  import("./LazyComponent.js").then((module) => {
+    return new Promise<{ default: React.ComponentType<any> }>((resolve) => {
+      setTimeout(() => {
+        resolve(module);
+      }, 2000);
+    });
+  })
+);
 
 function App() {
   const [count, setCount] = useState(0);
@@ -27,7 +35,7 @@ function App() {
       <h1>Canonical Design System</h1>
       <h2>React Vite template</h2>
       <Suspense fallback={<p>Loading...</p>}>
-        <LazyDemo/>
+        <SlowComponent/>
       </Suspense>
       <div className="card">
         <Button

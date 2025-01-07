@@ -14,11 +14,11 @@ const LazyComponent = () => {
             title: 'Async Data Loaded',
             body: 'This is some example content loaded after a delay.',
           };
-          resolve(result);  // Resolve the Promise with data
+          resolve(result);
         } catch (err) {
-          reject(new Error('Failed to load data'));  // Reject the Promise if something goes wrong
+          reject(new Error('Failed to load data'));
         }
-      }, 3000);  // Simulate a 3-second delay
+      }, 1500);
     });
   };
 
@@ -26,15 +26,15 @@ const LazyComponent = () => {
     const fetchData = async () => {
       try {
         const result = await simulateAsyncOperation();
-        setData(result);  // Set the data when the Promise resolves
+        setData(result);
       } catch (err) {
-        setError(err as Error);  // Set the error if the Promise rejects
+        setError(err as Error);
       } finally {
-        setLoading(false);  // Always stop loading when the operation is finished
+        setLoading(false);
       }
     };
 
-    fetchData();  // Call the async function inside useEffect
+    fetchData();
   }, []);
 
   if (loading) {
