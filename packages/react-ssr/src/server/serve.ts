@@ -1,68 +1,16 @@
-#!/usr/bin/env bun
+import type { IncomingMessage, ServerResponse } from "node:http";
+import type { RenderHandler } from "../renderer/index.js";
 
-import path from "path";
-import { resolve } from "path";
-import { parseArgs } from "util";
-import { serve } from "bun";
-import StaticFilesMiddleware from "./StaticFilesMiddleware.js";
-
-// Parse command-line arguments using util.parseArgs
-const { values, positionals } = parseArgs({
-  args: Bun.argv.slice(2),
-  options: {
-    port: {
-      type: "string",
-      alias: "p",
-      default: "5173",
-    },
-    static: {
-      type: "string",
-      alias: "s",
-      default: "dist/client",
-    },
-  },
-  strict: true,
-  allowPositionals: true,
-});
-
-const port = values.port || 5173;
-const rendererFilePath = positionals[0];
-
-if (!rendererFilePath) {
-  console.error(
-    "Renderer file path is required. Usage: bun run script.ts [--port <port>] <rendererFilePath>",
-  );
-  process.exit(1);
-}
-
-// Resolve renderer file path relative to the current working directory
-const cwd = process.cwd();
-const resolvedRendererFilePath = resolve(cwd, rendererFilePath);
-console.log("Current working directory: ", cwd);
-const staticDirs = [path.join(cwd, values.static), path.join(cwd, "public")];
-const staticFilesMiddleware = new StaticFilesMiddleware(staticDirs);
-
-serve({
-  async fetch(req: Request) {
-    const staticResponse = await staticFilesMiddleware.handleRequest(req);
-    if (staticResponse) {
-      return staticResponse;
-    }
-
+export function serveStream(handler: RenderHandler) {
+  return (req: IncomingMessage, res: ServerResponse) => {
     try {
-      const handler = await import(resolvedRendererFilePath).then(
-        (module) => module.default,
-      );
-      const stream: ReadableStream = await handler(req, null);
-      return new Response(stream, {
-        headers: { "Content-Type": "text/html" },
-      });
+      res.setHeader("Content-Type", "text/html");
+      res.setHeader("Transfer-Encoding", "chunked");
+      handler(req, res);
     } catch (error) {
-      console.error("Error loading renderer:", error);
-      return new Response("Internal Server Error", { status: 500 });
+      console.error("Error during rendering:", error);
+      res.statusCode = 500;
+      res.end("Internal server error");
     }
-  },
-  port,
-});
-
-console.log(`Server running at http://localhost:${port}`);
+  };
+}
