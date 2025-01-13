@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 5173;
 const app = express();
 
 app.use("/(assets|public)", express.static("dist/client/assets"));
+
 app.use(serveStream(render));
 
 app.listen(PORT, () => {

@@ -51,7 +51,7 @@ if (typeof handler !== "function") {
 const app = express();
 
 app.use(`/${staticRoute}`, express.static(staticDir));
-app.use("/", serveStream(handler));
+app.use(serveStream(handler));
 
 app.listen(port, () => {
   console.log(`Server started on http://localhost:${port}/`);

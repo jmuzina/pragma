@@ -1,16 +1,17 @@
+import type {
+  ReactServerEntrypointComponent,
+  RendererServerEntrypointProps,
+} from "@canonical/react-ssr/renderer";
+import React from "react";
 import Application from "../Application.js";
 
-type Props = {
-  lang?: string;
-  scriptTags: string;
-  linkTags: string;
-};
-
-function Shell({ lang = "en", scriptTags, linkTags }: Props) {
+const EntryServer: ReactServerEntrypointComponent<
+  RendererServerEntrypointProps
+> = ({ lang = "en", scriptTags, linkTags }: RendererServerEntrypointProps) => {
   return (
     <html lang={lang}>
       <head>
-        <title>React Server Components</title>
+        <title>Canonical React Vite Boilerplate</title>
         {scriptTags}
         {linkTags}
       </head>
@@ -21,10 +22,6 @@ function Shell({ lang = "en", scriptTags, linkTags }: Props) {
       </body>
     </html>
   );
-}
-
-function EntryServer({ lang = "en", scriptTags, linkTags }: Props) {
-  return <Shell lang={lang} scriptTags={scriptTags} linkTags={linkTags} />;
-}
+};
 
 export default EntryServer;
