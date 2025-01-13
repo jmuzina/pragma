@@ -69,7 +69,7 @@ These do not have to be included in your build configuration. They are only nece
   "compilerOptions": {
     "types": ["vitest/globals"]
   },
-  "include": ["vite.config.ts", "vitest.config.ts"]
+  "include": ["vite.config.ts"]
 }
 ```
 #### Testing environment
