@@ -1,9 +1,16 @@
-import { useState } from "react";
-import canonicalLogo from "/canonical.svg";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
-
 import { Button } from "@canonical/react-ds-core";
+import React, { Suspense, useState, lazy } from "react";
+import canonicalLogo from "./assets/canonical.svg";
+import reactLogo from "./assets/react.svg";
+import "./Application.css";
+
+const LazyButton = lazy(
+  () =>
+    new Promise((resolve) => {
+      // @ts-ignore
+      setTimeout(() => resolve(import("./LazyComponent.js")), 2000);
+    }),
+);
 
 function App() {
   const [count, setCount] = useState(0);
@@ -25,6 +32,9 @@ function App() {
       </div>
       <h1>Canonical Design System</h1>
       <h2>React Vite template</h2>
+      <Suspense fallback={"Loading..."}>
+        <LazyButton />
+      </Suspense>
       <div className="card">
         <Button
           label={`Count: ${count}`}

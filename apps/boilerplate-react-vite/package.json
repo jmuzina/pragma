@@ -6,8 +6,10 @@
   "license": "GPL-3.0-only",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "build": "bun run build:client && bun run build:server",
+    "build:client": "vite build --ssrManifest --outDir dist/client",
+    "build:server": "vite build --ssr src/ssr/server.ts --outDir dist/server",
+    "serve": "bun run build && node dist/server/server.js",
     "check": "bun run check:biome && bun run check:ts",
     "check:fix": "bun run check:biome:fix && bun run check:ts",
     "check:biome": "biome check src *.json",
@@ -16,6 +18,7 @@
   },
   "dependencies": {
     "@canonical/styles": "^0.6.0-experimental.0",
+    "@canonical/react-ssr": "0.4.0-experimental.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
