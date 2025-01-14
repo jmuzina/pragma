@@ -3,7 +3,7 @@ import canonicalLogo from "/canonical.svg";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 
-import { Button } from "@canonical/ds-react-core";
+import { Button } from "@canonical/react-ds-core";
 
 function App() {
   const [count, setCount] = useState(0);
