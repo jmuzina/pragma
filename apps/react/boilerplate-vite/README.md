@@ -5,4 +5,6 @@ application using the standard set of shared Canonical packages.
 
 #### Running the boilerplate
 
-Run `bun run dev` to run a live development server.
+Run `bun run dev` to run a live development server with HMR.
+
+Run `bun run serve` to run a server-side rendered version of the app using the [React SSR](../../../packages/react/ssr) package.
