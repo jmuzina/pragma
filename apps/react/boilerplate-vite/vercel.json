@@ -1,0 +1,18 @@
+{
+  "builds": [
+    {
+      "src": "dist/server/server.js",
+      "use": "@vercel/node",
+      "config": { "zeroConfig": true }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/.*",
+      "dest": "/dist/server/server.js",
+      "headers": {
+        "cache-control": "s-maxage=7200, max-age=86400, stale-while-revalidate"
+      }
+    }
+  ]
+}
