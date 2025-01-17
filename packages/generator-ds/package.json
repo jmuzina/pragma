@@ -16,7 +16,7 @@
   "homepage": "https://github.com/canonical/ds25#readme",
   "files": ["generators"],
   "type": "module",
-  "main": "generators/index.js",
+  "module": "generators/index.js",
   "scripts": {
     "build": "bun run build:tsc && bun run build:copyfiles",
     "build:tsc": "tsc",

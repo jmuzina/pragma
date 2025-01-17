@@ -10,6 +10,13 @@
     "email": "webteam@canonical.com",
     "name": "Canonical Webteam"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/esm/index.js"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/canonical/ds25"
