@@ -7,11 +7,6 @@ const Renderer = new JSXRenderer(EntryServer, {
 });
 
 //@ts-ignore
-export async function GET(req, res) {
-  // res.setHeader("Content-Type", "text/html");
-  // res.setHeader("Transfer-Encoding", "chunked");
-  // Renderer.render(req, res);
-  res.send("this is a test");
-}
+export const GET = Renderer.render;
 
 export default Renderer.render;
