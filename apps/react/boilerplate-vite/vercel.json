@@ -5,14 +5,14 @@
       "use": "@vercel/static-build"
     },
     {
-      "src": "dist/server/server.js",
+      "src": "dist/server/renderer.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/server/server.js",
+      "dest": "/server/renderer.js",
       "headers": {
         "cache-control": "s-maxage=7200, max-age=86400, stale-while-revalidate"
       }
