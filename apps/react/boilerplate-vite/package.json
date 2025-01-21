@@ -6,7 +6,7 @@
   "license": "GPL-3.0-only",
   "scripts": {
     "dev": "vite",
-    "build": "bun run build:client && bun run build:server",
+    "build": "mkdir dist && bun run build:client && bun run build:server",
     "build:client": "vite build --ssrManifest --outDir api/client",
     "build:server": "bun run build:server:cli",
     "build:server:middleware": "vite build --ssr src/ssr/server.ts --outDir api/server",
