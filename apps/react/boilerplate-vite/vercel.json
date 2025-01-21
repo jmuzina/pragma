@@ -1,5 +1,5 @@
 {
-  "outputDirectory": "api/",
+  "outputDirectory": ".",
   "routes": [
     {
       "src": "/(?<fn>[-A-Za-z0-9~./_]+)[.](?<ext>(png|jpg|woff|woff2|otf|eot|ttf|ico|svg|glb|xml|txt|webp|mdx))",
@@ -17,7 +17,7 @@
     },
     {
       "src": "/.*",
-      "dest": "/server/renderer.js",
+      "dest": "/api/server/renderer.js",
       "headers": {
         "cache-control": "s-maxage=7200, max-age=86400, stale-while-revalidate"
       }
