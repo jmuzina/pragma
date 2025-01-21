@@ -1,15 +1,17 @@
 {
-  "buildCommand": "next build",
   "builds": [
     {
-      "src": "dist/server/renderer.js",
-      "use": "@vercel/node"
+      "src": "dist/server/renderer.ts",
+      "use": "@vercel/node",
+      "config": {
+        "installCommand": "bun install"
+      }
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "dist/server/renderer.js"
+      "dest": "dist/server/renderer.ts"
     }
   ]
 }
