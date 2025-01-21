@@ -1,13 +1,4 @@
 {
-  "builds": [
-    {
-      "src": "api/server/renderer.ts",
-      "use": "@vercel/node",
-      "config": {
-        "installCommand": "bun install"
-      }
-    }
-  ],
   "routes": [
     {
       "src": "/(.*)",
