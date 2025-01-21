@@ -2,7 +2,7 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/static-build"
+      "use": "@vercel/node"
     },
     {
       "src": "dist/server/renderer.js",
@@ -12,10 +12,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/server/renderer.js",
-      "headers": {
-        "cache-control": "s-maxage=7200, max-age=86400, stale-while-revalidate"
-      }
+      "dest": "dist/server/renderer.js"
     }
   ]
 }
