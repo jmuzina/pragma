@@ -1,8 +1,9 @@
 {
+  "outputDirectory": "api/",
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "server/renderer.ts"
+      "dest": "api/server/renderer.ts"
     }
   ]
 }
