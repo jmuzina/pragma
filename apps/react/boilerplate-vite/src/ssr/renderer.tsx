@@ -6,7 +6,7 @@ const Renderer = new JSXRenderer(EntryServer, {
   htmlString,
 });
 
-//@ts-ignore
+//@ts-ignore for now
 export const GET = Renderer.render;
 
 export default Renderer.render;
