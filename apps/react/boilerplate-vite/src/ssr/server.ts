@@ -7,7 +7,7 @@ const NODE_ENV = process.env.NODE_ENV || "development";
 
 const app = express();
 
-app.use("/(assets|public)", express.static("dist/client/assets"));
+app.use("/(assets|public)", express.static("api/client/assets"));
 
 export const GET = serveStream(render);
 
