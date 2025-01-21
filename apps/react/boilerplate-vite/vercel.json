@@ -1,9 +1,8 @@
 {
   "builds": [
     {
-      "src": "package.json",
-      "use": "@vercel/node",
-      "config": { "entrypoint": "build.js" }
+      "src": "dist/server/renderer.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
