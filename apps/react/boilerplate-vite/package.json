@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "bun run build:client && bun run build:server",
     "build:client": "vite build --ssrManifest --outDir api/client",
-    "build:server": "bun run build:server:cli",
+    "build:server": "bun run build:server:middleware",
     "build:server:middleware": "vite build --ssr src/ssr/server.ts --outDir api/server",
     "build:server:cli": "vite build --ssr src/ssr/renderer.tsx --outDir api/server",
     "serve": "bun run serve:middleware",
