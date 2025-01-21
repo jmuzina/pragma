@@ -38,6 +38,8 @@
     "globals": "^15.13.0",
     "typescript": "^5.7.2",
     "vite": "^6.0.3",
-    "vite-tsconfig-paths": "^5.1.4"
+    "vite-tsconfig-paths": "^5.1.4",
+    "serverless-http": "^3.2.0",
+    "@netlify/functions": "^3.0.0"
   }
 }

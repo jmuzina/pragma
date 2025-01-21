@@ -208,8 +208,10 @@ const EntryServer = ({ lang = "en", scriptTags, linkTags }) => {
 const Renderer2 = new Renderer$1(EntryServer, {
   htmlString
 });
+const GET = Renderer2.render;
 const renderer = Renderer2.render;
 export {
   Button as B,
+  GET,
   renderer as default
 };
