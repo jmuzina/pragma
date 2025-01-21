@@ -5,7 +5,6 @@ import {
   type PipeableStream,
   type RenderToPipeableStreamOptions,
   renderToPipeableStream,
-  renderToString,
 } from "react-dom/server";
 import Extractor from "./Extractor.js";
 
@@ -108,9 +107,6 @@ export default class Renderer<
     const jsx = createElement(this.Component, this.getComponentProps());
 
     let renderingError: Error;
-
-    // @ts-ignore
-    return res.send(renderToString(jsx));
 
     const jsxStream = renderToPipeableStream(jsx, {
       ...this.options.renderToPipeableStreamOptions,
