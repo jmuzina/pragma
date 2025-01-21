@@ -84,8 +84,8 @@ The example below uses Vite.
 {
   "scripts": {
     "build": "bun run build:client && bun run build:server",
-    "build:client": "vite build --ssrManifest --outDir dist/client",
-    "build:server": "vite build --ssr src/ssr/server.ts --outDir dist/server"
+    "build:client": "vite build --ssrManifest --outDir api/client",
+    "build:server": "vite build --ssr src/ssr/server.ts --outDir api/server"
   }
 }
 

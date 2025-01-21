@@ -17,7 +17,7 @@ const { values, positionals } = parseArgs({
     staticFilepath: {
       type: "string",
       alias: "s",
-      default: "dist/client/assets",
+      default: "api/client/assets",
     },
     staticRoute: {
       type: "string",

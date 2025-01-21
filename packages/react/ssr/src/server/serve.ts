@@ -12,7 +12,7 @@ import type { RenderHandler } from "../renderer/index.js";
  * import { serveStream } from "@canonical/react-ssr/server";
  * import { JSXRenderer } from "@canonical/react-ssr/renderer";
  * // htmlString is created by some build process that bundles the client code
- * import htmlString from "../../dist/client/index.html?raw";
+ * import htmlString from "../../api/client/index.html?raw";
  * import EntryServer from "./entry-server.js";
  *
  * // `EntryServer` is an instance of `@canonical/react-ssr/renderer/ReactServerEntrypointComponent`
@@ -24,7 +24,7 @@ import type { RenderHandler } from "../renderer/index.js";
  *
  * const app = express();
  *
- * app.use("/(assets|public)", express.static("dist/client/assets"));
+ * app.use("/(assets|public)", express.static("api/client/assets"));
  * app.use(serveStream(ssrHandler));
  */
 export function serveStream(handler: RenderHandler) {
