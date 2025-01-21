@@ -1,10 +1,25 @@
 var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+import * as process from "node:process";
+import express from "express";
 import React, { createElement, lazy, useState, Suspense } from "react";
 import { renderToPipeableStream } from "react-dom/server";
 import { parseDocument } from "htmlparser2";
 import { jsx, jsxs, Fragment } from "react/jsx-runtime";
+function serveStream(handler) {
+  return (req, res) => {
+    try {
+      res.setHeader("Content-Type", "text/html");
+      res.setHeader("Transfer-Encoding", "chunked");
+      handler(req, res);
+    } catch (error) {
+      console.error("Error during rendering:", error);
+      res.statusCode = 500;
+      res.end("Internal server error");
+    }
+  };
+}
 const toPascalCase = (s) => {
   if (!s)
     return "";
@@ -157,7 +172,7 @@ const canonicalLogo = "/assets/canonical-CY3gGFbg.svg";
 const reactLogo = "/assets/react-CHdo91hT.svg";
 const LazyButton = lazy(
   () => new Promise((resolve) => {
-    setTimeout(() => resolve(import("./assets/LazyComponent-B3JTEali.js")), 2e3);
+    setTimeout(() => resolve(import("./assets/LazyComponent-DVK9KGqb.js")), 2e3);
   })
 );
 function App() {
@@ -208,10 +223,21 @@ const EntryServer = ({ lang = "en", scriptTags, linkTags }) => {
 const Renderer2 = new Renderer$1(EntryServer, {
   htmlString
 });
-const GET = Renderer2.render;
-const renderer = Renderer2.render;
+Renderer2.render;
+const render = Renderer2.render;
+const NODE_ENV = process.env.NODE_ENV || "development";
+const app = express();
+app.use("/(assets|public)", express.static("api/client/assets"));
+const GET = serveStream(render);
+app.use(GET);
+if (NODE_ENV === "development") {
+  const PORT = process.env.PORT || 5173;
+  app.listen(PORT, () => {
+    console.log(`Server started on http://localhost:${PORT}/`);
+  });
+}
 export {
   Button as B,
   GET,
-  renderer as default
+  app as default
 };

@@ -1,5 +1,7 @@
 import { jsx } from "react/jsx-runtime";
-import { B as Button } from "../renderer.js";
+import { B as Button } from "../server.js";
+import "node:process";
+import "express";
 import "react";
 import "react-dom/server";
 import "htmlparser2";
