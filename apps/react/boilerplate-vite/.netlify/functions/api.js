@@ -1,5 +1,5 @@
 import serverless from "serverless-http";
-import app from "../../api/server/server";
+import app from "../../api/server/server.js";
 
 app.get("/hello", (req, res) => res.send("Hello World!"));
 
