@@ -4,6 +4,20 @@ inputs:
   bun-version: 
     default: latest
     description: Version of Bun to use
+  packages_to_install:
+    description: JSON List of package names to install
+    required: false
+  build_packages:
+    description: Whether packages should be built after installing
+    required: false
+    default: "true"
+outputs:
+  packages_to_install:
+    description: JSON List of package names to install
+    value: ${{ steps.packages-built.outputs.packages_to_install }}
+  build_scope:
+    description: JSON List of changed package scopes
+    value: ${{ steps.packages-built.outputs.build_scope }}
 runs:
   using: composite
   steps:
@@ -14,7 +28,18 @@ runs:
 
       # TODO setup a matrix strategy to test multiple bun/node versions
 
-      # "prepare" hook on `bun install` runs `bun run build`
     - name: Install dependencies
       shell: bash
-      run: bun install --frozen-lockfile
+      run: bun install --frozen-lockfile --ignore-scripts
+
+    - name: Get changed packages
+      if: ${{ inputs.build_packages == 'true' }}
+      id: packages-built
+      uses: ./.github/actions/lerna-changed
+      with:
+        packages_to_install: ${{ inputs.packages_to_install }}
+
+    - name: Build
+      if: ${{ inputs.build_packages == 'true' }}
+      shell: bash
+      run: lerna run build ${{ steps.packages-built.outputs.build_scope }}

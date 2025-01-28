@@ -6,16 +6,64 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      packages_to_install: ${{ steps.setup-env.outputs.packages_to_install }}
+      build_scope: ${{ steps.setup-env.outputs.build_scope }}
+      packages_with_storybook: ${{ steps.get-packages-to-test.outputs.packages_with_storybook }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-        # "prepare" hook on `bun install` runs `bun run build`
       - name: Setup environment
+        id: setup-env
         uses: ./.github/actions/setup-env
 
       - name: Code quality checks
-        run: bun run check
+        run: lerna run check ${{ steps.setup-env.outputs.build_scope }}
 
       - name: Test
-        run: bun run test
+        run: lerna run test ${{ steps.setup-env.outputs.build_scope }}
+
+      - name: Get packages to test with storybook
+        id: get-packages-to-test
+        run: |
+          packages_with_storybook="["
+          
+          packages=$(bun run lerna ls --all ${{ steps.setup-env.outputs.build_scope }} --json | jq -c '[.[] | {name, location}]')
+          
+          for PACKAGE in $(echo "$packages" | jq -c -r '.[] | @base64'); do
+            package_data=$(echo "$PACKAGE" | base64 --decode)
+            package_name=$(echo "$package_data" | jq -r '.name')
+            package_location=$(echo "$package_data" | jq -r '.location')
+            package_json_file="$package_location/package.json"
+          
+            # Check if the package has a storybook script
+            if [ -f "$package_json_file" ]; then
+              has_storybook=$(jq -r '.scripts.storybook' "$package_json_file")
+              if [ "$has_storybook" != "null" ]; then
+                packages_with_storybook+="\"$package_name\","
+                echo "Found storybook script in package: $package_name"
+              else
+                echo "No storybook script found in package: $package_name"
+              fi
+            fi
+          done
+          packages_with_storybook="${packages_with_storybook%,}]"
+          
+          echo $packages_with_storybook
+          echo "packages_with_storybook=$packages_with_storybook" >> $GITHUB_OUTPUT
+
+  ui-test:
+    needs: build
+    strategy:
+      matrix:
+        package_name: ${{ fromJSON(needs.build.outputs.packages_with_storybook) }}
+      # Allow all packages to be tested, even if some fail
+      fail-fast: false
+    uses: ./.github/workflows/chromatic.yml
+    with:
+      package_name: ${{ matrix.package_name }}
+      onlyChanged: true
+    secrets: inherit

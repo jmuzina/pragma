@@ -1,0 +1,58 @@
+name: Chromatic UI Test Workflow
+
+on:
+  workflow_call:
+    inputs:
+      package_name:
+        description: 'Name of the package to test'
+        required: true
+        type: string
+      onlyChanged:
+        description: 'Only run tests on changed stories'
+        required: false
+        type: boolean
+      autoApprove:
+        description: 'Automatically approve the build'
+        required: false
+        type: boolean
+
+jobs:
+  chromatic-ui-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-env
+        with:
+          packages_to_install: '[\"${{ inputs.package_name }}\"]'
+
+      - name: Get package directory
+        id: get-package-dir
+        shell: bash
+        run: |
+          absolute_path=$(bun run lerna ls --scope ${{ inputs.package_name }} --json | jq -c -r '.[0].location')
+          echo $GITHUB_WORKSPACE
+          relative_path=$(echo "$absolute_path" | awk -v root="$GITHUB_WORKSPACE" '{sub(root "/", "", $0); print}')
+          echo $relative_path
+          echo "package_dir=$relative_path" >> $GITHUB_OUTPUT
+
+      - name: Get chromatic secret name
+        id: get-chromatic-secret-name
+        run: |
+          # sanitize the secret name for compatibility with GHA secrets
+          # uppercase package name, remove "@" and replace non-alphanumeric characters with "_"
+          secret_name=CHROMATIC_TOKEN_$(echo "${{ inputs.package_name }}" | sed 's/@//g' | sed 's/[^a-zA-Z0-9_]/_/g' | tr '[:lower:]' '[:upper:]')
+          echo $secret_name
+          echo "secret_name=$secret_name" >> $GITHUB_OUTPUT
+
+      - name: Run Chromatic UI tests
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets[steps.get-chromatic-secret-name.outputs.secret_name] }}
+          workingDir: ${{ steps.get-package-dir.outputs.package_dir }}
+          onlyChanged: ${{ inputs.onlyChanged }}
+          autoAcceptChanges: ${{ inputs.autoApprove }}

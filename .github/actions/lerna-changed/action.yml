@@ -1,0 +1,43 @@
+name: Get Changed Packages
+
+description: Retrieves a list of changed packages using Lerna.
+
+inputs:
+  packages_to_install:
+    description: JSON list of changed package names. If passed, this is used instead of running Lerna, and the `build_scope` will be generated from this list.
+    required: false
+
+outputs:
+  packages_to_install:
+    description: JSON list of changed package names
+    value: ${{ steps.get-changed-packages.outputs.packages_to_install }}
+  build_scope:
+    description: lerna --scope flag for each changed package
+    value: ${{ steps.get-changed-packages.outputs.build_scope }}
+
+runs:
+  using: composite
+  steps:
+    - name: Get changed package names
+      id: get-changed-packages
+      shell: bash
+      run: |
+        if [ "${{ inputs.packages_to_install }}" == "*" ]; then
+          packages_to_install=$(bun run lerna ls --json | jq -c -r '[.[].name]')
+        elif [ -n "${{ inputs.packages_to_install }}" ]; then
+          packages_to_install=$(echo "${{ inputs.packages_to_install }}" | jq -c -r .)
+        else
+          packages_to_install=$(bun run lerna changed --all --json | jq -c -r '[.[].name]')
+        fi
+
+        echo "found changed packages: $packages_to_install"
+
+        for PACKAGE_NAME in $(echo "$packages_to_install" | jq -r '.[]'); do
+          echo "Found changed package: $PACKAGE_NAME"
+          build_scope="$build_scope--scope \"$PACKAGE_NAME\" "
+        done
+
+        echo "found changed scope: $build_scope"
+
+        echo "packages_to_install=$packages_to_install" >> $GITHUB_OUTPUT
+        echo "build_scope=$build_scope" >> $GITHUB_OUTPUT
