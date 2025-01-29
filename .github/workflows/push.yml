@@ -9,8 +9,6 @@ jobs:
   build:
     name: Build and test
     runs-on: ubuntu-latest
-    outputs:
-      packages_to_install: ${{ steps.setup-env.outputs.packages_to_install }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -18,25 +16,20 @@ jobs:
           fetch-depth: 1
 
       - name: Setup environment
-        id: setup-env
         uses: ./.github/actions/setup-env
-        with:
-          packages_to_install: '*'
 
       - name: Code quality checks
         run: bun run check
 
       - name: Test
         run: bun run test
-  # TODO extract the storybook package detection to some other action so that it can be reused by the baseline build
-  update-ui-baseline:
+
+  update-visual-test-baseline:
+    name: Update visual testing baseline
     needs: build
-    strategy:
-      matrix:
-        package_name: ${{ fromJSON(needs.build.outputs.packages_to_install) }}
     uses: ./.github/workflows/chromatic.yml
     with:
-      package_name: ${{ matrix.package_name }}
-      onlyChanged: false
+      onlyChanged: true
+      # baseline builds are automatically approved, as they were reviewed in the PR flow
       autoApprove: true
     secrets: inherit
