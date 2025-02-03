@@ -60,9 +60,7 @@ export default class ComponentGenerator extends Generator<ComponentGeneratorOpti
 
   /**
    * Gets the path to the component's directory relative to the current working directory.
-   * PascalCases the final directory name to match React component naming conventions.
-   * Note that if this is invoked from a cwd that is not PascalCased, the cwd will be PascalCased in the return.
-   * If the `inPath` is above the cwd, this would lead to an incorrect path.
+   * PascalCases the final directory name to match React component naming conventions, if the path is a descendant of the cwd.
    * @param inPath - The path to resolve, relative to the current working directory
    * @return Path to the component's directory relative to the current working directory
    * @example
