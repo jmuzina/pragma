@@ -1,5 +1,5 @@
 import path from "node:path";
-import { casing } from "@canonical/utils";
+import { casing, paths } from "@canonical/utils";
 import Generator, { type BaseOptions } from "yeoman-generator";
 import globalContext from "../app/global-context.js";
 
@@ -60,7 +60,9 @@ export default class ComponentGenerator extends Generator<ComponentGeneratorOpti
 
   /**
    * Gets the path to the component's directory relative to the current working directory.
-   * Pascal-cases the final directory name to match React component naming conventions.
+   * PascalCases the final directory name to match React component naming conventions.
+   * Note that if this is invoked from a cwd that is not PascalCased, the cwd will be PascalCased in the return.
+   * If the `inPath` is above the cwd, this would lead to an incorrect path.
    * @param inPath - The path to resolve, relative to the current working directory
    * @return Path to the component's directory relative to the current working directory
    * @example
@@ -70,12 +72,14 @@ export default class ComponentGenerator extends Generator<ComponentGeneratorOpti
     const rawPath = super.destinationPath(...inPath);
     const dirName = path.dirname(rawPath);
 
+    // If the path is an ancestor of the cwd, we don't want to PascalCase the parent directory, as this would be an incorrect absolute filepath
+    // If the path is a descendant of the cwd, we want to PascalCase the parent directory to enforce React component naming conventions.
+    const componentParentDir = paths.isAncestor(this.env.cwd, rawPath)
+      ? path.basename(dirName)
+      : casing.toPascalCase(path.basename(dirName));
+
     // Replace the last segment of the path with the Pascal-cased version
-    const componentFolder = path.resolve(
-      dirName,
-      "..",
-      casing.toPascalCase(path.basename(dirName)),
-    );
+    const componentFolder = path.resolve(dirName, "..", componentParentDir);
 
     // Append the original file name to the new path
     const fileName = path.basename(rawPath);
