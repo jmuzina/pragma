@@ -2,19 +2,6 @@ name: Update package versions
 on:
   workflow_dispatch:
     inputs:
-      update_type:
-        description: "Verion update type"
-        required: true
-        # Change to minor once project is stable
-        default: "prepatch"
-        type: choice
-        options:
-          - patch
-          - minor
-          - major
-          - prepatch
-          - preminor
-          - premajor
       prerelease_identifier:
         description: "Pre-release identifier, used for pre(patch|minor|major) versions"
         default: "experimental"
@@ -72,7 +59,6 @@ jobs:
         id: lerna_version
         uses: ./.github/actions/lerna-version
         with:
-          update_type: ${{ github.event.inputs.update_type }}
           prerelease_identifier: ${{ github.event.inputs.prerelease_identifier }}
 
       - name: Setup Git CLI
