@@ -9,6 +9,8 @@ on:
       - edited
       - synchronize
       - reopened
+permissions:
+  pull-requests: read
 
 jobs:
   validate-pr-metadata:
