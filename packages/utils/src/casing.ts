@@ -5,12 +5,10 @@
  * @example
  * toPascalCase("my-component") // "MyComponent"
  */
-const toPascalCase = (s: string): string => {
+export const toPascalCase = (s: string): string => {
   if (!s) return "";
 
-  const camelCased = toCamelCase(s);
-
-  return camelCased.charAt(0).toUpperCase() + camelCased.slice(1);
+  return toCamelCase(s).replace(/^[a-z]/, (c) => c.toUpperCase());
 };
 
 /**
@@ -20,12 +18,13 @@ const toPascalCase = (s: string): string => {
  * @example
  * toKebabCase("MyComponent") // "my-component"
  */
-const toKebabCase = (s: string): string => {
+export const toKebabCase = (s: string): string => {
   if (!s) return "";
 
   return s
     .trim()
-    .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+    .replace(/([A-Z])/g, "-$1") // Add hyphen before all uppercase letters
+    .replace(/^-/, "") // Remove leading hyphen
     .toLowerCase();
 };
 
@@ -36,14 +35,22 @@ const toKebabCase = (s: string): string => {
  * @example
  * toCamelCase("my-component") // "myComponent"
  */
-const toCamelCase = (s: string): string => {
+export const toCamelCase = (s: string): string => {
   if (!s) return "";
 
-  return s
-    .replace(/-([a-z])/g, (g) => g[1].toUpperCase())
-    .replaceAll("-", "")
-    .replaceAll("_", "")
-    .replaceAll(" ", "");
+  return (
+    s
+      .trim()
+      // In ranges of repeated uppercase letters, only capitalize the first and last ones. Lowercase the letters in between.
+      .replace(/([A-Z])([A-Z]+)/g, (_, first: string, rest: string) => {
+        const firstChar = first.toUpperCase();
+        const lastChar = rest.charAt(rest.length - 1).toUpperCase();
+        const intermediateChars = rest.slice(0, rest.length - 1).toLowerCase();
+        return `${firstChar}${intermediateChars}${lastChar}`;
+      })
+      .replace(/[-_\s]+(.)/g, (_, c) => c.toUpperCase()) // Capitalize after separators
+      .replace(/^./, (c) => c.toLowerCase())
+  );
 };
 
 export default {
