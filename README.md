@@ -32,7 +32,7 @@ Each of its packages are separate modules that can be worked on independently.
 - `apps/`: Core applications consuming the design system. These could be documentation sites, boilerplates, etc.
 - `configs/`: Recommended configurations for linters, build tools, etc.
 - `packages/`: Modules that consume configurations and are consumed by applications.
-  - [`packages/ds-react-core`](/packages/ds-react-core/README.md) is especially noteworthy as it publishes our styling and React components, and documents them with [Storybook](https://storybook.js.org/).
+  - [`react/ds-react-core`](/packages/react/ds-core/README.md) is especially noteworthy as it publishes our styling and React components, and documents them with [Storybook](https://storybook.js.org/).
 
 ## Package scripts
 
