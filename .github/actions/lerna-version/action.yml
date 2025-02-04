@@ -1,10 +1,6 @@
 name: Version packages
 description: Updates package version numbers for changed packages.
 inputs:
-  update_type:
-    description: "Semver version update type"
-    required: true
-    default: "prepatch"
   prerelease_identifier:
     description: "Prerelease identifier"
     default: "experimental"
@@ -19,9 +15,18 @@ runs:
     - name: Version packages
       shell: bash
       id: lerna_version
-      run: ${{ github.action_path }}/version.sh "${{ inputs.update_type }}" "${{ inputs.prerelease_identifier }}"
+      run: |
+        if [ -z "${{ inputs.prerelease_identifier }}" ]; then
+          VERSION_ARGS="--preid ${{ inputs.prerelease_identifier}}"
+        fi
 
-      # Lerna may introuce slight formatting changes to the package.json files
-    - name: Format files
-      shell: bash
-      run: bun run check:fix
+        # Run lerna version with the specified arguments
+        # Do not commit or tag as we need to re-format the package files before committing
+        bun run lerna version --conventional-commits $VERSION_ARGS --no-git-tag-version --no-push --yes
+
+        # Lerna may introuce slight formatting changes to the package.json files. This also formats the generated CHANGELOG files.
+        bun run check:fix
+
+        # Extract the updated version from lerna.json
+        VERSION=$(jq -r '.version' lerna.json)
+        echo "VERSION=$VERSION" >> "$GITHUB_OUTPUT"
