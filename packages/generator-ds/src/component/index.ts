@@ -72,9 +72,10 @@ export default class ComponentGenerator extends Generator<ComponentGeneratorOpti
 
     // If the path is an ancestor of the cwd, we don't want to PascalCase the parent directory, as this would be an incorrect absolute filepath
     // If the path is a descendant of the cwd, we want to PascalCase the parent directory to enforce React component naming conventions.
-    const componentParentDir = paths.isAncestor(this.env.cwd, rawPath)
-      ? path.basename(dirName)
-      : casing.toPascalCase(path.basename(dirName));
+    let componentParentDir = path.basename(dirName);
+    if (paths.isAncestor(this.env.cwd, rawPath)) {
+      componentParentDir = casing.toPascalCase(componentParentDir);
+    }
 
     // Replace the last segment of the path with the Pascal-cased version
     const componentFolder = path.resolve(dirName, "..", componentParentDir);
