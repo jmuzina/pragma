@@ -84,16 +84,6 @@ Here is an example of a changelog entry:
 * Update intent definitions to include neutral and improve style inheritance and overriding ([cb56369](https://github.com/canonical/ds25/commit/cb56369))
 ```
 
-###### Initial Changelogs
-
-On the initial adoption of the conventional commits versioning workflow, we must generate initial changelogs for each package.
-Follow the following steps to create and publish the initial changelogs:
-1. Merge any other pending pull requests, or ensure that they are not merged until the initial changelogs are created and merged, and those PRs are rebased on top of the new version. This will ensure new changes are included in changelogs going forward.
-2. Run `./scripts/create-initial-changelogs.sh`. This will create the initial changelogs and push them to the `initial-changelogs` branch.
-3. Open a pull request from the `initial-changelogs` branch to `main`.
-4. Review the changelogs and merge the pull request.
-5. Run the Update Package Versions action as usual. This will tag the changelogs and publish them to NPM.
-
 ##### V1.0.0
 
 Lerna follows the [SemVer spec](https://semver.org/#spec-item-4) for versioning. This means that the first stable release of a package should be `1.0.0`.
