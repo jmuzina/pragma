@@ -2,11 +2,18 @@ name: Update package versions
 on:
   workflow_dispatch:
     inputs:
-      prerelease_identifier:
-        description: "Pre-release identifier, used for pre(patch|minor|major) versions"
+      release_type:
+        description: "Release type. If not stable, the current version will be bumped as a pre-release instead of a stable release."
+        # TODO change default to stable after 1.0.0 is out
         default: "experimental"
         required: false
-        type: string
+        type: choice
+        options:
+          - "experimental"
+          - "alpha"
+          - "beta"
+          - "rc"
+          - "stable"
 env:
   MAIN_BRANCH: "refs/heads/main"
 
@@ -59,7 +66,7 @@ jobs:
         id: lerna_version
         uses: ./.github/actions/lerna-version
         with:
-          prerelease_identifier: ${{ github.event.inputs.prerelease_identifier }}
+          release_type: ${{ github.event.inputs.release_type }}
 
       - name: Setup Git CLI
         uses: ./.github/actions/setup-git
