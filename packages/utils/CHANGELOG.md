@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.8.1-experimental.1](https://github.com/canonical/ds25/compare/v0.8.1-experimental.0...v0.8.1-experimental.1) (2025-02-05)
+
+**Note:** Version bump only for package @canonical/utils
+
+
+
+
+
 ## <small>0.7.1-experimental.0 (2025-02-04)</small>
 
 
@@ -57,6 +70,3 @@
 * simplify debounce & throttle ([2214c9b](https://github.com/canonical/ds25/commit/2214c9b))
 * Throttle docstring example ([b22b3dc](https://github.com/canonical/ds25/commit/b22b3dc))
 * Tweak tsconfigs for consistency ([f91614e](https://github.com/canonical/ds25/commit/f91614e))
-
-
-
