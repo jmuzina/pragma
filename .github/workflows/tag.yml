@@ -55,20 +55,6 @@ jobs:
         with:
           release_type: ${{ github.event.inputs.release_type }}
 
-      - name: Setup Git CLI
-        uses: ./.github/actions/setup-git
-        with:
-          name: ${{ github.actor }}
-
-      - name: Commit and tag v${{ steps.lerna_version.outputs.VERSION }}
-        run: |
-          git add .
-          git commit -m "chore: version bump to ${{ steps.lerna_version.outputs.VERSION }}"
-          # Create an annotated tag (`-m`) so that lerna can use it to determine which packages have changed
-          # See https://github.com/lerna/lerna/issues/1357#issuecomment-438162152
-          git tag "v${{ steps.lerna_version.outputs.VERSION }}" -m "v${{ steps.lerna_version.outputs.VERSION }}"
-          git push && git push --tags
-
   publish:
     name: Publish packages
     runs-on: ubuntu-latest
