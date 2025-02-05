@@ -20,9 +20,7 @@ The versioning workflow does the following:
 Open the [Tag workflow action](https://github.com/canonical/ds25/actions/workflows/tag.yml).
 Click the "Run workflow" button to open a workflow triggering window.
 
-- Prerelease identifier: if a prerelease is chosen for update type, this is used as the prerelease identifier (e.g., 0.0.1-experimental.1).
-- Release after versioning: if this is checked, the affected packages will
-  be published after their tags have been updated.
+- Release type: The level of stability of this release. If a prerelease (anything that is not "stable") is chosen for update type, this is used as the prerelease identifier (e.g., 0.0.1-rc.1).
 
 #### NPM Token
 
