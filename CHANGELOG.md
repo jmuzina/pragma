@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.0](https://github.com/canonical/ds25/compare/v0.8.1-experimental.2...v0.9.0-experimental.0) (2025-02-06)
+
+
+### Features
+
+* **react-ds-core:** Test feat change ([136347a](https://github.com/canonical/ds25/commit/136347a8ebec3a11787cd6019bba86d564ff8d84))
+
+
+
+
+
 ## [0.8.1-experimental.2](https://github.com/canonical/ds25/compare/v0.8.1-experimental.1...v0.8.1-experimental.2) (2025-02-06)
 
 
