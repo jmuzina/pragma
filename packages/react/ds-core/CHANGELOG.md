@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1-experimental.2](https://github.com/canonical/ds25/compare/v0.8.1-experimental.1...v0.8.1-experimental.2) (2025-02-06)
+
+
+### Bug Fixes
+
+* **react-ds-core:** test RC fix ([fe27cfc](https://github.com/canonical/ds25/commit/fe27cfcb46d28fdc2ba38f8a4a1aca7e769984a9))
+
+
+
+
+
 ## [0.8.1-experimental.1](https://github.com/canonical/ds25/compare/v0.8.1-experimental.0...v0.8.1-experimental.1) (2025-02-06)
 
 **Note:** Version bump only for package @canonical/react-ds-core
