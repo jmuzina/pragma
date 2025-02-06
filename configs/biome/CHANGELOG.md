@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.8.1-experimental.1](https://github.com/canonical/ds25/compare/v0.8.1-experimental.0...v0.8.1-experimental.1) (2025-02-06)
+
+**Note:** Version bump only for package @canonical/biome-config
+
+
+
+
+
 ## 0.4.0-experimental.0 (2025-02-06)
 
 
@@ -59,6 +72,3 @@
 * update react JSX runtime to modern react-jsx ([aba3a77](https://github.com/canonical/ds25/commit/aba3a77))
 * v0.0.1-experimental.0 ([96ab587](https://github.com/canonical/ds25/commit/96ab587))
 * v0.0.1-experimental.2 ([f831ee4](https://github.com/canonical/ds25/commit/f831ee4))
-
-
-

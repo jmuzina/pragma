@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.8.1-experimental.1](https://github.com/canonical/ds25/compare/v0.8.1-experimental.0...v0.8.1-experimental.1) (2025-02-06)
+
+**Note:** Version bump only for package @canonical/styles
+
+
+
+
+
 ## 0.6.0-experimental.0 (2025-02-06)
 
 
@@ -47,6 +60,3 @@
 
 * chore: version bump to 0.3.0-experimental.0 ([49b4177](https://github.com/canonical/ds25/commit/49b4177))
 * Ft: css base package (#39) ([7e46b91](https://github.com/canonical/ds25/commit/7e46b91)), closes [#39](https://github.com/canonical/ds25/issues/39)
-
-
-

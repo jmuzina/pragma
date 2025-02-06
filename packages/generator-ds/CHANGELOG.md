@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.8.1-experimental.1](https://github.com/canonical/ds25/compare/v0.8.1-experimental.0...v0.8.1-experimental.1) (2025-02-06)
+
+**Note:** Version bump only for package @canonical/generator-ds
+
+
+
+
+
 ## <small>0.8.1-experimental.0 (2025-02-04)</small>
 
 * chore: version bump to 0.8.1-experimental.0 ([a3b4f8a](https://github.com/canonical/ds25/commit/a3b4f8a))
@@ -38,6 +51,3 @@
 
 * chore: Rename code generator package (#81) ([90f44da](https://github.com/canonical/ds25/commit/90f44da)), closes [#81](https://github.com/canonical/ds25/issues/81)
 * chore: version bump to 0.4.1-experimental.0 ([abed757](https://github.com/canonical/ds25/commit/abed757))
-
-
-
