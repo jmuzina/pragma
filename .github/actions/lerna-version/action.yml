@@ -2,7 +2,7 @@ name: Version packages
 description: Updates package version numbers and changelogs for changed packages.
 inputs:
   release_type:
-    description: "Prerelease identifier"
+    description: "Release type. If not 'stable', the current version will be bumped as a pre-release instead of a stable release."
     required: true
 outputs:
   VERSION:
