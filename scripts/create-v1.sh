@@ -1,8 +1,14 @@
 #!/bin/bash
-# Lerna will not publish v1.0.0 automatically, so we need to do it manually
-# https://lerna.js.org/docs/features/version-and-publish#fixedlocked-mode-default
-# https://semver.org/#spec-item-4
-# TODO delete me after publishing v1.0.0
+# Lerna will not automatically create a major version update for a package that has not yet reached 1.0.0.
+# We must manually create and publish version 1.0.0 for each package before future breaking changes will trigger major version updates.
+# Per Semver, versions prior to 1.0.0 are considered unstable (each change is considered breaking).
+# Lerna handles breaking change releases prior to 1.0.0 differently than it handles breaking changes after 1.0.0.
+# Before 1.0.0, breaking changes will never cause a major version bump to 1.0.0.
+# This is to give maintainers more control over when their packages are considered stable.
+# This script automates the process of creating and publishing version 1.0.0 for each package in a monorepo.
+# It only needs to be run once; just before the first stable release of a project.
+# https://github.com/lerna/lerna/issues/2761
+# https://semver.org/spec/v2.0.0.html
 
 function cleanInstall() {
   # Clean dependencies and build artifacts
