@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Bumps the versions of packages and generates changelogs in a monorepo according to the Conventional Commits specification.
+# It is intended to be run as part of a GitHub Actions workflow.
+# INPUTS:
+# $1: release_type (required) - The type of release to perform. Can be "stable" or a pre-release identifier (alpha, beta, rc, etc.,)
+#   If "stable" is provided, the script will publish current pre-release versions as stable versions.
+#   If a pre-release identifier is provided, updates will be applied s as pre-release versions (e.g., 0.0.1-alpha.0 -> 0.0.1-alpha.1), and will include the pre-release identifier in the tag.
+# OUTPUTS:
+# $GITHUB_OUTPUT: The highest version number among all packages after the update is completed is written to "VERSION" in the $GITHUB_OUTPUT environment.
+
 # Check if release_type argument is provided
 if [ -z "$1" ]; then
   echo "Error: release_type argument is required."
