@@ -18,7 +18,7 @@ bun add -D conventional-changelog-cli --ignore-scripts
 
 # Create root-level changelog
 bun run conventional-changelog  `# Create root-level changelog` \
-  --preset angular              `# Use the Angular commit message convention https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines` \
+  --preset angular              `# Use Angular commit convention https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines Lerna uses it; we need these initial changelogs to be consistent with the automated ones that'll be generated in the future` \
   --release-count 0             `# Generate changelogs for the entire commit history` \
   --outfile ./CHANGELOG.md      `# Where to place the generated changelog` \
   --verbose                     `# Enables verbose logging output for debugging`

@@ -43,6 +43,7 @@ When packages are versioned, the new version is determined by the
 highest level of semantic change for that package since the last release.
 
 Level of change is determined by examining commit messages since the last release.
+These levels of change are standardized by the [Angular commit message guidelines](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
 The following table shows the level of change for each commit type:
 
 | Commit Type                                  | Level of Change |
