@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       release_type:
-        description: "Release type. If not stable, the current version will be bumped as a pre-release instead of a stable release."
+        description: "Release type. If not 'stable', the current version will be bumped as a pre-release instead of a stable release."
         # TODO change default to stable after 1.0.0 is out
         default: "experimental"
         required: false
