@@ -17,9 +17,24 @@ bun run test
 bun add -D conventional-changelog-cli --ignore-scripts
 
 # Create root-level changelog
-bun run conventional-changelog --preset angular --release-count 0 --outfile ./CHANGELOG.md --verbose
+bun run conventional-changelog  `# Create root-level changelog` \
+  --preset angular              `# Use the Angular commit message convention https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines` \
+  --release-count 0             `# Generate changelogs for the entire commit history` \
+  --outfile ./CHANGELOG.md      `# Where to place the generated changelog` \
+  --verbose                     `# Enables verbose logging output for debugging`
+
 # Create package-level changelogs
-bun run lerna exec --concurrency 1 --stream -- 'conventional-changelog --preset angular --release-count 0 --commit-path $PWD --pkg $PWD/package.json --outfile $PWD/CHANGELOG.md --verbose'
+bun run lerna exec `# Run command in each package` \
+  --concurrency 1 `# Limit concurrency to 1 to avoid conflicts` \
+  --stream `# Stream output from all packages as they are processed` \
+  -- 'conventional-changelog `# Run conventional-changelog-cli for each package` \
+    --preset angular `# Use the Angular commit message convention` \
+    --release-count 0 `# Generate changelogs for the entire commit history` \
+    --commit-path $PWD `# Path to package directory` \
+    --pkg $PWD/package.json `# Path to package.json inside the package directory` \
+    --outfile $PWD/CHANGELOG.md `# Path to the generated changelog for this package` \
+    --verbose `# Enable verbose output`'
+
 
 # Remove temporary dependency
 bun remove conventional-changelog-cli --ignore-scripts
