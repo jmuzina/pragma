@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [0.9.0-experimental.1](https://github.com/canonical/ds25/compare/v0.9.0-experimental.0...v0.9.0-experimental.1) (2025-02-07)
+
+**Note:** Version bump only for package @canonical/storybook-addon-baseline-grid
+
+
+
+
+
 ## 0.6.0-experimental.0 (2025-02-06)
 
 
@@ -24,6 +37,3 @@
 * chore: version bump to 0.5.0-experimental.0 ([df33065](https://github.com/canonical/ds25/commit/df33065))
 * chore : Storybook-addon-baseline : Added css in the addon directly, made it configurable, improved d ([c33e468](https://github.com/canonical/ds25/commit/c33e468)), closes [#103](https://github.com/canonical/ds25/issues/103)
 * Storybook baseline grid addon (#86) ([2c8647b](https://github.com/canonical/ds25/commit/2c8647b)), closes [#86](https://github.com/canonical/ds25/issues/86)
-
-
-
