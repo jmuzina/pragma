@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [0.9.0-experimental.1](https://github.com/canonical/ds25/compare/v0.8.1-experimental.0...v0.9.0-experimental.1) (2025-02-07)
+
+
+### Features
+
+* **Generator:** added shorthands properties `-c` for styles and `-s`for stories. ([#124](https://github.com/canonical/ds25/issues/124)) ([6cd4964](https://github.com/canonical/ds25/commit/6cd4964fe6610823b2c969551c09211e2664bf03))
+
+
+
+
+
 ## 0.9.0-experimental.0 (2025-02-06)
 
 * chore: version bump to 0.9.0-experimental.0 ([5d06233](https://github.com/canonical/ds25/commit/5d06233))
@@ -59,6 +75,3 @@
 * simplify debounce & throttle ([2214c9b](https://github.com/canonical/ds25/commit/2214c9b))
 * Throttle docstring example ([b22b3dc](https://github.com/canonical/ds25/commit/b22b3dc))
 * Tweak tsconfigs for consistency ([f91614e](https://github.com/canonical/ds25/commit/f91614e))
-
-
-

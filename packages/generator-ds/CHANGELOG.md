@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [0.9.0-experimental.1](https://github.com/canonical/ds25/compare/v0.8.1-experimental.0...v0.9.0-experimental.1) (2025-02-07)
+
+
+### Features
+
+* **Generator:** added shorthands properties `-c` for styles and `-s`for stories. ([#124](https://github.com/canonical/ds25/issues/124)) ([6cd4964](https://github.com/canonical/ds25/commit/6cd4964fe6610823b2c969551c09211e2664bf03))
+
+
+
+
+
 ## 0.9.0-experimental.0 (2025-02-06)
 
 * chore: version bump to 0.9.0-experimental.0 ([5d06233](https://github.com/canonical/ds25/commit/5d06233))
@@ -45,6 +61,3 @@
 
 * chore: Rename code generator package (#81) ([90f44da](https://github.com/canonical/ds25/commit/90f44da)), closes [#81](https://github.com/canonical/ds25/issues/81)
 * chore: version bump to 0.4.1-experimental.0 ([abed757](https://github.com/canonical/ds25/commit/abed757))
-
-
-

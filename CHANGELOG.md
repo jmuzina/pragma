@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [0.9.0-experimental.1](https://github.com/canonical/ds25/compare/v0.8.1-experimental.0...v0.9.0-experimental.1) (2025-02-07)
+
+
+### Features
+
+* **Generator:** added shorthands properties `-c` for styles and `-s`for stories. ([#124](https://github.com/canonical/ds25/issues/124)) ([6cd4964](https://github.com/canonical/ds25/commit/6cd4964fe6610823b2c969551c09211e2664bf03))
+
+
+
+
+
 ## 0.9.0-experimental.0 (2025-02-06)
 
 * chore: version bump to 0.9.0-experimental.0 ([5d06233](https://github.com/canonical/ds25/commit/5d06233))
@@ -319,6 +335,3 @@
 * v0.0.1-experimental.1 ([1ba0254](https://github.com/canonical/ds25/commit/1ba0254))
 * v0.0.1-experimental.2 ([f831ee4](https://github.com/canonical/ds25/commit/f831ee4))
 * feat: Base storybook (#7) ([045ad27](https://github.com/canonical/ds25/commit/045ad27)), closes [#7](https://github.com/canonical/ds25/issues/7)
-
-
-
