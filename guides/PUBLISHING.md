@@ -129,7 +129,7 @@ BREAKING CHANGE commits will not cause a MAJOR bump until version 1.0.0 is relea
 For more information on this protection against releasing 1.0.0 before stability is reached, see
 this [Lerna issue](https://github.com/lerna/lerna/issues/2761).
 
-To update to 1.0.0, run [`./scripts/create-v1.sh`](../scripts/create-v1.sh) and follow the prompts.
+To update to 1.0.0, run [`./scripts/one-time-only/create-v1.sh`](../scripts/one-time-only/create-v1.sh) and follow the prompts.
 
 After 1.0.0 is released, breaking changes will cause major bumps to be automatically applied to all packages. 
 For example:
