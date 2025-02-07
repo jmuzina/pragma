@@ -25,6 +25,7 @@ runs:
     - name: Setup Git CLI
       uses: ./.github/actions/setup-git
       with:
+        # This param sets the name of the committer to the person who ran the action.
         name: ${{ github.actor }}
 
     - name: Commit and tag v${{ steps.lerna_version.outputs.VERSION }}
