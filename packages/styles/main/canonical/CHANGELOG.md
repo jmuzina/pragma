@@ -8,4 +8,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **storybook:** Modularized the config creation for storybook ([#125](https://github.com/canonical/ds25/issues/125)) ([90189d8](https://github.com/canonical/ds25/commit/90189d89b5a1948a417adea245708336225f598d))
+* **styles:** Implements the base style packages architecture ([#129](https://github.com/canonical/ds25/issues/129)) ([b2a7b15](https://github.com/canonical/ds25/commit/b2a7b15dac0731826d11a8746d2cb99927281191))
