@@ -2,6 +2,6 @@
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "extends": ["@canonical/biome-config"],
   "files": {
-    "include": ["src", "*.json", "vite.config.ts"]
+    "include": ["*.json"]
   }
 }
