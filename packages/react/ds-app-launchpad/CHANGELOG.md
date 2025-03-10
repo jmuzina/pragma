@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.5](https://github.com/canonical/ds25/compare/v0.9.0-experimental.4...v0.9.0-experimental.5) (2025-03-10)
+
+
+### Features
+
+* add FileTree component ([#130](https://github.com/canonical/ds25/issues/130)) ([f55266f](https://github.com/canonical/ds25/commit/f55266f12ac105be72d2fbecd0bc7c2e4080e358))
+
+
+
+
+
 # [0.9.0-experimental.4](https://github.com/canonical/ds25/compare/v0.9.0-experimental.3...v0.9.0-experimental.4) (2025-02-17)
 
 
