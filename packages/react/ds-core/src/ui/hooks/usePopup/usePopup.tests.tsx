@@ -79,7 +79,7 @@ describe("usePopup", () => {
       result.current.handleTriggerFocus({ nativeEvent: {} } as any);
     });
 
-    expect(activate).toHaveBeenCalledTimes(1);
+    expect(activate).toHaveBeenCalledOnce();
     expect(result.current.isFocused).toBe(true);
 
     act(() => {
@@ -87,7 +87,7 @@ describe("usePopup", () => {
       result.current.handleTriggerBlur({ nativeEvent: {} } as any);
     });
 
-    expect(deactivate).toHaveBeenCalledTimes(1);
+    expect(deactivate).toHaveBeenCalledOnce();
     expect(result.current.isFocused).toBe(false);
   });
 
@@ -107,14 +107,14 @@ describe("usePopup", () => {
       result.current.handleTriggerEnter({} as any);
     });
 
-    expect(activate).toHaveBeenCalledTimes(1);
+    expect(activate).toHaveBeenCalledOnce();
 
     act(() => {
       // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test event without the test data conforming to PointerEvent type
       result.current.handleTriggerLeave({} as any);
     });
 
-    expect(deactivate).toHaveBeenCalledTimes(1);
+    expect(deactivate).toHaveBeenCalledOnce();
   });
 
   it("should call onFocus, onBlur, onEnter, and onLeave callbacks", () => {
@@ -132,28 +132,28 @@ describe("usePopup", () => {
       result.current.handleTriggerFocus({} as any);
     });
 
-    expect(onFocus).toHaveBeenCalledTimes(1);
+    expect(onFocus).toHaveBeenCalledOnce();
 
     act(() => {
       // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test event without the test data conforming to PointerEvent type
       result.current.handleTriggerBlur({} as any);
     });
 
-    expect(onBlur).toHaveBeenCalledTimes(1);
+    expect(onBlur).toHaveBeenCalledOnce();
 
     act(() => {
       // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test event without the test data conforming to PointerEvent type
       result.current.handleTriggerEnter({} as any);
     });
 
-    expect(onEnter).toHaveBeenCalledTimes(1);
+    expect(onEnter).toHaveBeenCalledOnce();
 
     act(() => {
       // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test event without the test data conforming to PointerEvent type
       result.current.handleTriggerLeave({} as any);
     });
 
-    expect(onLeave).toHaveBeenCalledTimes(1);
+    expect(onLeave).toHaveBeenCalledOnce();
   });
 
   it("should pass props to useWindowFitment", () => {
@@ -196,7 +196,7 @@ describe("usePopup", () => {
       document.dispatchEvent(event);
     });
 
-    expect(deactivate).toHaveBeenCalledTimes(1);
+    expect(deactivate).toHaveBeenCalledOnce();
   });
 
   it("should not open the popup on hover (trigger enter) if the trigger is disabled", () => {
