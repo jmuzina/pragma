@@ -8,7 +8,11 @@ import {
 import { useState } from "react";
 import { useDelayedToggle } from "../useDelayedToggle/index.js";
 import { useWindowFitment } from "../useWindowFitment/index.js";
-import type { UsePopupProps, UsePopupResult } from "./types.js";
+import type {
+  DisableableElement,
+  UsePopupProps,
+  UsePopupResult,
+} from "./types.js";
 
 /**
  * Manages the state of a popup.
@@ -79,20 +83,24 @@ const usePopup = ({
     [close, onBlur],
   );
 
+  const isDisabled = useCallback((el: DisableableElement) => el?.disabled, []);
+
   const handleTriggerEnter: PointerEventHandler = useCallback(
     (event) => {
+      if (isDisabled(event.target as DisableableElement)) return;
       open(event.nativeEvent);
       if (onEnter) onEnter(event);
     },
-    [open, onEnter],
+    [open, onEnter, isDisabled],
   );
 
   const handleTriggerLeave: PointerEventHandler = useCallback(
     (event) => {
+      if (isDisabled(event.target as DisableableElement)) return;
       close(event.nativeEvent);
       if (onLeave) onLeave(event);
     },
-    [close, onLeave],
+    [close, onLeave, isDisabled],
   );
 
   useEffect(() => {

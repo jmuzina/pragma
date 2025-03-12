@@ -75,7 +75,7 @@ describe("usePopup", () => {
     const { result } = renderHook(() => usePopup({}));
 
     act(() => {
-      // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test focus event without the test data conforming to FocusEvent type
+      // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test event without the test data conforming to FocusEvent type
       result.current.handleTriggerFocus({ nativeEvent: {} } as any);
     });
 
@@ -83,7 +83,7 @@ describe("usePopup", () => {
     expect(result.current.isFocused).toBe(true);
 
     act(() => {
-      // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test focus event without the test data conforming to FocusEvent type
+      // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test event without the test data conforming to FocusEvent type
       result.current.handleTriggerBlur({ nativeEvent: {} } as any);
     });
 
@@ -103,15 +103,15 @@ describe("usePopup", () => {
     const { result } = renderHook(() => usePopup({}));
 
     act(() => {
-      // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test focus event without the test data conforming to PointerEvent type
-      result.current.handleTriggerEnter({ nativeEvent: {} } as any);
+      // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test event without the test data conforming to PointerEvent type
+      result.current.handleTriggerEnter({} as any);
     });
 
     expect(activate).toHaveBeenCalledTimes(1);
 
     act(() => {
-      // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test focus event without the test data conforming to PointerEvent type
-      result.current.handleTriggerLeave({ nativeEvent: {} } as any);
+      // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test event without the test data conforming to PointerEvent type
+      result.current.handleTriggerLeave({} as any);
     });
 
     expect(deactivate).toHaveBeenCalledTimes(1);
@@ -128,29 +128,29 @@ describe("usePopup", () => {
     );
 
     act(() => {
-      // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test focus event without the test data conforming to FocusEvent type
-      result.current.handleTriggerFocus({ nativeEvent: {} } as any);
+      // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test event without the test data conforming to FocusEvent type
+      result.current.handleTriggerFocus({} as any);
     });
 
     expect(onFocus).toHaveBeenCalledTimes(1);
 
     act(() => {
-      // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test focus event without the test data conforming to PointerEvent type
-      result.current.handleTriggerBlur({ nativeEvent: {} } as any);
+      // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test event without the test data conforming to PointerEvent type
+      result.current.handleTriggerBlur({} as any);
     });
 
     expect(onBlur).toHaveBeenCalledTimes(1);
 
     act(() => {
-      // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test focus event without the test data conforming to PointerEvent type
-      result.current.handleTriggerEnter({ nativeEvent: {} } as any);
+      // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test event without the test data conforming to PointerEvent type
+      result.current.handleTriggerEnter({} as any);
     });
 
     expect(onEnter).toHaveBeenCalledTimes(1);
 
     act(() => {
-      // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test focus event without the test data conforming to PointerEvent type
-      result.current.handleTriggerLeave({ nativeEvent: {} } as any);
+      // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test event without the test data conforming to PointerEvent type
+      result.current.handleTriggerLeave({} as any);
     });
 
     expect(onLeave).toHaveBeenCalledTimes(1);
@@ -185,8 +185,8 @@ describe("usePopup", () => {
     const { result } = renderHook(() => usePopup({}));
 
     act(() => {
-      // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test focus event without the test data conforming to FocusEvent type
-      result.current.handleTriggerFocus({ nativeEvent: {} } as any);
+      // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test event without the test data conforming to FocusEvent type
+      result.current.handleTriggerFocus({} as any);
     });
 
     expect(activate).toHaveBeenCalledOnce();
@@ -197,5 +197,24 @@ describe("usePopup", () => {
     });
 
     expect(deactivate).toHaveBeenCalledTimes(1);
+  });
+
+  it("should not open the popup on hover (trigger enter) if the trigger is disabled", () => {
+    const activate = vi.fn();
+    const deactivate = vi.fn();
+    vi.mocked(useDelayedToggle).mockReturnValue({
+      flag: false,
+      activate,
+      deactivate,
+    });
+
+    const { result } = renderHook(() => usePopup({}));
+
+    act(() => {
+      // biome-ignore lint/suspicious/noExplicitAny: Allow firing a test event without the test data conforming to PointerEvent type
+      result.current.handleTriggerEnter({ target: { disabled: true } } as any);
+    });
+
+    expect(activate).not.toHaveBeenCalled();
   });
 });

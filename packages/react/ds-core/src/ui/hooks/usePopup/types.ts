@@ -29,6 +29,10 @@ export interface UsePopupProps
   closeOnEscape?: boolean;
 }
 
+export type DisableableElement = HTMLElement & {
+  disabled: boolean;
+};
+
 export interface UsePopupResult extends UseWindowFitmentResult {
   /**
    * A ref to be attached to the target element.
