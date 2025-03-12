@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.8](https://github.com/canonical/ds25/compare/v0.9.0-experimental.7...v0.9.0-experimental.8) (2025-03-12)
+
+
+### Bug Fixes
+
+* add missing components exports ([#148](https://github.com/canonical/ds25/issues/148)) ([b7f8252](https://github.com/canonical/ds25/commit/b7f82524a5ede77b5c55b139822f89b7bb1531a2))
+
+
+
+
+
 # [0.9.0-experimental.7](https://github.com/canonical/ds25/compare/v0.9.0-experimental.6...v0.9.0-experimental.7) (2025-03-12)
 
 
