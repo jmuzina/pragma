@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.7](https://github.com/canonical/ds25/compare/v0.9.0-experimental.6...v0.9.0-experimental.7) (2025-03-12)
+
+
+### Features
+
+* adding an EditableBlock component ([#120](https://github.com/canonical/ds25/issues/120)) ([4bdd22a](https://github.com/canonical/ds25/commit/4bdd22ab230742355855b8cfab9ffe7ca118c0ab))
+
+
+
+
+
 # [0.9.0-experimental.6](https://github.com/canonical/ds25/compare/v0.9.0-experimental.5...v0.9.0-experimental.6) (2025-03-10)
 
 
