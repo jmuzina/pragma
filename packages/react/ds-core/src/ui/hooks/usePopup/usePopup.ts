@@ -2,6 +2,7 @@ import {
   type FocusEventHandler,
   type PointerEventHandler,
   useCallback,
+  useEffect,
   useId,
 } from "react";
 import { useState } from "react";
@@ -20,6 +21,7 @@ import type { UsePopupProps, UsePopupResult } from "./types.js";
  * @param onBlur A callback to be called when the target element loses focus.
  * @param onShow A callback to be called when the popup is shown.
  * @param onHide A callback to be called when the popup is hidden.
+ * @param closeOnEscape Whether the popup should close when the escape key is pressed. Defaults to true.
  * @param props The props to be passed to the useWindowFitment hook.
  * @returns The current state of the popup, and event handlers for the target element.
  */
@@ -33,6 +35,7 @@ const usePopup = ({
   onBlur,
   onShow,
   onHide,
+  closeOnEscape = true,
   ...props
 }: UsePopupProps): UsePopupResult => {
   const [isFocused, setIsFocused] = useState(false);
@@ -91,6 +94,22 @@ const usePopup = ({
     },
     [close, onLeave],
   );
+
+  useEffect(() => {
+    if (!closeOnEscape) return;
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        close(event);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [close, closeOnEscape]);
 
   return {
     handleTriggerBlur,
