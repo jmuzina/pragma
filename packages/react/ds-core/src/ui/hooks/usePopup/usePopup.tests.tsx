@@ -174,13 +174,19 @@ describe("usePopup", () => {
   });
 
   it("should close the popup when the Escape key is pressed", async () => {
-    const deactivate = vi.fn();
-    const activate = vi.fn();
-    vi.mocked(useDelayedToggle).mockReturnValue({
-      flag: false,
+    let flag = false;
+    const activate = vi.fn(() => {
+      flag = true;
+    });
+    const deactivate = vi.fn(() => {
+      flag = false;
+    });
+
+    vi.mocked(useDelayedToggle).mockImplementation(() => ({
+      flag,
       activate,
       deactivate,
-    });
+    }));
 
     const { result } = renderHook(() => usePopup({}));
 

@@ -104,12 +104,10 @@ const usePopup = ({
   );
 
   useEffect(() => {
-    if (!closeOnEscape) return;
+    if (!closeOnEscape || !isOpen) return;
 
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        close(event);
-      }
+      if (event.key === "Escape") close(event);
     };
 
     document.addEventListener("keydown", handleEscape);
@@ -117,7 +115,7 @@ const usePopup = ({
     return () => {
       document.removeEventListener("keydown", handleEscape);
     };
-  }, [close, closeOnEscape]);
+  }, [close, closeOnEscape, isOpen]);
 
   return {
     handleTriggerBlur,
