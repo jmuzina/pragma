@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useSsr } from "../useSsr/index.js";
 import type { UseResizeObserverResult } from "./types.js";
 
 /**
@@ -14,7 +13,7 @@ export default function useResizeObserver<TElement extends HTMLElement>(
     width: 0,
     height: 0,
   });
-  const { isServer } = useSsr();
+  const isServer = typeof window === "undefined";
 
   useEffect(() => {
     if (!element || isServer) return;

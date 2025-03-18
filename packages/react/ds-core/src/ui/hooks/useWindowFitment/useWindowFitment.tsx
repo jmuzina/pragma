@@ -6,7 +6,6 @@ import {
   useRef,
 } from "react";
 import { useResizeObserver } from "../useResizeObserver/index.js";
-import { useSsr } from "../useSsr/index.js";
 import { useWindowDimensions } from "../useWindowDimensions/index.js";
 import type {
   BestPosition,
@@ -25,7 +24,7 @@ const useWindowFitment = ({
   scrollDelay = 150,
   onBestPositionChange,
 }: UseWindowFitmentProps): UseWindowFitmentResult => {
-  const { isServer } = useSsr();
+  const isServer = typeof window === "undefined";
   const targetRef = useRef<HTMLDivElement | null>(null);
   const popupRef = useRef<HTMLDivElement | null>(null);
   const prevBestPosition = useRef<BestPosition | undefined>(undefined);

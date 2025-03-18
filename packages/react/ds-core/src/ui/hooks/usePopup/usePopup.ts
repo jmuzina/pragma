@@ -4,11 +4,9 @@ import {
   useCallback,
   useEffect,
   useId,
-  useRef,
 } from "react";
 import { useState } from "react";
 import { useDelayedToggle } from "../useDelayedToggle/index.js";
-import { useSsr } from "../useSsr/index.js";
 import { useWindowFitment } from "../useWindowFitment/index.js";
 import type {
   DisableableElement,
@@ -44,7 +42,7 @@ const usePopup = ({
   closeOnEscape = true,
   ...props
 }: UsePopupProps): UsePopupResult => {
-  const { isServer } = useSsr();
+  const isServer = typeof window === "undefined";
   const [isFocused, setIsFocused] = useState(false);
   const popupId = useId();
 
@@ -134,7 +132,6 @@ const usePopup = ({
     targetRef,
     bestPosition,
     popupPositionStyle,
-    isServer,
   };
 };
 

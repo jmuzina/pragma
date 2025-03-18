@@ -1,6 +1,5 @@
 import { debounce } from "@canonical/utils";
 import { useEffect, useMemo, useState } from "react";
-import { useSsr } from "../useSsr/index.js";
 import type {
   UseWindowDimensionProps,
   UseWindowDimensionsResult,
@@ -15,7 +14,7 @@ export default function useWindowDimensions({
   resizeDelay = 100,
   scrollDelay = 100,
 }: UseWindowDimensionProps = {}): UseWindowDimensionsResult {
-  const { isServer } = useSsr();
+  const isServer = typeof window === "undefined";
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [scrollHeight, setScrollHeight] = useState(window.scrollY);
