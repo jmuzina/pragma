@@ -4,6 +4,7 @@ import {
   useCallback,
   useEffect,
   useId,
+  useRef,
 } from "react";
 import { useState } from "react";
 import { useDelayedToggle } from "../useDelayedToggle/index.js";
@@ -42,6 +43,30 @@ const usePopup = ({
   closeOnEscape = true,
   ...props
 }: UsePopupProps): UsePopupResult => {
+  // Popups should never be open in environments where window type is undefined, such as SSR.
+  if (typeof window === "undefined") {
+    return {
+      handleTriggerBlur: () => {},
+      handleTriggerEnter: () => {},
+      handleTriggerFocus: () => {},
+      handleTriggerLeave: () => {},
+      isFocused: false,
+      isOpen: false,
+      popupId: "",
+      popupRef: useRef(null),
+      targetRef: useRef(null),
+      bestPosition: {
+        positionName: "top",
+        position: {
+          top: 0,
+          left: 0,
+        },
+        fits: false,
+      },
+      popupPositionStyle: {},
+    };
+  }
+
   const [isFocused, setIsFocused] = useState(false);
   const popupId = useId();
 
