@@ -36,6 +36,7 @@ const TooltipArea = ({
     handleTriggerEnter,
     handleTriggerLeave,
     bestPosition,
+    isServer,
   } = usePopup({ distance, ...props });
 
   const TooltipMessageElement = (
@@ -78,7 +79,7 @@ const TooltipArea = ({
       {/*
         Portal can only be rendered on the client
       */}
-      {typeof window !== "undefined"
+      {!isServer
         ? // Portals allow the tooltip to be rendered outside the parent element
           // This is helpful when the parent element is a scrollable container or has bounds that may be
           // overflown by the tooltip message.

@@ -5,6 +5,7 @@ import type {
   RefObject,
 } from "react";
 import type { UseDelayedToggleProps } from "../useDelayedToggle/index.js";
+import type { UseSsrResult } from "../useSsr/types.js";
 import type {
   UseWindowFitmentProps,
   UseWindowFitmentResult,
@@ -33,7 +34,7 @@ export type DisableableElement = HTMLElement & {
   disabled: boolean;
 };
 
-export interface UsePopupResult extends UseWindowFitmentResult {
+export interface UsePopupResult extends UseWindowFitmentResult, UseSsrResult {
   /**
    * A ref to be attached to the target element.
    */

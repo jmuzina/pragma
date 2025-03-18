@@ -1,5 +1,6 @@
 import { debounce } from "@canonical/utils";
 import { useEffect, useMemo, useState } from "react";
+import { useSsr } from "../useSsr/index.js";
 import type {
   UseWindowDimensionProps,
   UseWindowDimensionsResult,
@@ -14,15 +15,7 @@ export default function useWindowDimensions({
   resizeDelay = 100,
   scrollDelay = 100,
 }: UseWindowDimensionProps = {}): UseWindowDimensionsResult {
-  if (typeof window === "undefined") {
-    return {
-      windowWidth: 0,
-      windowHeight: 0,
-      scrollWidth: 0,
-      scrollHeight: 0,
-    };
-  }
-
+  const { isServer } = useSsr();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [scrollHeight, setScrollHeight] = useState(window.scrollY);
@@ -39,6 +32,7 @@ export default function useWindowDimensions({
   );
 
   useEffect(() => {
+    if (isServer) return;
     const handleResize = debounce(() => {
       setWindowWidth(window.innerWidth);
       setWindowHeight(window.innerHeight);
@@ -62,7 +56,7 @@ export default function useWindowDimensions({
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [onResize, onScroll, resizeDelay, scrollDelay, result]);
+  }, [onResize, onScroll, resizeDelay, scrollDelay, result, isServer]);
 
   return result;
 }

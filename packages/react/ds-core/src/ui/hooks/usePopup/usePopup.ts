@@ -8,6 +8,7 @@ import {
 } from "react";
 import { useState } from "react";
 import { useDelayedToggle } from "../useDelayedToggle/index.js";
+import { useSsr } from "../useSsr/index.js";
 import { useWindowFitment } from "../useWindowFitment/index.js";
 import type {
   DisableableElement,
@@ -43,30 +44,7 @@ const usePopup = ({
   closeOnEscape = true,
   ...props
 }: UsePopupProps): UsePopupResult => {
-  // Popups should never be open in environments where window type is undefined, such as SSR.
-  if (typeof window === "undefined") {
-    return {
-      handleTriggerBlur: () => {},
-      handleTriggerEnter: () => {},
-      handleTriggerFocus: () => {},
-      handleTriggerLeave: () => {},
-      isFocused: false,
-      isOpen: false,
-      popupId: "",
-      popupRef: useRef(null),
-      targetRef: useRef(null),
-      bestPosition: {
-        positionName: "top",
-        position: {
-          top: 0,
-          left: 0,
-        },
-        fits: false,
-      },
-      popupPositionStyle: {},
-    };
-  }
-
+  const { isServer } = useSsr();
   const [isFocused, setIsFocused] = useState(false);
   const popupId = useId();
 
@@ -92,44 +70,46 @@ const usePopup = ({
 
   const handleTriggerFocus: FocusEventHandler = useCallback(
     (event) => {
+      if (isServer) return;
       setIsFocused(true);
       open(event.nativeEvent);
       if (onFocus) onFocus(event);
     },
-    [open, onFocus],
+    [open, onFocus, isServer],
   );
 
   const handleTriggerBlur: FocusEventHandler = useCallback(
     (event) => {
+      if (isServer) return;
       setIsFocused(false);
       close(event.nativeEvent);
       if (onBlur) onBlur(event);
     },
-    [close, onBlur],
+    [close, onBlur, isServer],
   );
 
   const isDisabled = useCallback((el: DisableableElement) => el?.disabled, []);
 
   const handleTriggerEnter: PointerEventHandler = useCallback(
     (event) => {
-      if (isDisabled(event.target as DisableableElement)) return;
+      if (isServer || isDisabled(event.target as DisableableElement)) return;
       open(event.nativeEvent);
       if (onEnter) onEnter(event);
     },
-    [open, onEnter, isDisabled],
+    [open, onEnter, isServer, isDisabled],
   );
 
   const handleTriggerLeave: PointerEventHandler = useCallback(
     (event) => {
-      if (isDisabled(event.target as DisableableElement)) return;
+      if (isServer || isDisabled(event.target as DisableableElement)) return;
       close(event.nativeEvent);
       if (onLeave) onLeave(event);
     },
-    [close, onLeave, isDisabled],
+    [close, onLeave, isServer, isDisabled],
   );
 
   useEffect(() => {
-    if (!closeOnEscape || !isOpen) return;
+    if (isServer || !closeOnEscape || !isOpen) return;
 
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") close(event);
@@ -140,7 +120,7 @@ const usePopup = ({
     return () => {
       document.removeEventListener("keydown", handleEscape);
     };
-  }, [close, closeOnEscape, isOpen]);
+  }, [close, closeOnEscape, isOpen, isServer]);
 
   return {
     handleTriggerBlur,
@@ -154,6 +134,7 @@ const usePopup = ({
     targetRef,
     bestPosition,
     popupPositionStyle,
+    isServer,
   };
 };
 
