@@ -24,16 +24,7 @@ const useWindowFitment = ({
   scrollDelay = 150,
   onBestPositionChange,
 }: UseWindowFitmentProps): UseWindowFitmentResult => {
-  // This hook is not intended to be used on the server.
-  if (typeof window === "undefined") {
-    return {
-      targetRef: { current: null },
-      popupRef: { current: null },
-      bestPosition: undefined,
-      popupPositionStyle: {},
-    };
-  }
-
+  const isServer = typeof window === "undefined";
   const targetRef = useRef<HTMLDivElement | null>(null);
   const popupRef = useRef<HTMLDivElement | null>(null);
   const prevBestPosition = useRef<BestPosition | undefined>(undefined);
@@ -50,6 +41,7 @@ const useWindowFitment = ({
 
   /** The bounds of the window, accounting for the `gutter` prop. */
   const bounds = useMemo(() => {
+    if (isServer) return;
     const gutterValues = gutter
       .split(" ")
       .map((val) => Number.parseInt(val, 10));
@@ -65,7 +57,7 @@ const useWindowFitment = ({
       right: windowDimensions.windowWidth - rightGutter,
       bottom: windowDimensions.windowHeight - bottomGutter,
     };
-  }, [gutter, windowDimensions]);
+  }, [gutter, windowDimensions, isServer]);
 
   /**
    * Calculate the relative position of the popup when oriented in a given direction.
@@ -82,6 +74,12 @@ const useWindowFitment = ({
     ): RelativePosition => {
       let left = 0;
       let top = 0;
+      if (isServer) {
+        return {
+          left,
+          top,
+        };
+      }
 
       /*
         We use left and top offsets to position the popup relative to the target element.
@@ -119,7 +117,7 @@ const useWindowFitment = ({
 
       return { left, top };
     },
-    [distanceAsPixelsNumber],
+    [distanceAsPixelsNumber, isServer],
   );
 
   /**
@@ -130,6 +128,8 @@ const useWindowFitment = ({
    */
   const fitsInWindow = useCallback(
     (candidatePosition: RelativePosition, popupRect: DOMRect): boolean => {
+      if (isServer || !bounds) return false;
+
       // Absolute position of the popup's vertices, relative to the viewport
       const vertices = {
         top: candidatePosition.top,
@@ -145,7 +145,7 @@ const useWindowFitment = ({
         vertices.left >= bounds.left
       );
     },
-    [bounds],
+    [bounds, isServer],
   );
 
   /**
@@ -159,7 +159,8 @@ const useWindowFitment = ({
       targetRect: DOMRect,
       popupRect: DOMRect,
       preferredDirections: WindowFitmentDirection[],
-    ): BestPosition => {
+    ): BestPosition | undefined => {
+      if (isServer) return;
       let fallbackPosition: BestPosition | undefined = undefined;
 
       if (!preferredDirections.length) {
@@ -196,12 +197,13 @@ const useWindowFitment = ({
       // biome-ignore lint/style/noNonNullAssertion: Fallback position is always defined here, due to the loop above and the thrown error if preferredDirections is empty.
       return fallbackPosition!;
     },
-    [calculateRelativePosition, fitsInWindow],
+    [calculateRelativePosition, fitsInWindow, isServer],
   );
 
   /** The best possible position for the popup. */
   const bestPosition: BestPosition | undefined = useMemo(() => {
     if (
+      !isServer &&
       targetRef.current &&
       popupRef.current &&
       windowDimensions &&
@@ -219,6 +221,7 @@ const useWindowFitment = ({
     windowDimensions,
     popupSize,
     targetSize,
+    isServer,
   ]);
 
   /** Notify the consumer when the best position changes. */
