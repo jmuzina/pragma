@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.10](https://github.com/canonical/ds25/compare/v0.9.0-experimental.9...v0.9.0-experimental.10) (2025-03-19)
+
+
+### Bug Fixes
+
+* **React Core:** Popups close on Escape, disabled elements will not trigger popups to open ([#151](https://github.com/canonical/ds25/issues/151)) ([6947ab4](https://github.com/canonical/ds25/commit/6947ab47f1b08c493a648ca643af9e51ebe3aae7))
+* **React Core:** UseWindowDimension is SSR-safe ([#156](https://github.com/canonical/ds25/issues/156)) ([db3c446](https://github.com/canonical/ds25/commit/db3c446cbc2dac3687d44ed5f0061c4449e18115))
+* remove flexbox from EditableContent content section ([#158](https://github.com/canonical/ds25/issues/158)) ([69a8849](https://github.com/canonical/ds25/commit/69a884943af628f428794c055515ed50e17d16f8))
+
+
+### Features
+
+* Markdown Editor Component ([#157](https://github.com/canonical/ds25/issues/157)) ([39f920d](https://github.com/canonical/ds25/commit/39f920dd18dcd507823a96e53284db082e2d1744)), closes [#145](https://github.com/canonical/ds25/issues/145) [#153](https://github.com/canonical/ds25/issues/153)
+
+
+
+
+
 # [0.9.0-experimental.9](https://github.com/canonical/ds25/compare/v0.9.0-experimental.8...v0.9.0-experimental.9) (2025-03-12)
 
 
