@@ -14,11 +14,11 @@ const Field = ({
   ...props
 }: FieldProps): React.ReactElement => {
   switch (inputType) {
-    case InputType.Textarea:
+    case "textarea":
       return <Textarea {...props} />;
-    case InputType.Checkbox:
+    case "checkbox":
       return <Checkbox {...props} />;
-    case InputType.Custom:
+    case "custom":
       // @ts-ignore // TODO Add special type for both or none
       return <CustomComponent {...props} />;
     default:
@@ -27,4 +27,3 @@ const Field = ({
 };
 
 export default Field;
-Field.types = InputType;

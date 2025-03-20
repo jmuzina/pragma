@@ -3,8 +3,9 @@ import type React from "react";
 import { useFormContext } from "react-hook-form";
 import type { TextareaProps } from "./types.js";
 import "./styles.css";
+import withWrapper from "../../common/Wrapper/withWrapper.js";
 
-const componentCssClassName = "ds textarea";
+const componentCssClassName = "ds form-textarea";
 
 /**
  * description of the Textarea component
@@ -28,4 +29,4 @@ const Textarea = ({
   );
 };
 
-export default Textarea;
+export default withWrapper(Textarea);

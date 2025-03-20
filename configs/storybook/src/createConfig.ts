@@ -29,6 +29,9 @@ const createConfig = (): StorybookConfig => ({
     check: true,
   },
   staticDirs: ["../src/assets"],
+  docs: {
+    autodocs: true,
+  },
 });
 
 export default createConfig;

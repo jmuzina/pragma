@@ -1,10 +1,11 @@
 /* @canonical/generator-ds 0.9.0-experimental.4 */
 import type React from "react";
 import { useFormContext } from "react-hook-form";
+import withWrapper from "../../common/Wrapper/withWrapper.js";
 import type { TextProps } from "./types.js";
 import "./styles.css";
 
-const componentCssClassName = "ds text";
+const componentCssClassName = "ds form-text";
 
 /**
  * description of the Text component
@@ -30,4 +31,4 @@ const Text = ({
   );
 };
 
-export default Text;
+export default withWrapper(Text);

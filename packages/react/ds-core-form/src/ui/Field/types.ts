@@ -1,31 +1,48 @@
 /* @canonical/generator-ds 0.9.0-experimental.4 */
 import type React from "react";
-import type {
-  CheckboxProps,
-  TextProps,
-  TextareaProps,
-} from "./inputs/index.js";
+import type { InputProps } from "./inputs/index.js";
 
-export enum InputType {
-  Text = "text",
-  Password = "password",
-  Email = "email",
-  Number = "number",
-  Tel = "tel",
-  Url = "url",
-  Textarea = "textarea",
-  Custom = "custom",
-  Checkbox = "checkbox",
-  // Date = "date",
-  // Time = "time",
-  // DatetimeLocal = "datetime-local",
-  // Month = "month",
-  // Week = "week",
-  // Color = "color",
-}
+/**
+ * Represents the type of input to render.
+ */
+export type InputType =
+  | "text"
+  | "password"
+  | "email"
+  | "number"
+  | "tel"
+  | "url"
+  | "textarea"
+  | "custom"
+  | "checkbox";
+// | "date"
+// | "time"
+// | "datetime-local"
+// | "month"
+// | "week"
+// | "color";
 
-export type InputProps = CheckboxProps | TextProps | TextareaProps;
+export type BaseWrapperProps = {
+  /**
+   * middleware to apply to the input
+   **/
+  middleware?: FormInputHOC[];
 
+  /**
+   * An optional wrapper component to render around the input.
+   */
+  WrapperComponent?: React.ElementType;
+};
+
+/**
+ * A type for an instantiated higher-order component (HOC) wrapping an Input.
+ * This accurately represents the props that can be passed to the HOC.
+ */
+export type BaseFieldProps = BaseWrapperProps & InputProps;
+
+/**
+ * The props for the Field component, switching between different input types.
+ */
 export type FieldProps = {
   /**
    * Type of input to render
@@ -36,4 +53,10 @@ export type FieldProps = {
    * Custom component to render
    **/
   CustomComponent?: React.ElementType;
-} & InputProps;
+} & BaseFieldProps;
+
+export type FormInputHOC<
+  ExtendedProps extends BaseFieldProps = BaseFieldProps,
+> = (
+  WrappedComponent: React.ComponentType<BaseFieldProps>,
+) => React.ComponentType<ExtendedProps>;

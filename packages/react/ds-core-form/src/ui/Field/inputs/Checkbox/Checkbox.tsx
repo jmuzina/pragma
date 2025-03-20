@@ -3,8 +3,9 @@ import type React from "react";
 import { useFormContext } from "react-hook-form";
 import type { CheckboxProps } from "./types.js";
 import "./styles.css";
+import withWrapper from "../../common/Wrapper/withWrapper.js";
 
-const componentCssClassName = "ds checkbox";
+const componentCssClassName = "ds form-checkbox";
 
 /**
  * description of the Checkbox component
@@ -29,4 +30,5 @@ const Checkbox = ({
   );
 };
 
-export default Checkbox;
+// export default Checkbox;
+export default withWrapper(Checkbox);

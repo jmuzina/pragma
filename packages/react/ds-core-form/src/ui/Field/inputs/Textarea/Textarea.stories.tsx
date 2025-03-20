@@ -29,6 +29,30 @@ export const Default: Story = {
   },
 };
 
+export const WithValidation: Story = {
+  args: {
+    name: "content",
+    registerProps: {
+      required: {
+        value: true,
+        message: "A board name is required",
+      },
+      pattern: {
+        value: /@/, // Regular expression to check for '@' symbol
+        message: "Field must contain an '@' symbol",
+      },
+      minLength: {
+        value: 5,
+        message: "Board name must be at least 5 characters",
+      },
+      maxLength: {
+        value: 50,
+        message: "Board name must be at most 50 characters",
+      },
+    },
+  },
+};
+
 /*
   Function-based story
   Direct arguments passed to the component
