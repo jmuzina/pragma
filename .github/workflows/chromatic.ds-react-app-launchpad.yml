@@ -1,0 +1,11 @@
+name: "react-ds-app-launchpad/chromatic"
+on:
+  pull_request:
+    paths: [packages/react/ds-app-launchpad/**]
+jobs:
+  test-compile:
+    uses: ./.github/workflows/chromatic._template.yml
+    secrets:
+      CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_TOKEN_CANONICAL_REACT_DS_APP_LAUNCHPAD }}
+    with:
+      working-directory: packages/react/ds-app-launchpad
