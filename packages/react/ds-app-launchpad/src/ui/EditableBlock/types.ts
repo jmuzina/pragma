@@ -26,6 +26,9 @@ export interface EditableBlockProps<T extends EditElementProps> {
   title?: string;
   /** HTML element type to render as the title component (e.g., 'div', 'section') */
   tag?: keyof JSX.IntrinsicElements;
+
+  /** Whether the block is read-only */
+  isReadOnly?: boolean;
 }
 
 export default EditableBlockProps;
