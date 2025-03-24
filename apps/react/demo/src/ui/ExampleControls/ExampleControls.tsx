@@ -97,13 +97,11 @@ const ExampleControls = ({
         // TODO use new form components when ready
         // TODO make something that can convert example controls into form inputs without having to specifically handle each case
         preferredDirections={["top"]}
+        targetElementClassName={"ds example-controls__config-button"}
         activateDelay={0}
         autoFit={true}
         Message={
-          <div
-            className={"ds example-controls__inputs"}
-            style={{ minWidth: "250px" }}
-          >
+          <div className={"ds example-controls__inputs"}>
             {activeExampleConfig?.configurations?.fontFamily && (
               <div style={{ marginBottom: "8px" }}>
                 <label
@@ -261,6 +259,7 @@ const ExampleControls = ({
       </TooltipArea>
       <Button
         label="Copy"
+        style={{ marginLeft: "auto" }}
         disabled={!activeExampleConfig.cssVars}
         onClick={() =>
           navigator.clipboard.writeText(
