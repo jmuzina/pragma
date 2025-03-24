@@ -63,7 +63,7 @@ const ExampleControls = ({
       console.log({ currentIndex, prevIndex });
       setActiveExampleName(examples[prevIndex].name);
     }
-  }, [activeExampleName, examples]);
+  }, [activeExampleName, examples, setActiveExampleName]);
 
   const handleNextExample = useCallback(() => {
     if (examples?.length) {
@@ -73,7 +73,16 @@ const ExampleControls = ({
       const nextIndex = (currentIndex + 1) % examples.length;
       setActiveExampleName(examples[nextIndex].name);
     }
-  }, [activeExampleName, examples]);
+  }, [activeExampleName, examples, setActiveExampleName]);
+
+  const handleCopyCss = useCallback(() => {
+    if (typeof window === "undefined" || !activeExampleConfig?.cssVars) return;
+    navigator.clipboard.writeText(
+      Object.entries(activeExampleConfig.cssVars)
+        .map((d) => `${d[0]}: ${d[1]};`)
+        .join("\n"),
+    );
+  }, [activeExampleConfig]);
 
   return (
     <div
@@ -142,6 +151,7 @@ const ExampleControls = ({
                     max={activeExampleConfig.configurations.fontSize.max}
                     // The value is stored in px, so we need to convert it to a number
                     value={Number.parseInt(
+                      // @ts-ignore This is a string, but more concrete input handling will be added in a followup PR
                       activeExampleConfig.configurations.fontSize.value,
                     )}
                     step={activeExampleConfig.configurations.fontSize.step}
@@ -161,6 +171,7 @@ const ExampleControls = ({
                   />
                   <span style={{ marginLeft: "8px", whiteSpace: "nowrap" }}>
                     {Number.parseInt(
+                      // @ts-ignore This is a string, but more concrete input handling will be added in a followup PR
                       activeExampleConfig.configurations.fontSize.value,
                     )}
                     px
@@ -228,6 +239,7 @@ const ExampleControls = ({
                           payload: {
                             exampleName: activeExampleName,
                             settingName: "lineHeight",
+                            // @ts-ignore This is a string, but more concrete input handling will be added in a followup PR
                             newValue: Number.parseFloat(event.target.value),
                           },
                         });
@@ -260,14 +272,8 @@ const ExampleControls = ({
       <Button
         label="Copy"
         style={{ marginLeft: "auto" }}
-        disabled={!activeExampleConfig.cssVars}
-        onClick={() =>
-          navigator.clipboard.writeText(
-            Object.entries(activeExampleConfig.cssVars)
-              .map((d) => `${d[0]}: ${d[1]};`)
-              .join("\n"),
-          )
-        }
+        disabled={!activeExampleConfig?.cssVars}
+        onClick={handleCopyCss}
       />
     </div>
   );
