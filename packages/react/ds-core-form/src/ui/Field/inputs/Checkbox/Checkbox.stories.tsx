@@ -9,7 +9,7 @@ import Component from "./Checkbox.js";
 // import type { StoryFn } from '@storybook/react'
 
 const meta = {
-  title: "Checkbox",
+  title: "Field/inputs/Checkbox",
   component: Component,
   decorators: [decorators.form()],
 } satisfies Meta<typeof Component>;

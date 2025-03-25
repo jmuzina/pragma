@@ -17,6 +17,7 @@ const Checkbox = ({
   style,
   name,
   registerProps,
+  ...otherProps // Should only be native input props
 }: CheckboxProps): React.ReactElement => {
   const { register } = useFormContext();
   return (
@@ -25,6 +26,7 @@ const Checkbox = ({
       style={style}
       type="checkbox"
       className={[componentCssClassName, className].filter(Boolean).join(" ")}
+      {...otherProps}
       {...register(name, registerProps)}
     />
   );

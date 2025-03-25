@@ -8,7 +8,7 @@ import Component from "./Description.js";
 // import type { StoryFn } from '@storybook/react'
 
 const meta = {
-  title: "Description",
+  title: "common/Wrapper/Description",
   component: Component,
 } satisfies Meta<typeof Component>;
 

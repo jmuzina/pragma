@@ -9,7 +9,7 @@ import Component from "./Range.js";
 // import type { StoryFn } from '@storybook/react'
 
 const meta = {
-  title: "Range",
+  title: "Field/inputs/Range",
   component: Component,
   decorators: [
     decorators.form({

@@ -13,7 +13,7 @@ import Component from "./Wrapper.js";
 // import type { StoryFn } from '@storybook/react'
 
 const meta = {
-  title: "Wrapper",
+  title: "common/Wrapper",
   component: Component,
   decorators: [decorators.form()],
 } satisfies Meta<typeof Component>;

@@ -17,7 +17,7 @@ const Textarea = ({
   style,
   name,
   registerProps,
-  ...otherProps
+  ...otherProps // Should only be native input props
 }: TextareaProps): React.ReactElement => {
   const { register } = useFormContext();
   return (

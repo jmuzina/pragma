@@ -18,6 +18,7 @@ const Text = ({
   inputType = "text",
   name,
   registerProps,
+  ...otherProps // Should only be native input props
 }: TextProps): React.ReactElement => {
   const { register } = useFormContext();
   return (
@@ -26,6 +27,7 @@ const Text = ({
       style={style}
       className={[componentCssClassName, className].filter(Boolean).join(" ")}
       type={inputType}
+      {...otherProps}
       {...register(name, registerProps)}
     />
   );

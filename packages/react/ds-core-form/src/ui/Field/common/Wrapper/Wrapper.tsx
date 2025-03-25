@@ -57,7 +57,6 @@ const Wrapper = <ComponentProps extends BaseInputProps>({
       style={style}
       className={[componentCssClassName, className].filter(Boolean).join(" ")}
     >
-      <Description {...ariaProps.description}>{description}</Description>
       <Label
         name={name}
         isOptional={isOptional}
@@ -66,12 +65,15 @@ const Wrapper = <ComponentProps extends BaseInputProps>({
       >
         {label}
       </Label>
-      <Component {...componentProps} />
-      {isError && (
-        <FieldError {...ariaProps.error}>
-          {fieldError?.message?.toString()}
-        </FieldError>
-      )}
+      <div className="payload">
+        <Description {...ariaProps.description}>{description}</Description>
+        <Component {...componentProps} />
+        {isError && (
+          <FieldError {...ariaProps.error}>
+            {fieldError?.message?.toString()}
+          </FieldError>
+        )}
+      </div>
     </div>
   );
 };

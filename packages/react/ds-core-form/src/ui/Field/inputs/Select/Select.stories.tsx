@@ -10,7 +10,7 @@ import Component from "./Select.js";
 // import type { StoryFn } from '@storybook/react'
 
 const meta = {
-  title: "Select",
+  title: "Field/inputs/Select",
   component: Component,
   decorators: [decorators.form()],
 } satisfies Meta<typeof Component>;
@@ -27,14 +27,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     name: "select",
-    options: fixtures.base,
-  },
-};
-
-export const WithDisabledOption: Story = {
-  args: {
-    name: "select2",
-    options: fixtures.withDisabled,
+    options: fixtures.fruits,
   },
 };
 

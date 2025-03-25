@@ -8,7 +8,7 @@ import Component from "./Label.js";
 // import type { StoryFn } from '@storybook/react'
 
 const meta = {
-  title: "common/Label",
+  title: "common/Wrapper/Label",
   component: Component,
   tags: ["autodocs"],
 } satisfies Meta<typeof Component>;

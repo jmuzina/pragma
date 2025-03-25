@@ -9,7 +9,7 @@ import Component from "./Textarea.js";
 // import type { StoryFn } from '@storybook/react'
 
 const meta = {
-  title: "Textarea",
+  title: "Field/inputs/Textarea",
   component: Component,
   decorators: [decorators.form()],
 } satisfies Meta<typeof Component>;

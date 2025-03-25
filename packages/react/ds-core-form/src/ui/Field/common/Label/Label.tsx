@@ -3,7 +3,7 @@ import type React from "react";
 import type { LabelProps } from "./types.js";
 import "./styles.css";
 
-const componentCssClassName = "ds label";
+const componentCssClassName = "ds form-label";
 
 /** Placeholder for internationalized messages */
 const defaultMessages = {
