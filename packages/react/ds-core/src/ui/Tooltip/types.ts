@@ -5,6 +5,7 @@ import type {
   ReactNode,
   RefObject,
 } from "react";
+import type { BestPosition } from "../hooks/index.js";
 
 export interface TooltipProps {
   /* A unique identifier for the TooltipMessage */
