@@ -174,43 +174,6 @@ const ExampleControls = ({
                 </div>
               </div>
             )}
-            {/* Add controls for other configurations here, e.g., color */}
-            {activeExampleConfig?.configurations?.color && (
-              <div style={{ marginBottom: "8px" }}>
-                <label
-                  htmlFor="colorSelect"
-                  style={{ display: "block", marginBottom: "4px" }}
-                >
-                  Color:
-                </label>
-                <select
-                  id="colorSelect"
-                  value={activeExampleConfig.configurations.color.value}
-                  onChange={(event) => {
-                    if (activeExampleName) {
-                      dispatch({
-                        type: "UPDATE_SETTING",
-                        payload: {
-                          exampleName: activeExampleName,
-                          settingName: "color",
-                          newValue: event.target.value,
-                        },
-                      });
-                    }
-                  }}
-                  style={{ width: "100%" }}
-                >
-                  {activeExampleConfig.configurations.color.choices.map(
-                    (choice) => (
-                      <option key={choice} value={choice}>
-                        {choice}
-                      </option>
-                    ),
-                  )}
-                </select>
-              </div>
-            )}
-            {/* Example for lineHeight */}
             {activeExampleConfig?.configurations?.lineHeight && (
               <div>
                 <label
