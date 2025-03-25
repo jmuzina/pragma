@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useRef } from "react";
 import { ConfigProvider } from "../contexts/ExampleContext/ExampleContext.js";
 import type { ShowcaseExample } from "../contexts/ExampleContext/types.js";
 import { ExampleControls } from "../ui/ExampleControls/index.js";

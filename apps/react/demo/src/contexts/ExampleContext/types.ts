@@ -1,24 +1,16 @@
 import type { Dispatch, FC, ReactNode, SetStateAction } from "react";
 
-export interface UPDATE_ACTION<T extends ShowcaseExample, TValue = string> {
+export interface UPDATE_ACTION<TValue = string> {
   type: "UPDATE_SETTING";
-  payload: {
-    exampleName: T["name"];
-    settingName: keyof T["configurations"];
-    newValue: TValue;
-  };
+  payload: { exampleName: string; settingName: string; newValue: TValue };
 }
 
-export interface RESET_ACTION<T extends ShowcaseExample> {
+export interface RESET_ACTION {
   type: "RESET_EXAMPLE";
-  payload: { exampleName: T["name"] };
+  payload: { exampleName: string };
 }
 
-export type ExampleAction<
-  TSettings extends BaseExampleSettings = BaseExampleSettings,
-  TExample extends ShowcaseExample<TSettings> = ShowcaseExample<TSettings>,
-  TValue = string,
-> = UPDATE_ACTION<TExample, TValue> | RESET_ACTION<TExample>;
+export type ExampleAction = UPDATE_ACTION | RESET_ACTION;
 
 /**
  * Configuration for an example setting.
@@ -50,18 +42,18 @@ export interface ChoicesExampleSetting<TValue> extends ExampleSetting<TValue> {
 /**
  * Configuration for an example that allows selecting multiple choices.
  */
-export type MultipleChoicesExampleSetting<TValue> = Omit<
+export type MultipleChoicesExampleConfiguration<TValue> = Omit<
   ChoicesExampleSetting<TValue>,
   "default" | "value"
 > & {
-  value: TValue[];
-  default: TValue[];
+  value: TValue;
+  default: TValue;
 };
 
 /**
- * Base settings for an example.
+ * Base settings for an example. May be extended to add more settings.
  */
-export type BaseExampleSettings = {
+export interface BaseExampleSettings {
   fontFamily?: ChoicesExampleSetting<string>;
   fontSize?: NumericExampleSetting;
   color?: ChoicesExampleSetting<string>;
@@ -74,7 +66,7 @@ export type BaseExampleSettings = {
   borderRadius?: NumericExampleSetting;
   boxShadow?: ChoicesExampleSetting<string>;
   textShadow?: ChoicesExampleSetting<string>;
-};
+}
 
 export interface ShowcaseExample<
   TSettings extends BaseExampleSettings = BaseExampleSettings,
@@ -86,29 +78,19 @@ export interface ShowcaseExample<
   cssVars?: Record<string, string | number | undefined>;
 }
 
-export type ConfigState<
-  TSettings extends BaseExampleSettings = BaseExampleSettings,
-  TExample extends ShowcaseExample<TSettings> = ShowcaseExample<TSettings>,
-> = Record<TExample["name"], TExample>;
+export type ConfigState = Record<string, ShowcaseExample>;
 
-export type ExampleRecord<
-  TSettings extends BaseExampleSettings = BaseExampleSettings,
-> = { [K in keyof TSettings]: ShowcaseExample<{ [P in K]: TSettings[K] }> };
-
-export interface ConfigProviderProps<
-  TSettings extends BaseExampleSettings = BaseExampleSettings,
-> {
-  examples: ExampleRecord<TSettings>;
+export interface ConfigProviderProps {
+  examples: ShowcaseExample[];
   children: ReactNode;
 }
 
 export interface ConfigProviderValue<
   TSettings extends BaseExampleSettings = BaseExampleSettings,
-  TExample extends ShowcaseExample<TSettings> = ShowcaseExample<TSettings>,
 > {
-  config: ConfigState<TSettings, TExample>;
-  dispatch: Dispatch<ExampleAction<TSettings, TExample>>;
+  config: ConfigState;
+  dispatch: Dispatch<ExampleAction>;
   activeExampleName?: string;
   setActiveExampleName: Dispatch<SetStateAction<string | undefined>>;
-  activeExampleConfig?: TExample;
+  activeExampleConfig?: ShowcaseExample;
 }
