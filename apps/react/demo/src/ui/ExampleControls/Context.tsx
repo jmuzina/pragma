@@ -124,8 +124,9 @@ export const ConfigProvider: FC<ConfigProviderProps> = ({
       activeExampleName,
       setActiveExampleName,
       activeExampleConfig,
+      allExamples: examples,
     }),
-    [config, activeExampleName, activeExampleConfig],
+    [config, activeExampleName, activeExampleConfig, examples],
   );
 
   return (

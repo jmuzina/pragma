@@ -12,7 +12,6 @@ import type {
 export interface ExampleControlsProps {
   id?: string;
   className?: string;
-  examples: ShowcaseExample[];
   style?: CSSProperties;
 }
 
@@ -124,4 +123,5 @@ export interface ConfigProviderValue {
   activeExampleName?: string;
   setActiveExampleName: Dispatch<SetStateAction<string | undefined>>;
   activeExampleConfig?: ShowcaseExample;
+  allExamples: ShowcaseExample[];
 }

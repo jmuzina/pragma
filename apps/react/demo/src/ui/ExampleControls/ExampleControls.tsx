@@ -5,13 +5,13 @@ import { Button, TooltipArea } from "@canonical/react-ds-core";
 import { useConfig } from "./Context.js";
 
 const ExampleControls = ({
-  examples,
   id,
   className,
   style,
 }: ExampleControlsProps): ReactElement => {
   const {
     dispatch,
+    allExamples: examples,
     activeExampleConfig,
     activeExampleName,
     setActiveExampleName,
