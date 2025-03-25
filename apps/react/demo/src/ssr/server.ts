@@ -3,7 +3,7 @@ import { serveStream } from "@canonical/react-ssr/server";
 import express from "express";
 import render from "./renderer.js";
 
-const PORT = process.env.PORT || 5173;
+const PORT = process.env.PORT || 5174;
 
 const app = express();
 
