@@ -7,19 +7,19 @@ import { useConfig } from "../ExampleControls/Context.js";
 import shadowCss from "./shadow-styles.css?raw";
 
 const ExampleRenderer = ({ style, className }: ExampleRendererProps) => {
-  const { activeExampleConfig } = useConfig();
+  const { activeExample } = useConfig();
   return (
     <div
       style={style}
       className={[componentCssClassname, className].filter(Boolean).join(" ")}
     >
-      {activeExampleConfig?.component && (
+      {activeExample?.component && (
         <>
-          <h3>{activeExampleConfig.name}</h3>
-          <root.div style={activeExampleConfig.cssVars} mode={"closed"}>
+          <h3>{activeExample.name}</h3>
+          <root.div style={activeExample.cssVars} mode={"closed"}>
             <style>{shadowCss}</style>
             <div className="ds shadow-container">
-              <activeExampleConfig.component />
+              <activeExample.component />
             </div>
           </root.div>
         </>

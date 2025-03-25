@@ -7,7 +7,7 @@ import type {
 } from "react";
 
 /**
- * Props for a react component that renders the controls inside a tooltip and allows changing the example configurations.
+ * Props for a React component that renders the controls inside a tooltip and allows changing the example configurations.
  */
 export interface ExampleControlsProps {
   id?: string;
@@ -15,45 +15,63 @@ export interface ExampleControlsProps {
   style?: CSSProperties;
 }
 
-export interface UPDATE_ACTION<
+/** An action to update or reset an example setting */
+export interface BASE_EXAMPLE_ACTION<TExampleName extends string> {
+  exampleName: TExampleName;
+  type: "UPDATE_SETTING" | "RESET_EXAMPLE";
+}
+
+/** An action to update a setting for an example */
+export interface UPDATE_EXAMPLE_ACTION<
+  /** Name of the example */
   TExampleName extends string,
+  /** The name of the setting */
   TSettingName extends keyof AllExampleSettings,
-  TSettings extends AllExampleSettings = AllExampleSettings,
-  TValue extends ExampleValue = TSettings[TSettingName] extends ExampleSetting<
+  /** The new value for the setting */
+  TValue extends
+    ExampleSettingValue = AllExampleSettings[TSettingName] extends ExampleSetting<
     infer V
   >
     ? V
-    : ExampleValue,
-> {
+    : ExampleSettingValue,
+> extends BASE_EXAMPLE_ACTION<TExampleName> {
   type: "UPDATE_SETTING";
-  payload: {
-    exampleName: TExampleName;
-    settingName: TSettingName;
-    newValue: TValue;
-  };
+  /** The name of the setting, as a string literal. Allows settings to be indexed by setting name with strict type checking */
+  settingName: TSettingName;
+  /** The type of the new value for the setting */
+  newValue: TValue;
 }
 
-export interface RESET_ACTION<TExampleName extends string> {
+/** An action to reset an example to its default settings */
+export interface RESET_EXAMPLE_ACTION<
+  /** Name of the example */
+  TExampleName extends string,
+> extends BASE_EXAMPLE_ACTION<TExampleName> {
   type: "RESET_EXAMPLE";
-  payload: { exampleName: TExampleName };
 }
 
+/** An action to update or reset an example settings. Unifies UPDATE_ and RESET_ types with strict type checking. */
 export type ExampleAction<TExampleName extends string = string> =
   | {
-      [K in keyof AllExampleSettings]: UPDATE_ACTION<TExampleName, K>;
+      // Generate a type for each setting in AllExampleSettings
+      [K in keyof AllExampleSettings]: UPDATE_EXAMPLE_ACTION<TExampleName, K>;
     }[keyof AllExampleSettings]
-  | RESET_ACTION<TExampleName>;
+  | RESET_EXAMPLE_ACTION<TExampleName>;
 
 /** A valid type for an example setting's value */
-export type ExampleValue = number | string;
+export type ExampleSettingValue = number | string;
 
 /**
  * Configuration for an example setting.
  */
-export interface ExampleSetting<TValue extends ExampleValue = string> {
+export interface ExampleSetting<TValue extends ExampleSettingValue = string> {
+  /** The current value of the setting */
   value: TValue;
+  /** The default value of the setting */
   default: TValue;
+  /** Export formats to skip for this setting */
   skipExportFormats?: {
+    /** Whether to skip exporting the value to the CSS file */
     css?: boolean;
   };
 }
@@ -62,30 +80,38 @@ export interface ExampleSetting<TValue extends ExampleValue = string> {
  * Configuration for an example that allows selecting a number.
  */
 export interface NumericExampleSetting extends ExampleSetting<number> {
+  /** The minimum value for the setting */
   min: number;
+  /** The maximum value for the setting */
   max: number;
+  /** The step value (how much to increment/decrement by) for the setting */
   step?: number;
 }
 
 /**
  * Configuration for an example that allows selecting one choice.
  */
-export interface ChoicesExampleSetting<TValue extends ExampleValue>
+export interface ChoicesExampleSetting<TValue extends ExampleSettingValue>
   extends ExampleSetting<TValue> {
+  /** The choices available for the setting */
   choices: TValue[];
 }
 
 /**
  * Configuration for an example that allows selecting multiple choices.
  */
-export type MultipleChoicesExampleConfiguration<TValue extends ExampleValue> =
-  Omit<ChoicesExampleSetting<TValue>, "default" | "value"> & {
-    value: TValue;
-    default: TValue;
-  };
+export type MultipleChoicesExampleConfiguration<
+  TValue extends ExampleSettingValue,
+  // We use Choices setting as a base to inherit its choices property, but reset default and value to TValue[] instead of TValue to allow multiple selection
+> = Omit<ChoicesExampleSetting<TValue>, "value"> & {
+  /** The current value of the setting */
+  value: TValue[];
+  /** The default value of the setting */
+  default: TValue[];
+};
 
 /**
- * Base settings for an example. May be extended to add more settings.
+ * Settings for an example. Each key is the name of a setting, and the value is the configuration for that setting.
  */
 export type AllExampleSettings = {
   fontFamily?: ChoicesExampleSetting<string>;
@@ -102,26 +128,43 @@ export type AllExampleSettings = {
   textShadow?: ChoicesExampleSetting<string>;
 };
 
+/** A showcase example that can be rendered in the example renderer */
 export interface ShowcaseExample {
+  /** The name of the example */
   name: string;
+  /** A description of the example */
   description: string;
-  configurations: AllExampleSettings;
+  /** Current settings for the example */
+  settings: AllExampleSettings;
+  /** The component to render for the example */
   component: FC;
+  /** CSS variables to apply to the component. These are derived from `settings`. */
   cssVars?: Record<string, string | number | undefined>;
 }
 
+/** The state of all examples. A key is a name of an example, the value is the example itself */
 export type ConfigState = Record<string, ShowcaseExample>;
 
+/** The context provider props for the config provider */
 export interface ConfigProviderProps {
+  /** The examples that can be controlled by this provider */
   examples: ShowcaseExample[];
+  /** The children to render, which will have access to the config context */
   children: ReactNode;
 }
 
+/** The value of the config context */
 export interface ConfigProviderValue {
+  /** The current state of all examples */
   config: ConfigState;
-  dispatch: Dispatch<ExampleAction<string>>;
+  /** The dispatch function to update the state */
+  dispatch: Dispatch<ExampleAction>;
+  /** The current active example name */
   activeExampleName?: string;
+  /** The function to set the active example name. Use this to change which example is currently active. */
   setActiveExampleName: Dispatch<SetStateAction<string | undefined>>;
-  activeExampleConfig?: ShowcaseExample;
+  /** The current active example */
+  activeExample?: ShowcaseExample;
+  /** All examples that can be controlled by this provider */
   allExamples: ShowcaseExample[];
 }

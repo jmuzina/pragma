@@ -2,9 +2,15 @@
   "extends": "@canonical/typescript-config-react",
   "compilerOptions": {
     "baseUrl": "src",
+    "skipLibCheck": true,
     "types": ["node", "react", "react-dom"],
-    "noEmit": true,
-    "skipLibCheck": true
+    "noEmit": true
   },
-  "include": ["src", "vite.config.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    ".storybook/*.ts",
+    ".storybook/*.tsx",
+    "vite.config.ts"
+  ]
 }

@@ -12,7 +12,7 @@ const ExampleControls = ({
   const {
     dispatch,
     allExamples: examples,
-    activeExampleConfig,
+    activeExample,
     activeExampleName,
     setActiveExampleName,
   } = useConfig();
@@ -22,11 +22,9 @@ const ExampleControls = ({
       if (activeExampleName) {
         dispatch({
           type: "UPDATE_SETTING",
-          payload: {
-            exampleName: activeExampleName,
-            settingName: "fontFamily",
-            newValue: event.target.value,
-          },
+          exampleName: activeExampleName,
+          settingName: "fontFamily",
+          newValue: event.target.value,
         });
       }
     },
@@ -38,11 +36,9 @@ const ExampleControls = ({
       if (activeExampleName) {
         dispatch({
           type: "UPDATE_SETTING",
-          payload: {
-            exampleName: activeExampleName,
-            settingName: "fontSize",
-            newValue: `${event.target.value}px`,
-          },
+          exampleName: activeExampleName,
+          settingName: "fontSize",
+          newValue: `${event.target.value}px`,
         });
       }
     },
@@ -55,7 +51,6 @@ const ExampleControls = ({
         (ex) => ex.name === activeExampleName,
       );
       const prevIndex = (currentIndex - 1 + examples.length) % examples.length;
-      console.log({ currentIndex, prevIndex });
       setActiveExampleName(examples[prevIndex].name);
     }
   }, [activeExampleName, examples, setActiveExampleName]);
@@ -71,13 +66,13 @@ const ExampleControls = ({
   }, [activeExampleName, examples, setActiveExampleName]);
 
   const handleCopyCss = useCallback(() => {
-    if (typeof window === "undefined" || !activeExampleConfig?.cssVars) return;
+    if (typeof window === "undefined" || !activeExample?.cssVars) return;
     navigator.clipboard.writeText(
-      Object.entries(activeExampleConfig.cssVars)
+      Object.entries(activeExample.cssVars)
         .map((d) => `${d[0]}: ${d[1]};`)
         .join("\n"),
     );
-  }, [activeExampleConfig]);
+  }, [activeExample]);
 
   return (
     <div
@@ -106,7 +101,7 @@ const ExampleControls = ({
         autoFit={true}
         Message={
           <div className={"ds example-controls__inputs"}>
-            {activeExampleConfig?.configurations?.fontFamily && (
+            {activeExample?.settings?.fontFamily && (
               <div style={{ marginBottom: "8px" }}>
                 <label
                   htmlFor="fontFamilySelect"
@@ -116,21 +111,19 @@ const ExampleControls = ({
                 </label>
                 <select
                   id="fontFamilySelect"
-                  value={activeExampleConfig.configurations.fontFamily.value}
+                  value={activeExample.settings.fontFamily.value}
                   onChange={handleFontFamilyChange}
                   style={{ width: "100%" }}
                 >
-                  {activeExampleConfig.configurations.fontFamily.choices.map(
-                    (font) => (
-                      <option key={font} value={font}>
-                        {font}
-                      </option>
-                    ),
-                  )}
+                  {activeExample.settings.fontFamily.choices.map((font) => (
+                    <option key={font} value={font}>
+                      {font}
+                    </option>
+                  ))}
                 </select>
               </div>
             )}
-            {activeExampleConfig?.configurations?.fontSize && (
+            {activeExample?.settings?.fontSize && (
               <div>
                 <label
                   htmlFor="fontSizeRange"
@@ -142,39 +135,33 @@ const ExampleControls = ({
                   <input
                     type="range"
                     id="fontSizeRange"
-                    min={activeExampleConfig.configurations.fontSize.min}
-                    max={activeExampleConfig.configurations.fontSize.max}
+                    min={activeExample.settings.fontSize.min}
+                    max={activeExample.settings.fontSize.max}
                     // The value is stored in px, so we need to convert it to a number
                     value={Number.parseInt(
                       // @ts-ignore This is a string, but more concrete input handling will be added in a followup PR
-                      activeExampleConfig.configurations.fontSize.value,
+                      activeExample.settings.fontSize.value,
                     )}
-                    step={activeExampleConfig.configurations.fontSize.step}
+                    step={activeExample.settings.fontSize.step}
                     onChange={handleFontSizeChange}
                     aria-label="Font Size"
-                    aria-valuemin={
-                      activeExampleConfig.configurations.fontSize.min
-                    }
-                    aria-valuemax={
-                      activeExampleConfig.configurations.fontSize.max
-                    }
-                    aria-valuenow={
-                      activeExampleConfig.configurations.fontSize.value
-                    }
-                    aria-valuetext={`${activeExampleConfig.configurations.fontSize.value} pixels`}
+                    aria-valuemin={activeExample.settings.fontSize.min}
+                    aria-valuemax={activeExample.settings.fontSize.max}
+                    aria-valuenow={activeExample.settings.fontSize.value}
+                    aria-valuetext={`${activeExample.settings.fontSize.value} pixels`}
                     style={{ flexGrow: 1 }}
                   />
                   <span style={{ marginLeft: "8px", whiteSpace: "nowrap" }}>
                     {Number.parseInt(
                       // @ts-ignore This is a string, but more concrete input handling will be added in a followup PR
-                      activeExampleConfig.configurations.fontSize.value,
+                      activeExample.settings.fontSize.value,
                     )}
                     px
                   </span>
                 </div>
               </div>
             )}
-            {activeExampleConfig?.configurations?.lineHeight && (
+            {activeExample?.settings?.lineHeight && (
               <div>
                 <label
                   htmlFor="lineHeightRange"
@@ -186,38 +173,30 @@ const ExampleControls = ({
                   <input
                     type="range"
                     id="lineHeightRange"
-                    min={activeExampleConfig.configurations.lineHeight.min}
-                    max={activeExampleConfig.configurations.lineHeight.max}
-                    value={activeExampleConfig.configurations.lineHeight.value}
-                    step={activeExampleConfig.configurations.lineHeight.step}
+                    min={activeExample.settings.lineHeight.min}
+                    max={activeExample.settings.lineHeight.max}
+                    value={activeExample.settings.lineHeight.value}
+                    step={activeExample.settings.lineHeight.step}
                     onChange={(event) => {
                       if (activeExampleName) {
                         dispatch({
                           type: "UPDATE_SETTING",
-                          payload: {
-                            exampleName: activeExampleName,
-                            settingName: "lineHeight",
-                            // @ts-ignore This is a string, but more concrete input handling will be added in a followup PR
-                            newValue: Number.parseFloat(event.target.value),
-                          },
+                          exampleName: activeExampleName,
+                          settingName: "lineHeight",
+                          // @ts-ignore This is a string, but more concrete input handling will be added in a followup PR
+                          newValue: Number.parseFloat(event.target.value),
                         });
                       }
                     }}
                     aria-label="Line Height"
-                    aria-valuemin={
-                      activeExampleConfig.configurations.lineHeight.min
-                    }
-                    aria-valuemax={
-                      activeExampleConfig.configurations.lineHeight.max
-                    }
-                    aria-valuenow={
-                      activeExampleConfig.configurations.lineHeight.value
-                    }
-                    aria-valuetext={`${activeExampleConfig.configurations.lineHeight.value}`}
+                    aria-valuemin={activeExample.settings.lineHeight.min}
+                    aria-valuemax={activeExample.settings.lineHeight.max}
+                    aria-valuenow={activeExample.settings.lineHeight.value}
+                    aria-valuetext={`${activeExample.settings.lineHeight.value}`}
                     style={{ flexGrow: 1 }}
                   />
                   <span style={{ marginLeft: "8px", whiteSpace: "nowrap" }}>
-                    {activeExampleConfig.configurations.lineHeight.value}
+                    {activeExample.settings.lineHeight.value}
                   </span>
                 </div>
               </div>
@@ -230,7 +209,7 @@ const ExampleControls = ({
       <Button
         label="Copy"
         style={{ marginLeft: "auto" }}
-        disabled={!activeExampleConfig?.cssVars}
+        disabled={!activeExample?.cssVars}
         onClick={handleCopyCss}
       />
     </div>

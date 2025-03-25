@@ -7,7 +7,7 @@ export const SHOWCASE_EXAMPLES: ShowcaseExample[] = [
     name: "Typographic Specimen",
     description: "A typographic specimen with configurable font settings",
     component: TypographicSpecimen,
-    configurations: {
+    settings: {
       fontFamily: {
         value: "Arial",
         default: "Arial",
@@ -32,7 +32,7 @@ export const SHOWCASE_EXAMPLES: ShowcaseExample[] = [
     name: "example1",
     description: "An example with font settings",
     component: Button,
-    configurations: {
+    settings: {
       fontFamily: {
         value: "Arial",
         default: "Arial",
