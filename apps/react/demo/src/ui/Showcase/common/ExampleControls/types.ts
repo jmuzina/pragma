@@ -69,11 +69,14 @@ export interface ExampleSetting<TValue extends ExampleSettingValue = string> {
   value: TValue;
   /** The default value of the setting */
   default: TValue;
-  /** Export formats to skip for this setting */
-  skipExportFormats?: {
-    /** Whether to skip exporting the value to the CSS file */
-    css?: boolean;
+
+  /** Formats to disable for exporting */
+  disableFormats?: {
+    /** Whether to disable exporting to CSS */
+    css: boolean;
   };
+
+  cssUnit?: string;
 }
 
 /**

@@ -38,7 +38,7 @@ const ExampleControls = ({
           type: "UPDATE_SETTING",
           exampleName: activeExampleName,
           settingName: "fontSize",
-          newValue: `${event.target.value}px`,
+          newValue: Number.parseFloat(event.target.value),
         });
       }
     },

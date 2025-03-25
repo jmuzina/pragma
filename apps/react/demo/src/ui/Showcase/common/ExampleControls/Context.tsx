@@ -1,10 +1,10 @@
-import React, {
-  createContext,
-  useState,
-  useContext,
-  useReducer,
+import {
   type FC,
+  createContext,
+  useContext,
   useMemo,
+  useReducer,
+  useState,
 } from "react";
 import type {
   AllExampleSettings,
@@ -12,7 +12,6 @@ import type {
   ConfigProviderValue,
   ConfigState,
   ExampleAction,
-  ExampleSetting,
   ShowcaseExample,
 } from "./types.js";
 
@@ -30,11 +29,10 @@ const generateCssVariables = (
   const cssVars: Record<string, string | number | undefined> = {};
   for (const settingName in settings) {
     const setting = settings[settingName as keyof AllExampleSettings];
-    if (!setting) continue;
-    if (!setting.skipExportFormats?.css && setting.value !== undefined) {
-      const cssVarName = `--${casing.toKebabCase(settingName)}`;
-      cssVars[cssVarName] = setting.value;
-    }
+    if (!setting || setting.disableFormats?.css || setting.value === undefined)
+      continue;
+    const cssVarName = `--${casing.toKebabCase(settingName)}`;
+    cssVars[cssVarName] = `${setting.value}${setting.cssUnit || ""}`;
   }
   return cssVars;
 };
