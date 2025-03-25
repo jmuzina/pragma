@@ -5,10 +5,9 @@ import React, {
   useReducer,
   type FC,
   useMemo,
-  useEffect,
 } from "react";
 import type {
-  BaseExampleSettings,
+  AllExampleSettings,
   ConfigProviderProps,
   ConfigProviderValue,
   ConfigState,
@@ -22,13 +21,13 @@ import { casing } from "@canonical/utils";
 const ConfigContext = createContext<ConfigProviderValue | undefined>(undefined);
 
 const generateCssVariables = (
-  configurations: BaseExampleSettings,
+  configurations: AllExampleSettings,
 ): Record<string, string | number | undefined> => {
   const cssVars: Record<string, string | number | undefined> = {};
   for (const settingName in configurations) {
     const setting = configurations[
-      settingName as keyof BaseExampleSettings
-    ] as ExampleSetting<any>;
+      settingName as keyof AllExampleSettings
+    ] as ExampleSetting;
     if (!setting?.skipExportFormats?.css && setting.value !== undefined) {
       const cssVarName = `--${casing.toKebabCase(settingName)}`;
       cssVars[cssVarName] = setting.value;
@@ -41,67 +40,56 @@ const configReducer = (
   state: ConfigState,
   action: ExampleAction,
 ): ConfigState => {
+  if (!action) return {};
   switch (action.type) {
     case "UPDATE_SETTING": {
+      const { exampleName, settingName, newValue } = action.payload;
       const updatedState = {
         ...state,
-        [action.payload.exampleName]: {
-          ...state[action.payload.exampleName],
+        [exampleName]: {
+          ...state[exampleName],
           configurations: {
-            ...state[action.payload.exampleName]?.configurations,
-            [action.payload.settingName]: {
-              ...state[action.payload.exampleName]?.configurations?.[
-                action.payload.settingName
-              ],
-              value: action.payload.newValue,
+            ...state[exampleName]?.configurations,
+            [settingName]: {
+              ...state[exampleName]?.configurations?.[settingName],
+              value: newValue,
             },
           },
         },
       };
       return {
         ...updatedState,
-        [action.payload.exampleName]: {
-          ...updatedState[action.payload.exampleName],
+        [exampleName]: {
+          ...updatedState[exampleName],
           cssVars: generateCssVariables(
-            updatedState[action.payload.exampleName].configurations,
+            updatedState[exampleName].configurations,
           ),
         },
       };
     }
-    case "RESET_EXAMPLE":
-      const { [action.payload.exampleName]: exampleToReset, ...restOfState } =
-        state;
+    case "RESET_EXAMPLE": {
+      const { exampleName } = action.payload;
+      const { [exampleName]: exampleToReset, ...restOfState } = state;
       if (exampleToReset) {
-        const resetConfigurations: BaseExampleSettings = {};
         for (const key in exampleToReset.configurations) {
-          if (exampleToReset.configurations.hasOwnProperty(key)) {
-            const setting =
-              exampleToReset.configurations[key as keyof BaseExampleSettings];
-            if (
-              setting &&
-              "default" in setting &&
-              setting.default !== undefined
-            ) {
-              resetConfigurations[key as keyof BaseExampleSettings] = {
-                ...setting,
-                value: setting.default,
-              };
-            } else {
-              resetConfigurations[key as keyof BaseExampleSettings] = setting;
-            }
+          const setting =
+            exampleToReset.configurations[key as keyof AllExampleSettings];
+          if (setting) {
+            setting.value = setting.default;
           }
         }
         const resetExample: ShowcaseExample = {
           ...exampleToReset,
-          configurations: resetConfigurations,
-          cssVars: generateCssVariables(resetConfigurations),
+          configurations: exampleToReset.configurations,
+          cssVars: generateCssVariables(exampleToReset.configurations),
         };
         return {
           ...restOfState,
-          [action.payload.exampleName]: resetExample,
+          [exampleName]: resetExample,
         };
       }
       return state;
+    }
     default:
       return state;
   }
@@ -111,10 +99,13 @@ export const ConfigProvider: FC<ConfigProviderProps> = ({
   examples,
   children,
 }) => {
-  const initialState: ConfigState = examples.reduce((acc, example) => {
-    acc[example.name] = example;
-    return acc;
-  }, {});
+  const initialState: ConfigState = examples.reduce(
+    (acc: ConfigState, example) => {
+      acc[example.name] = example;
+      return acc;
+    },
+    {},
+  );
 
   const [config, dispatch] = useReducer(configReducer, initialState);
   const [activeExampleName, setActiveExampleName] = useState<

@@ -1,13 +1,8 @@
-import {
-  type ChangeEvent,
-  type ReactElement,
-  useCallback,
-  useState,
-} from "react";
+import { type ChangeEvent, type ReactElement, useCallback } from "react";
 import type { ExampleControlsProps } from "./types.js";
 import "./styles.css";
 import { Button, TooltipArea } from "@canonical/react-ds-core";
-import { useConfig } from "../../contexts/ExampleContext/ExampleContext.js";
+import { useConfig } from "./Context.js";
 
 const ExampleControls = ({
   examples,

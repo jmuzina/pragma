@@ -1,9 +1,9 @@
-import { useConfig } from "../../contexts/ExampleContext/ExampleContext.js";
 import type { ExampleRendererProps } from "./types.js";
 
 const componentCssClassname = "ds example-renderer";
 import root from "react-shadow";
 
+import { useConfig } from "../ExampleControls/Context.js";
 import shadowCss from "./shadow-styles.css?raw";
 
 const ExampleRenderer = ({ style, className }: ExampleRendererProps) => {
