@@ -32,6 +32,15 @@ const List = ({
       {items.map((item, index) => {
         const keyValue = item[valueKey];
         const key = keyValue !== undefined ? String(keyValue) : `item-${index}`;
+        let isSelected = false;
+
+        if (fieldValue !== undefined) {
+          if (Array.isArray(fieldValue)) {
+            isSelected = fieldValue.includes(String(keyValue));
+          } else {
+            isSelected = fieldValue === String(keyValue);
+          }
+        }
         return (
           <li
             {...getItemProps({
@@ -40,7 +49,7 @@ const List = ({
               style: {
                 backgroundColor:
                   highlightedIndex === index ? "yellow" : "white",
-                fontWeight: fieldValue === item[valueKey] ? "bold" : "normal",
+                fontWeight: isSelected ? "bold" : "normal",
               },
             })}
             key={key}

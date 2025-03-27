@@ -22,7 +22,7 @@ export type ListProps = {
 
   convertItemToString: typeof utils.convertItemToString;
 
-  fieldValue: string;
+  fieldValue: string | string[] | undefined;
 
   /* The key to read the value from */
   valueKey: keyof Option;

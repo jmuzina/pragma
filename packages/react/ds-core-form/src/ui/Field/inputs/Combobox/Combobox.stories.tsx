@@ -12,7 +12,14 @@ import Component from "./Combobox.js";
 const meta = {
   title: "Field/inputs/Combobox",
   component: Component,
-  decorators: [decorators.form()],
+  decorators: [
+    decorators.form({
+      defaultValues: {
+        select_fruit: "apple",
+        select_multiple_fruits: ["apple", "banana"],
+      },
+    }),
+  ],
 } satisfies Meta<typeof Component>;
 
 export default meta;
@@ -26,7 +33,15 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    name: "select",
+    name: "select-fruit",
+    options: fixtures.fruits,
+  },
+};
+
+export const Multiple: Story = {
+  args: {
+    name: "select-multiple-fruits",
+    isMultiple: true,
     options: fixtures.fruits,
   },
 };
