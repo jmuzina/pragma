@@ -16,7 +16,7 @@ const useProviderState = ({
   const { defaultValues, examples } = useExampleRHFInterface();
   const { setValue, getValues } = useFormContext();
 
-  const formState = useWatch();
+  const formValues = useWatch();
 
   const activeExample = useMemo(
     () => examples[activeExampleIndex],
@@ -46,20 +46,20 @@ const useProviderState = ({
         acc[format] = Object.fromEntries(
           activeExample.fields
             .filter(
-              (control) =>
-                !control.disabledOutputFormats?.[format] &&
-                control[ORIGINAL_VAR_NAME_KEY],
+              (field) =>
+                !field.disabledOutputFormats?.[format] &&
+                field[ORIGINAL_VAR_NAME_KEY],
             )
-            .map((control) => {
-              const { [ORIGINAL_VAR_NAME_KEY]: name, transformer } = control;
-              const rawVal = formState[activeExample.name]?.[name as string];
+            .map((field) => {
+              const { [ORIGINAL_VAR_NAME_KEY]: name, transformer } = field;
+              const rawVal = formValues[activeExample.name]?.[name as string];
               const val = transformer ? transformer(rawVal) : rawVal;
               return [name, val];
             }),
         );
         return acc;
       }, {} as Output),
-    [outputFormats, activeExample, formState],
+    [outputFormats, activeExample, formValues],
   );
 
   /** Copy the output values to the clipboard */
@@ -75,13 +75,23 @@ const useProviderState = ({
     [output],
   );
 
+  /** The settings for the active example */
+  const activeExampleFormValues = useMemo(
+    () => formValues[activeExample.name],
+    [formValues, activeExample],
+  );
+
   useEffect(() => {
     // When the active example changes, set the form values to the new example's values
-    for (const control of activeExample.fields) {
-      const { name: formStateKey } = control;
+    for (const field of activeExample.fields) {
+      const { name: formStateKey, [ORIGINAL_VAR_NAME_KEY]: originalFieldName } =
+        field;
       const curVal = getValues(formStateKey);
-      const setValTo =
-        curVal !== undefined ? curVal : defaultValues[formStateKey];
+      let setValTo = curVal;
+      // Fallback to default value if value is being cleared
+      if ((setValTo === undefined || setValTo === null) && originalFieldName) {
+        setValTo = defaultValues[activeExample.name]?.[originalFieldName];
+      }
       if (curVal !== setValTo) {
         setValue(formStateKey, setValTo);
       }
@@ -98,6 +108,7 @@ const useProviderState = ({
       activatePrevExample,
       activateNextExample,
       output,
+      activeExampleFormValues,
     }),
     [
       activeExampleIndex,
@@ -107,6 +118,7 @@ const useProviderState = ({
       activatePrevExample,
       activateNextExample,
       output,
+      activeExampleFormValues,
     ],
   );
 };
