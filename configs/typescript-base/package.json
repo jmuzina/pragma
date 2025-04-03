@@ -1,6 +1,6 @@
 {
   "name": "@canonical/typescript-config-base",
-  "version": "0.9.0-experimental.2",
+  "version": "0.9.0-experimental.12",
   "description": "Canonical's standard TypeScript configuration",
   "main": "tsconfig.json",
   "author": {
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "@canonical/biome-config": "^0.9.0-experimental.2",
+    "@canonical/biome-config": "^0.9.0-experimental.12",
     "typescript": "^5.8.2"
   },
   "peerDependencies": {

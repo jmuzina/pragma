@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.12](https://github.com/canonical/ds25/compare/v0.9.0-experimental.11...v0.9.0-experimental.12) (2025-04-03)
+
+
+### Features
+
+* add checkbox preview switch to MarkdownEditor component ([#189](https://github.com/canonical/ds25/issues/189)) ([fb1be38](https://github.com/canonical/ds25/commit/fb1be38893403c439513062724b30049703be66e))
+* add readonly mode to the editable block component ([#173](https://github.com/canonical/ds25/issues/173)) ([f74626b](https://github.com/canonical/ds25/commit/f74626b8f0839fa9bcc57a1b9feaf4b86473bbac))
+
+
+
+
+
 # [0.9.0-experimental.11](https://github.com/canonical/ds25/compare/v0.9.0-experimental.10...v0.9.0-experimental.11) (2025-03-20)
 
 

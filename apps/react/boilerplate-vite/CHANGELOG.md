@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.12](https://github.com/canonical/ds25/compare/v0.9.0-experimental.11...v0.9.0-experimental.12) (2025-04-03)
+
+
+### Features
+
+* **boilerplate:** Add storybook ([#162](https://github.com/canonical/ds25/issues/162)) ([db1fb76](https://github.com/canonical/ds25/commit/db1fb7693a48fe076ac11c52e1068845f457216e))
+
+
+
+
+
 # [0.9.0-experimental.11](https://github.com/canonical/ds25/compare/v0.9.0-experimental.10...v0.9.0-experimental.11) (2025-03-20)
 
 **Note:** Version bump only for package @canonical/react-boilerplate-vite

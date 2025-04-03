@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.12](https://github.com/canonical/ds25/compare/v0.9.0-experimental.11...v0.9.0-experimental.12) (2025-04-03)
+
+
+### Bug Fixes
+
+* **Tooltip:** Tooltips use position: fixed ([#178](https://github.com/canonical/ds25/issues/178)) ([fe1f0b4](https://github.com/canonical/ds25/commit/fe1f0b4af1ff676b648735bce02c1f32f6d3a380))
+
+
+### Features
+
+* add checkbox preview switch to MarkdownEditor component ([#189](https://github.com/canonical/ds25/issues/189)) ([fb1be38](https://github.com/canonical/ds25/commit/fb1be38893403c439513062724b30049703be66e))
+* add readonly mode to the editable block component ([#173](https://github.com/canonical/ds25/issues/173)) ([f74626b](https://github.com/canonical/ds25/commit/f74626b8f0839fa9bcc57a1b9feaf4b86473bbac))
+* **boilerplate:** Add storybook ([#162](https://github.com/canonical/ds25/issues/162)) ([db1fb76](https://github.com/canonical/ds25/commit/db1fb7693a48fe076ac11c52e1068845f457216e))
+* **Demo site:** Demo site pt. 3 - Form components & form state ([#184](https://github.com/canonical/ds25/issues/184)) ([b203e1b](https://github.com/canonical/ds25/commit/b203e1b23b9ccb53656f70105e27d30ab328ab87))
+* **Demo Site:** DS Demo Site: Pt. 2 ([#161](https://github.com/canonical/ds25/issues/161)) ([b563c0a](https://github.com/canonical/ds25/commit/b563c0ab8a78e9853fc1c952581e05c62628794c))
+* **ds-core-form:** boilerplate pt 4 ([#167](https://github.com/canonical/ds25/issues/167)) ([7efd638](https://github.com/canonical/ds25/commit/7efd638384f454d8aaeb0e8d39d9cbe47d6ec0ee))
+* **ds-core-form:** part 5: styling and drive-bys ([#176](https://github.com/canonical/ds25/issues/176)) ([9471cc7](https://github.com/canonical/ds25/commit/9471cc745c089f4cb6b4ef030903fdcffa12fdf2))
+* **form:** Ft form boilerplate pt6 - Core Combobox, No styling ([#180](https://github.com/canonical/ds25/issues/180)) ([48d0aaa](https://github.com/canonical/ds25/commit/48d0aaa4e7ba2793558779ffb6e3eded5ee4774f))
+* **form:** Hidden input ([#182](https://github.com/canonical/ds25/issues/182)) ([a9365b9](https://github.com/canonical/ds25/commit/a9365b9bd12991e61801a039143bd72cf4c5b55d))
+* **form:** Multiple Combobox. No styling ([#183](https://github.com/canonical/ds25/issues/183)) ([945244a](https://github.com/canonical/ds25/commit/945244aaafac37632051b9d48f976562edd68f33))
+
+
+
+
+
 # [0.9.0-experimental.11](https://github.com/canonical/ds25/compare/v0.9.0-experimental.10...v0.9.0-experimental.11) (2025-03-20)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.12](https://github.com/canonical/ds25/compare/v0.9.0-experimental.11...v0.9.0-experimental.12) (2025-04-03)
+
+
+### Features
+
+* **ds-core-form:** boilerplate pt 4 ([#167](https://github.com/canonical/ds25/issues/167)) ([7efd638](https://github.com/canonical/ds25/commit/7efd638384f454d8aaeb0e8d39d9cbe47d6ec0ee))
+
+
+
+
+
 # [0.9.0-experimental.11](https://github.com/canonical/ds25/compare/v0.9.0-experimental.10...v0.9.0-experimental.11) (2025-03-20)
 
 
