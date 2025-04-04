@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.13](https://github.com/canonical/ds25/compare/v0.9.0-experimental.12...v0.9.0-experimental.13) (2025-04-04)
+
+
+### Features
+
+* **Demo site:** Demo Site pt. 4 - Typographic specimen styling / settings expanded ([#185](https://github.com/canonical/ds25/issues/185)) ([8024841](https://github.com/canonical/ds25/commit/8024841b53a70f2df202de8d8a5ff8cb53b8836d))
+
+
+
+
+
 # [0.9.0-experimental.12](https://github.com/canonical/ds25/compare/v0.9.0-experimental.11...v0.9.0-experimental.12) (2025-04-03)
 
 

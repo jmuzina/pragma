@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.13](https://github.com/canonical/ds25/compare/v0.9.0-experimental.12...v0.9.0-experimental.13) (2025-04-04)
+
+
+### Bug Fixes
+
+* **Demo site:** Fix initial CSS state not being correcty set to defaults ([#190](https://github.com/canonical/ds25/issues/190)) ([348dd76](https://github.com/canonical/ds25/commit/348dd76c1c4bae0bedebbfa83e107da69d9736f6))
+* Update collapse rotate logic ([#192](https://github.com/canonical/ds25/issues/192)) ([d9dde41](https://github.com/canonical/ds25/commit/d9dde41dd2bf88d05c9122e72b9a94b6152a0657))
+
+
+### Features
+
+* **Demo site:** Demo Site pt. 4 - Typographic specimen styling / settings expanded ([#185](https://github.com/canonical/ds25/issues/185)) ([8024841](https://github.com/canonical/ds25/commit/8024841b53a70f2df202de8d8a5ff8cb53b8836d))
+
+
+
+
+
 # [0.9.0-experimental.12](https://github.com/canonical/ds25/compare/v0.9.0-experimental.11...v0.9.0-experimental.12) (2025-04-03)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.13](https://github.com/canonical/ds25/compare/v0.9.0-experimental.12...v0.9.0-experimental.13) (2025-04-04)
+
+
+### Bug Fixes
+
+* Update collapse rotate logic ([#192](https://github.com/canonical/ds25/issues/192)) ([d9dde41](https://github.com/canonical/ds25/commit/d9dde41dd2bf88d05c9122e72b9a94b6152a0657))
+
+
+
+
+
 # [0.9.0-experimental.12](https://github.com/canonical/ds25/compare/v0.9.0-experimental.11...v0.9.0-experimental.12) (2025-04-03)
 
 
