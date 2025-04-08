@@ -14,6 +14,7 @@ const Controls = ({ id, className, style }: ControlsProps): ReactElement => {
     activatePrevExample,
     activateNextExample,
     copyOutput,
+    resetActiveExample,
   } = useShowcaseContext();
 
   return (
@@ -40,31 +41,40 @@ const Controls = ({ id, className, style }: ControlsProps): ReactElement => {
         activateDelay={0}
         autoFit={true}
         Message={
-          <div className="inputs">
-            {activeExample.fields.map(
-              ({
-                name,
-                defaultValue,
-                transformer,
-                disabledOutputFormats,
-                ...fieldProps
-              }) => (
-                <Field
-                  name={name}
-                  key={name}
-                  unregisterOnUnmount={false}
-                  {...fieldProps}
-                />
-              ),
-            )}
-          </div>
+          <>
+            <h4>Example settings</h4>
+            <Button
+              label={"Reset to defaults"}
+              type={"button"}
+              onClick={resetActiveExample}
+            />
+            <hr />
+            <div className="inputs">
+              {activeExample.fields.map(
+                ({
+                  name,
+                  defaultValue,
+                  transformer,
+                  disabledOutputFormats,
+                  ...fieldProps
+                }) => (
+                  <Field
+                    name={name}
+                    key={name}
+                    unregisterOnUnmount={false}
+                    {...fieldProps}
+                  />
+                ),
+              )}
+            </div>
+          </>
         }
       >
         <Button label="Configure" />
       </TooltipArea>
       <Button
         type="button"
-        label="Copy"
+        label="Copy CSS"
         style={{ marginLeft: "auto" }}
         disabled={!output?.css}
         onClick={() => copyOutput("css")}
