@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.14](https://github.com/canonical/ds25/compare/v0.9.0-experimental.13...v0.9.0-experimental.14) (2025-04-10)
+
+
+### Bug Fixes
+
+* **CodeDiffViewer:** Resize observer detaches on view collapse ([#196](https://github.com/canonical/ds25/issues/196)) ([80361d7](https://github.com/canonical/ds25/commit/80361d73aa3be5229ee51feab66ae35c6b60c78e))
+
+
+
+
+
 # [0.9.0-experimental.13](https://github.com/canonical/ds25/compare/v0.9.0-experimental.12...v0.9.0-experimental.13) (2025-04-04)
 
 

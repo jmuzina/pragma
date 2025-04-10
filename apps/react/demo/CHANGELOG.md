@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.14](https://github.com/canonical/ds25/compare/v0.9.0-experimental.13...v0.9.0-experimental.14) (2025-04-10)
+
+
+### Features
+
+* **Demo site:** Add example reset button ([#194](https://github.com/canonical/ds25/issues/194)) ([e488999](https://github.com/canonical/ds25/commit/e48899926951924eed889256464e51cb68ea04cc))
+
+
+
+
+
 # [0.9.0-experimental.13](https://github.com/canonical/ds25/compare/v0.9.0-experimental.12...v0.9.0-experimental.13) (2025-04-04)
 
 
