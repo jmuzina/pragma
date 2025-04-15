@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.15](https://github.com/canonical/ds25/compare/v0.9.0-experimental.14...v0.9.0-experimental.15) (2025-04-15)
+
+
+### Features
+
+* **CodeDiffViewer:** fix CodeDiffViewer table structure and add option for disabling table width calculation ([#197](https://github.com/canonical/ds25/issues/197)) ([2c83496](https://github.com/canonical/ds25/commit/2c83496c03bb4d2fd67fe78477e24bc9b9f4ff69))
+
+
+
+
+
 # [0.9.0-experimental.14](https://github.com/canonical/ds25/compare/v0.9.0-experimental.13...v0.9.0-experimental.14) (2025-04-10)
 
 
