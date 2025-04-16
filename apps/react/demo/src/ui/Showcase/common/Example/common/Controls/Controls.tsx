@@ -34,10 +34,12 @@ const Controls = ({ id, className, style }: ControlsProps): ReactElement => {
           <Button label=">" type="button" onClick={activateNextExample} />
           <span id="active-example-name" style={{ color: "white" }}>
             {activeExample.name}&nbsp;
+            {/*Zindex is usd to draw the tooltip over the baseline overlay and the controls element. */}
             <TooltipArea
               Message={<span>{activeExample.description}</span>}
               messageElementClassName="example-description"
               maxWidth={"275px"}
+              zIndex={202}
             >
               {/*TODO replace this with an information icon when icon is implemented*/}
               <i>(i)</i>
