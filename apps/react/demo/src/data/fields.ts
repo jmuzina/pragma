@@ -52,19 +52,15 @@ export const LINE_HEIGHT_FIELD: ExampleControlField = {
   step: 0.25,
 };
 
-const DEFAULT_CATEGORIES: FieldsSection[] = [
-  {
-    label: "Typeface",
-    fields: [FONT_FAMILY_FIELD, BASELINE_HEIGHT_FIELD],
-  },
-  {
-    title: "Font size",
-    fields: [FONT_SIZE_FIELD],
-  },
-  {
-    title: "Line height",
-    fields: [LINE_HEIGHT_FIELD],
-  },
-];
-
-export default DEFAULT_CATEGORIES;
+export const ROOT_CATEGORY: FieldCategory = {
+  label: "Root",
+  fields: [
+    {
+      ...FONT_FAMILY_FIELD,
+      defaultValue: "Times New Roman",
+    },
+    FONT_SIZE_FIELD,
+    LINE_HEIGHT_FIELD,
+    BASELINE_HEIGHT_FIELD,
+  ],
+};

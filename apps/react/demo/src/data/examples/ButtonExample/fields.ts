@@ -1,8 +1,7 @@
-import DEFAULT_CATEGORIES from "data/fields.js";
-import type { FieldsSection } from "ui/index.js";
+import { ROOT_CATEGORY } from "data/fields.js";
 
 const sections: FieldsSection[] = [
-  ...DEFAULT_CATEGORIES,
+  ROOT_CATEGORY,
   {
     title: "Misc",
     fields: [
