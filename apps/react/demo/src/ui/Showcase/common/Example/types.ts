@@ -29,6 +29,8 @@ export interface ContextOptions {
   activateNextExample: () => void;
   /** The settings for the current active example */
   activeExampleFormValues: FormValues;
+
+  showBaselineGrid: boolean;
 }
 
 /** The context provider props for the config provider */

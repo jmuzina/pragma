@@ -22,22 +22,38 @@ const Controls = ({ id, className, style }: ControlsProps): ReactElement => {
   const [settingsOpen, setSettingsOpen] = useState(false);
 
   return (
-    <div
-      id={id}
-      className={[componentCssClassname, className].filter(Boolean).join(" ")}
-      style={{
-        ...style,
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-      }}
-    >
-      <div>
-        {/*TODO use icon buttons when icon is implemented*/}
-        <Button label={"Prev"} type="button" onClick={activatePrevExample} />
-        <Button label="Next" type="button" onClick={activateNextExample} />
+    <>
+      <div
+        id={id}
+        className={[componentCssClassname, className].filter(Boolean).join(" ")}
+        style={style}
+      >
+        <div className="start">
+          {/*TODO use icon buttons when icon is implemented*/}
+          <Button label={"Prev"} type="button" onClick={activatePrevExample} />
+          <Button label="Next" type="button" onClick={activateNextExample} />
+        </div>
+        <div className="end">
+          <Field
+            id="baseline-toggler"
+            inputType="checkbox"
+            name="showBaselineGrid"
+            label="Show Baseline"
+            isOptional={true}
+          />
+          <Button
+            label="Settings"
+            type="button"
+            onClick={() => setSettingsOpen(true)}
+          />
+          <Button
+            type="button"
+            label="Copy CSS"
+            disabled={!demoOutput?.css}
+            onClick={() => copyOutput("css")}
+          />
+        </div>
       </div>
-
       <Drawer
         title={`${activeExample.name} settings`}
         isOpenOverride={settingsOpen}
@@ -75,20 +91,7 @@ const Controls = ({ id, className, style }: ControlsProps): ReactElement => {
           </div>
         ))}
       </Drawer>
-      <div className="end">
-        <Button
-          label="Settings"
-          type="button"
-          onClick={() => setSettingsOpen(true)}
-        />
-        <Button
-          type="button"
-          label="Copy CSS"
-          disabled={!demoOutput?.css}
-          onClick={() => copyOutput("css")}
-        />
-      </div>
-    </div>
+    </>
   );
 };
 
