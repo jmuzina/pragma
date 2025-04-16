@@ -30,8 +30,18 @@ const Controls = ({ id, className, style }: ControlsProps): ReactElement => {
       >
         <div className="start">
           {/*TODO use icon buttons when icon is implemented*/}
-          <Button label="<" type="button" onClick={activatePrevExample} />
-          <Button label=">" type="button" onClick={activateNextExample} />
+          <Button
+            label="<"
+            type="button"
+            onClick={activatePrevExample}
+            aria-label="Previous example"
+          />
+          <Button
+            label=">"
+            type="button"
+            onClick={activateNextExample}
+            aria-label="Next example"
+          />
           <span id="active-example-name" style={{ color: "white" }}>
             {activeExample.name}&nbsp;
             {/*Zindex is usd to draw the tooltip over the baseline overlay and the controls element. */}
