@@ -6,8 +6,12 @@ import { useShowcaseContext } from "../../hooks/index.js";
 import shadowCss from "./styles.css?inline";
 
 const Renderer = ({ style, className }: RendererProps) => {
-  const { activeExample, demoOutput, activeExampleFormValues } =
-    useShowcaseContext();
+  const {
+    activeExample,
+    demoOutput,
+    activeExampleFormValues,
+    showBaselineGrid,
+  } = useShowcaseContext();
 
   return (
     <div
@@ -17,7 +21,9 @@ const Renderer = ({ style, className }: RendererProps) => {
       {activeExample?.Component && (
         <root.div style={demoOutput.css} mode={"closed"}>
           <style>{shadowCss}</style>
-          <div className="ds shadow-container">
+          <div
+            className={`ds shadow-container${showBaselineGrid && " with-baseline-grid"}`}
+          >
             <activeExample.Component {...activeExampleFormValues} />
           </div>
         </root.div>
