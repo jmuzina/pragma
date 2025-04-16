@@ -22,7 +22,7 @@ const Renderer = ({ style, className }: RendererProps) => {
         <root.div style={demoOutput.css} mode={"closed"}>
           <style>{shadowCss}</style>
           <div
-            className={`ds shadow-container${showBaselineGrid && " with-baseline-grid"}`}
+            className={`ds shadow-container${showBaselineGrid ? " with-baseline-grid" : ""}`}
           >
             <activeExample.Component {...activeExampleFormValues} />
           </div>

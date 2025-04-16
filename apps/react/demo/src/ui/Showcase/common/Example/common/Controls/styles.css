@@ -2,9 +2,6 @@
   background-color: black;
   width: 100%;
   padding: var(--spacing-horizontal-small) var(--spacing-vertical-small);
-  position: fixed;
-  left: 0;
-  bottom: 0;
   box-sizing: border-box;
 
   display: grid;

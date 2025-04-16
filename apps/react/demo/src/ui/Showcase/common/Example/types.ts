@@ -37,7 +37,7 @@ export interface ContextOptions {
 export interface ProviderProps {
   /** The children to render, which will have access to the config context */
   children: ReactNode;
-
+  /** The output formats that the provider should support */
   outputFormats?: ExampleOutputFormat[];
 }
 
