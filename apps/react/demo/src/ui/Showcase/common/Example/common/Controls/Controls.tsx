@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { ReactElement } from "react";
 import type { ControlsProps } from "./types.js";
 import "./styles.css";
-import { Button } from "@canonical/react-ds-core";
+import { Button, TooltipArea } from "@canonical/react-ds-core";
 import { Field } from "@canonical/react-ds-core-form";
 import { Drawer } from "ui/Drawer/index.js";
 import { useShowcaseContext } from "../../hooks/index.js";
@@ -30,15 +30,26 @@ const Controls = ({ id, className, style }: ControlsProps): ReactElement => {
       >
         <div className="start">
           {/*TODO use icon buttons when icon is implemented*/}
-          <Button label={"Prev"} type="button" onClick={activatePrevExample} />
-          <Button label="Next" type="button" onClick={activateNextExample} />
+          <Button label="<" type="button" onClick={activatePrevExample} />
+          <Button label=">" type="button" onClick={activateNextExample} />
+          <span id="active-example-name" style={{ color: "white" }}>
+            {activeExample.name}&nbsp;
+            <TooltipArea
+              Message={<span>{activeExample.description}</span>}
+              messageElementClassName="example-description"
+              maxWidth={"275px"}
+            >
+              {/*TODO replace this with an information icon when icon is implemented*/}
+              <i>(i)</i>
+            </TooltipArea>
+          </span>
         </div>
         <div className="end">
           <Field
             id="baseline-toggler"
             inputType="checkbox"
             name="showBaselineGrid"
-            label="Show Baseline"
+            label="Baseline grid"
             isOptional={true}
           />
           <Button

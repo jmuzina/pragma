@@ -19,13 +19,16 @@
     flex-wrap: wrap;
   }
 
+  /*
+    TODO the navigation area has an inverse theme (black background) and the baseline toggler has no background
+      so we need to override the color to make it stand out, otherwise it uses dark text on a dark background.
+   */
+  & #active-example-name,
   & #baseline-toggler {
-    /*
-            TODO the navigation area has an inverse theme (black background) and the baseline toggler has no background
-                so we need to override the color to make it stand out, otherwise it uses dark text on a dark background.
-         */
     color: white;
+  }
 
+  & #baseline-toggler {
     margin-right: var(--spacing-horizontal-large);
 
     /* tmp until adrian is back - currently the label is smashed up against the input when they are laid out side by side */
@@ -48,7 +51,7 @@
   }
 }
 
-@media screen and (min-width: 760px) {
+@media screen and (min-width: 870px) {
   .ds.example-controls {
     column-gap: var(--spacing-horizontal-small);
 
