@@ -20,9 +20,10 @@
   }
 
   /*
-    TODO the navigation area has an inverse theme (black background) and the baseline toggler has no background
-      so we need to override the color to make it stand out, otherwise it uses dark text on a dark background.
-   */
+      TODO the navigation area has an inverse theme (black background) and the baseline toggler has no background
+        so we need to override the color to make it stand out, otherwise it uses dark text on a dark background.
+     */
+
   & #active-example-name,
   & #baseline-toggler {
     color: white;
@@ -37,17 +38,19 @@
       margin-left: var(--spacing-horizontal-small);
     }
   }
+}
 
-  & .inputs-drawer-contents .setting-category .inputs {
-    display: grid;
-    --wrapper-columns: span 1; /* Keep var override usage */
-    grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
-    grid-column-gap: var(--spacing-horizontal-large);
-  }
-
+.inputs-drawer-contents {
   & .setting-category {
     padding: var(--spacing-vertical-medium) 0;
     border-top: 1px solid var(--color-text-default);
+
+    & .inputs {
+      display: grid;
+      --wrapper-columns: span 1;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-column-gap: var(--spacing-horizontal-medium);
+    }
   }
 }
 

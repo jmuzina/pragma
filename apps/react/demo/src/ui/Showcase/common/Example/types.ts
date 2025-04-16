@@ -29,7 +29,7 @@ export interface ContextOptions {
   activateNextExample: () => void;
   /** The settings for the current active example */
   activeExampleFormValues: FormValues;
-
+  /** Whether the baseline grid should be shown */
   showBaselineGrid: boolean;
 }
 
