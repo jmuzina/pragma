@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.16](https://github.com/canonical/ds25/compare/v0.9.0-experimental.15...v0.9.0-experimental.16) (2025-04-18)
+
+
+### Bug Fixes
+
+* **GitDiffViewer:** correct line highlighting logic in diff viewer ([#208](https://github.com/canonical/ds25/issues/208)) ([1f1fc58](https://github.com/canonical/ds25/commit/1f1fc585883bd5b61e126830776d3a46c021b6b3))
+
+
+### Features
+
+* **GitDiffViewer:** Improve code diff add comment interaction ([#207](https://github.com/canonical/ds25/issues/207)) ([20c042a](https://github.com/canonical/ds25/commit/20c042a6a8ce7bdb2066e828f80d848a7d812c56))
+* **GitDiffViewer:** improve syntax highlighting and fix file header collapse button animation ([#206](https://github.com/canonical/ds25/issues/206)) ([d7e8a07](https://github.com/canonical/ds25/commit/d7e8a070c459a8e1e6a2c0f8d116f1021e87ee9b))
+
+
+
+
+
 # [0.9.0-experimental.15](https://github.com/canonical/ds25/compare/v0.9.0-experimental.14...v0.9.0-experimental.15) (2025-04-15)
 
 
