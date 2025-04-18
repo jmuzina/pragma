@@ -1,7 +1,7 @@
 import typographicSpecimenLinesImg from "assets/typographic-specimen-lines.png";
 import type { ShowcaseComponent } from "ui/index.js";
 /*
-  Using a more straightforward (import "./styles.css") would cause the styles to not be applied correctly as this is
+  Using a more straightforward (import "./shadow-styles.css") would cause the styles to not be applied correctly as this is
   assumed to be within a shadow DOM.
   So, for now we simply import the styles with vite's `?inline` to make sure style are bundled correctly.
   Then, we can inline the styles below.
@@ -90,6 +90,7 @@ const TypographicSpecimen: ShowcaseComponent = () => {
             </p>
           </div>
 
+          {/*TODO this image currently throws off the baseline alignment of content below it */}
           <img
             src={typographicSpecimenLinesImg}
             alt="Abstract pattern lines"
