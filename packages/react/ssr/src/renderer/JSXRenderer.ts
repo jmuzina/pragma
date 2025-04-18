@@ -111,14 +111,14 @@ export default class Renderer<
     const jsxStream = renderToPipeableStream(jsx, {
       ...this.options.renderToPipeableStreamOptions,
       // Early error, before the shell is prepared
-      onShellError() {
+      onShellError(error) {
         res
           .writeHead(500, { "Content-Type": "text/html; charset=utf-8" })
           .end("<h1>Something went wrong</h1>");
-
-        throw new Error("An error occurred while constructing the SSR shell");
+        throw error;
       },
       onShellReady() {
+        console.log("shell ready");
         res.writeHead(renderingError ? 500 : 200, {
           "Content-Type": "text/html; charset=utf-8",
         });

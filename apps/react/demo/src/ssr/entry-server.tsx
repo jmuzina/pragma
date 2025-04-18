@@ -3,7 +3,9 @@ import type {
   RendererServerEntrypointProps,
 } from "@canonical/react-ssr/renderer";
 import React from "react";
-import Application from "../Application.js";
+import Application, { createRouter } from "../Application.js";
+
+export const serverRouter = createRouter();
 
 const EntryServer: ReactServerEntrypointComponent<
   RendererServerEntrypointProps
@@ -17,7 +19,7 @@ const EntryServer: ReactServerEntrypointComponent<
       </head>
       <body>
         <div id="root">
-          <Application />
+          <Application router={serverRouter} />
         </div>
       </body>
     </html>
