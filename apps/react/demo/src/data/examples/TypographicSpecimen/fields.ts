@@ -28,7 +28,7 @@ const fieldCategories: FieldCategory[] = [
         min: 1,
         max: 20,
         step: 1,
-        defaultValue: 9,
+        defaultValue: 8,
         demoTransformer: BASELINE_MULTIPLE_TRANSFORMER,
       },
       {
@@ -48,7 +48,7 @@ const fieldCategories: FieldCategory[] = [
         min: 0,
         max: 4,
         step: 0.05,
-        defaultValue: 0.55,
+        defaultValue: 0.6,
         ...FONT_RELATIVE_TRANSFORMERS,
       },
     ],
@@ -308,7 +308,7 @@ const fieldCategories: FieldCategory[] = [
         min: 0.25,
         max: 16,
         step: 0.125,
-        defaultValue: 0.375,
+        defaultValue: 0,
         ...FONT_RELATIVE_TRANSFORMERS,
       },
       {
@@ -366,6 +366,16 @@ const fieldCategories: FieldCategory[] = [
         defaultValue: 1,
         demoTransformer: PX_TRANSFORMER,
       },
+      {
+        name: "--hr-highlighted-height-increase",
+        label: "HR Highlighted Height Increase",
+        inputType: "range",
+        min: 1,
+        max: 16,
+        step: 1,
+        defaultValue: 2,
+        demoTransformer: PX_TRANSFORMER,
+      }
     ],
   },
 ];

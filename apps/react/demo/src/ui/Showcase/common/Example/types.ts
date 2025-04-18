@@ -51,6 +51,11 @@ export interface FieldCategory {
   fields: ExampleControlField[];
 }
 
+export type TransformerFn = (
+  value: ExampleSettingValue,
+  formValues: FormValues,
+) => ExampleSettingValue;
+
 export interface ExampleControlField extends FieldProps {
   name: string;
   /** Formats for which output is disabled */
@@ -58,9 +63,9 @@ export interface ExampleControlField extends FieldProps {
     [key in ExampleOutputFormat]?: boolean;
   };
   /** Transformer function to apply to demo output values */
-  demoTransformer?: (value: ExampleSettingValue) => ExampleSettingValue;
+  demoTransformer?: TransformerFn;
   /** Transformer function to apply to exported values */
-  exportTransformer?: (value: ExampleSettingValue) => ExampleSettingValue;
+  exportTransformer?: TransformerFn;
   /**
    * A default value for the control field.
    * This is not directly consumed by the field, but it is used to set the initial value in the form state.

@@ -6,6 +6,8 @@ import type {
   FieldCategory,
 } from "../ui/index.js";
 import { PX_TRANSFORMER, REM_TRANSFORMER } from "./transformers.js";
+import type { FormValues } from "../hooks/index.js";
+import { TYPO_METRICS_MAP } from "./constants.js";
 
 export const FONT_FAMILY_FIELD: ExampleControlField = {
   name: "--font-family",
@@ -29,6 +31,30 @@ export const FONT_SIZE_FIELD: ExampleControlField = {
   step: 1,
   demoTransformer: PX_TRANSFORMER,
 };
+
+export const ASCENDER: ExampleControlField = {
+  name: "--ascender",
+  inputType: "hidden",
+  label: "Ascender",
+  demoTransformer: (value: ExampleSettingValue, formValues: FormValues) =>
+    TYPO_METRICS_MAP[formValues["--font-family"]].ascender,
+};
+
+export const DESCENDER: ExampleControlField = {
+  name: "--descender",
+  inputType: "hidden",
+  label: "Descender",
+  demoTransformer: (value: ExampleSettingValue, formValues: FormValues) =>
+    TYPO_METRICS_MAP[formValues["--font-family"]].descender
+}
+
+export const UNITS_PER_EM: ExampleControlField = {
+  name: "--units-per-em",
+  inputType: "hidden",
+  label: "Units per em",
+  demoTransformer: (value: ExampleSettingValue, formValues: FormValues) =>
+    TYPO_METRICS_MAP[formValues["--font-family"]].unitsPerEm,
+}
 
 /**
  * A field for the baseline height.
@@ -63,6 +89,9 @@ export const ROOT_CATEGORY: FieldCategory = {
       ...FONT_FAMILY_FIELD,
       defaultValue: "Times New Roman",
     },
+    ASCENDER,
+    DESCENDER,
+    UNITS_PER_EM,
     FONT_SIZE_FIELD,
     LINE_HEIGHT_FIELD,
     BASELINE_HEIGHT_FIELD,

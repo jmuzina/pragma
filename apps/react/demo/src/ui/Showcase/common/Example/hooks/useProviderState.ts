@@ -1,5 +1,5 @@
 import { ORIGINAL_VAR_NAME_KEY } from "data/index.js";
-import { useExampleRHFInterface } from "hooks/index.js";
+import { type FormValues, useExampleRHFInterface } from "hooks/index.js";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import type { ExampleOutputFormat, Output } from "../types.js";
@@ -59,8 +59,12 @@ const useProviderState = ({
         acc[format] = Object.fromEntries(
           outputFields(format).map((field) => {
             const { [ORIGINAL_VAR_NAME_KEY]: name, demoTransformer } = field;
-            const rawVal = formValues[activeExample.name]?.[name as string];
-            const val = demoTransformer ? demoTransformer(rawVal) : rawVal;
+            const formValuesForExample: FormValues =
+              formValues[activeExample.name];
+            const rawVal = formValuesForExample?.[name as string];
+            const val = demoTransformer
+              ? demoTransformer(rawVal, formValuesForExample)
+              : rawVal;
             return [name, val];
           }),
         );
@@ -85,11 +89,13 @@ const useProviderState = ({
                   exportTransformer,
                   demoTransformer,
                 } = field;
-                const rawVal = formValues[activeExample.name]?.[name as string];
+                const formValuesForExample: FormValues =
+                  formValues[activeExample.name];
+                const rawVal = formValuesForExample?.[name as string];
                 const val = exportTransformer
-                  ? exportTransformer(rawVal)
+                  ? exportTransformer(rawVal, formValuesForExample)
                   : demoTransformer
-                    ? demoTransformer(rawVal)
+                    ? demoTransformer(rawVal, formValuesForExample)
                     : rawVal;
                 return [name, val];
               }),
