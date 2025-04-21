@@ -1,6 +1,5 @@
 import { JSXRenderer } from "@canonical/react-ssr/renderer";
 import { createMemoryHistory } from "@tanstack/react-router";
-import { renderToPipeableStream } from "react-dom/server";
 import htmlString from "../../dist/client/index.html?raw";
 import EntryServer, { serverRouter } from "./entry-server.js";
 
@@ -22,7 +21,12 @@ const render = async (req, res) => {
 
   await serverRouter.load();
 
-  Renderer.render(req, res);
+  if (serverRouter.hasNotFoundMatch()) {
+    console.warn("not found", req);
+    // 404?
+  }
+
+  return Renderer.render(req, res);
 };
 
 export default render;

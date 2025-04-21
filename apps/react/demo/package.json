@@ -13,7 +13,7 @@
     "build:server:middleware": "vite build --ssr src/ssr/server.ts --outDir dist/server",
     "build:server:cli": "vite build --ssr src/ssr/renderer.tsx --outDir dist/server",
     "serve": "bun run serve:middleware",
-    "serve:middleware": "bun run build:client && bun run build:server:middleware && node dist/server/server.js",
+    "serve:middleware": "NODE_ENV=dev && bun run build:client && bun run build:server:middleware && node dist/server/server.js",
     "serve:cli": "bun run build:client && bun run build:server:cli && bun run serve-express dist/server/renderer.js",
     "check": "bun run check:biome && bun run check:ts",
     "check:fix": "bun run check:biome:fix && bun run check:ts",
@@ -29,10 +29,13 @@
     "@canonical/storybook-config": "^0.9.0-experimental.12",
     "@canonical/styles": "^0.9.0-experimental.12",
     "@canonical/styles-debug": "^0.9.0-experimental.12",
+    "@tanstack/react-query": "^5.74.4",
     "@tanstack/react-router": "^1.114.25",
+    "@tanstack/react-start": "^1.116.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-shadow": "^20.6.0"
+    "react-shadow": "^20.6.0",
+    "superjson": "^2.2.2"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",

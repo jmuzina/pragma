@@ -3,7 +3,10 @@ import type {
   RendererServerEntrypointProps,
 } from "@canonical/react-ssr/renderer";
 import React from "react";
-import Application, { createRouter } from "../Application.js";
+
+import { createRouter } from "../router.js";
+import { RouterProvider } from "@tanstack/react-router";
+import Showcase from "../ui/Showcase/Showcase.js";
 
 export const serverRouter = createRouter();
 
@@ -19,7 +22,8 @@ const EntryServer: ReactServerEntrypointComponent<
       </head>
       <body>
         <div id="root">
-          <Application router={serverRouter} />
+          <RouterProvider router={serverRouter}/>
+          {/*<Showcase />*/}
         </div>
       </body>
     </html>

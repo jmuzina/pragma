@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Showcase } from "../ui/index.js";
 
 export const Page = Showcase;
+//export const Page = Showcase;
 
 /**
  * We construct the entire page inside the Showcase component from the UI layer to separate route and component logic.

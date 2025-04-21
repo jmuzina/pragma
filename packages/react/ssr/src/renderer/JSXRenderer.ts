@@ -5,6 +5,7 @@ import {
   type PipeableStream,
   type RenderToPipeableStreamOptions,
   renderToPipeableStream,
+  renderToString,
 } from "react-dom/server";
 import Extractor from "./Extractor.js";
 
@@ -36,12 +37,12 @@ export interface RendererServerEntrypointProps {
 
 // Expose the types for the rendering function for better type-safety in server code and caller code
 /** The result of rendering a React component */
-export type RenderResult = PipeableStream;
+export type RenderResult = PipeableStream | any;
 /** A function that renders a React component */
 export type RenderHandler = (
   req: IncomingMessage,
   res: ServerResponse,
-) => RenderResult;
+) => RenderResult | Promise<RenderResult>;
 
 export type ReactServerEntrypointComponent<
   TComponentProps extends RendererServerEntrypointProps,
@@ -99,14 +100,16 @@ export default class Renderer<
    * @param res Response object that will be sent to the client
    * @return {RenderResult} The stream that was sent to the client
    */
-  render: RenderHandler = (
-    req: IncomingMessage,
-    res: ServerResponse,
-  ): RenderResult => {
+  render: RenderHandler = (req: IncomingMessage, res: ServerResponse): any => {
     // await this.prepareLocale(req.headers.get("accept-language") || undefined);
     const jsx = createElement(this.Component, this.getComponentProps());
 
     let renderingError: Error;
+
+    // const html = renderToString(jsx);
+    // console.log(html);
+    // res.write(html);
+    // return res.end();
 
     const jsxStream = renderToPipeableStream(jsx, {
       ...this.options.renderToPipeableStreamOptions,
@@ -118,7 +121,6 @@ export default class Renderer<
         throw error;
       },
       onShellReady() {
-        console.log("shell ready");
         res.writeHead(renderingError ? 500 : 200, {
           "Content-Type": "text/html; charset=utf-8",
         });
