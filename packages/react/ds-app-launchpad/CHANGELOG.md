@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.18](https://github.com/canonical/ds25/compare/v0.9.0-experimental.17...v0.9.0-experimental.18) (2025-04-22)
+
+
+### Bug Fixes
+
+* **CodeDiffViewer:** fix line numbers ([#212](https://github.com/canonical/ds25/issues/212)) ([1cdc6fd](https://github.com/canonical/ds25/commit/1cdc6fda3658538cd4365bdd67a42d00a0284704))
+
+
+### Features
+
+* **GitDiffViewer:** refactor line numbers to add better support for diff lines ([#210](https://github.com/canonical/ds25/issues/210)) ([08c6285](https://github.com/canonical/ds25/commit/08c6285d5d7e3894a8c18d28fd52731a8d8fff17))
+
+
+
+
+
 # [0.9.0-experimental.17](https://github.com/canonical/ds25/compare/v0.9.0-experimental.16...v0.9.0-experimental.17) (2025-04-18)
 
 
