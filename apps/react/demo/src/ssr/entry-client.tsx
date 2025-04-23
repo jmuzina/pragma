@@ -8,8 +8,8 @@ import Showcase from "../ui/Showcase/Showcase.js";
 export const clientRouter = createRouter();
 const container = document.getElementById("root") as HTMLElement;
 
-const clientApp = <RouterProvider router={clientRouter}/>
-// const clientApp = <Showcase/>;
+// const clientApp = <RouterProvider router={clientRouter}/>
+const clientApp = <Showcase/>;
 
 if (import.meta.env.DEV) {
   console.log("Running in DEV mode, using createRoot");

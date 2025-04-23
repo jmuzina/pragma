@@ -4,7 +4,7 @@ import { FormProvider } from "react-hook-form";
 import { useExampleRHFInterface } from "../../hooks/index.js";
 
 const Showcase = () => {
-  // return <p>This is a test paragraph</p>;
+  return <p>This is a test paragraph</p>;
   const { methods } = useExampleRHFInterface();
   return (
     <FormProvider {...methods}>
