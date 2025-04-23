@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Showcase } from "../ui/index.js";
 
-export const Page = Showcase;
+export const Page = () => <p>Hello world</p>
 //export const Page = Showcase;
 
 /**

@@ -9,6 +9,8 @@ import { RouterProvider } from "@tanstack/react-router";
 import Showcase from "../ui/Showcase/Showcase.js";
 
 export const serverRouter = createRouter();
+// const serverApp = <Showcase/>;
+const serverApp = <RouterProvider router={serverRouter} />;
 
 const EntryServer: ReactServerEntrypointComponent<
   RendererServerEntrypointProps
@@ -22,8 +24,7 @@ const EntryServer: ReactServerEntrypointComponent<
       </head>
       <body>
         <div id="root">
-          <RouterProvider router={serverRouter}/>
-          {/*<Showcase />*/}
+            {serverApp}
         </div>
       </body>
     </html>

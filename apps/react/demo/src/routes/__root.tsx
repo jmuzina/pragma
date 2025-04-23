@@ -14,5 +14,6 @@ export const Route = createRootRoute({
       </>
     );
   },
+  // TODO temporary / debugging, make this more professional before you actually merge this
   notFoundComponent: () => <p>we couldn't find that :(</p>,
 });
