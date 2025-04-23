@@ -1,32 +1,35 @@
-import { JSXRenderer } from "@canonical/react-ssr/renderer";
-import { createMemoryHistory } from "@tanstack/react-router";
+import {JSXRenderer} from "@canonical/react-ssr/renderer";
+import {createMemoryHistory} from "@tanstack/react-router";
 import htmlString from "../../dist/client/index.html?raw";
-import EntryServer, { serverRouter } from "./entry-server.js";
+import EntryServer from "./entry-server.js";
+import {createRouter} from "../router.js"; // Your router setup
+import { DehydrateRouter } from '@tanstack/react-router';
 
 const Renderer = new JSXRenderer(EntryServer, {
-  htmlString,
+    htmlString,
 });
 
+import {createStartHandler, createRequestHandler} from '@tanstack/react-start/server';
+
 const render = async (req, res) => {
-  const memoryHistory = createMemoryHistory({
-    initialEntries: [req.originalUrl],
-  });
+    const router = createRouter();
+    router.update({history: createMemoryHistory({initialEntries: [req.url || req.originalUrl || "/"]})});
+    await router.load();
 
-  serverRouter.update({
-    history: memoryHistory,
-    context: {
-      ...serverRouter.options.context,
-    },
-  });
+    const startHandler = createRequestHandler({
+        createRouter: () => router,
+        getRouterManifest: () => router.manifest,
+        request: req
+    });
 
-  await serverRouter.load();
+    const startResponse = await startHandler(cb => {
+        return cb.router;
+    });
 
-  if (serverRouter.hasNotFoundMatch()) {
-    console.warn("not found", req);
-    // 404?
-  }
+    startResponse.body?.pipeTo(res);
+    Renderer.render(req, res, {router});
 
-  return Renderer.render(req, res);
+
 };
 
 export default render;

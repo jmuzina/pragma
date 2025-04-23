@@ -4,13 +4,10 @@ import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 export default defineConfig({
   plugins: [
-    TanStackRouterVite({ target: "react", autoCodeSplitting: true }),
+    TanStackRouterVite({ target: "react", autoCodeSplitting: false }),
     tsconfigPaths(),
     react(),
   ],
-  ssr: {
-    noExternal: ["@tanstack/react-router"],
-  },
   server: {
     port: 5174,
   },

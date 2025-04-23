@@ -100,9 +100,9 @@ export default class Renderer<
    * @param res Response object that will be sent to the client
    * @return {RenderResult} The stream that was sent to the client
    */
-  render: RenderHandler = (req: IncomingMessage, res: ServerResponse): any => {
+  render: RenderHandler = (req: IncomingMessage, res: ServerResponse, additionalProps = {}): any => {
     // await this.prepareLocale(req.headers.get("accept-language") || undefined);
-    const jsx = createElement(this.Component, this.getComponentProps());
+    const jsx = createElement(this.Component, {...this.getComponentProps(), ...additionalProps});
 
     let renderingError: Error;
 

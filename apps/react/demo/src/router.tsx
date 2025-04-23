@@ -13,7 +13,7 @@ export function createRouter() {
   return createReactRouter({
     routeTree,
     // serializer: SuperJSON,
-    // defaultPreload: "intent",
+    defaultPreload: "intent",
     // Wrap: ({children}: { children: ReactNode }) => <QueryClientProvider
     //   client={queryClient}>{children}</QueryClientProvider>,
   });
