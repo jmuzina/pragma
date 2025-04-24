@@ -1,35 +1,56 @@
 import {JSXRenderer} from "@canonical/react-ssr/renderer";
-import {createMemoryHistory} from "@tanstack/react-router";
+import {createMemoryHistory, RouterProvider} from "@tanstack/react-router";
 import htmlString from "../../dist/client/index.html?raw";
+import {createRouter} from "../router.js";
+import {StartServer} from "@tanstack/react-start/server"; // Use the component
 import EntryServer from "./entry-server.js";
-import {createRouter} from "../router.js"; // Your router setup
-import { DehydrateRouter } from '@tanstack/react-router';
+import {Connect} from "vite";
+import IncomingMessage = Connect.IncomingMessage;
+import {
+    createRequestHandler,
+    defaultStreamHandler,
+} from '@tanstack/react-start/server'
+import { transformPipeableStreamWithRouter } from '@tanstack/start-server-core';
+import {PipeableStream} from "react-dom/server";
 
-const Renderer = new JSXRenderer(EntryServer, {
-    htmlString,
-});
-
-import {createStartHandler, createRequestHandler} from '@tanstack/react-start/server';
-
-const render = async (req, res) => {
+const render = async (req: IncomingMessage, res) => {
+    console.log("renderer bingus res", res);
     const router = createRouter();
     router.update({history: createMemoryHistory({initialEntries: [req.url || req.originalUrl || "/"]})});
-    await router.load();
 
-    const startHandler = createRequestHandler({
-        createRouter: () => router,
-        getRouterManifest: () => router.manifest,
-        request: req
-    });
+    try {
+        await router.load();
 
-    const startResponse = await startHandler(cb => {
-        return cb.router;
-    });
+        if (router.state.redirect) {
+            res.statusCode = router.state.redirect.code || 301;
+            res.setHeader('Location', router.state.redirect.href);
+            res.end();
+            return;
+        }
+        return createRequestHandler({createRouter, request: req, response: res})((({request, router, responseHeaders}) => {
+            const renderer = new JSXRenderer(({children, ...props}) => (
+                <EntryServer {...props}>
+                    <RouterProvider router={router}>
+                        <StartServer router={router}/>
+                    </RouterProvider>
+                </EntryServer>
+            ), {
+                htmlString,
+            });
 
-    startResponse.body?.pipeTo(res);
-    Renderer.render(req, res, {router});
+            const passthrough: PipeableStream = renderer.renderComponentToPassthrough(req);
+            const stream = transformPipeableStreamWithRouter(router, passthrough);
+            stream.pipe(res);
+        }))
 
-
+    } catch (error) {
+        console.error("SSR Application Error:", error);
+        if (!res.headersSent) {
+            res.statusCode = 500;
+            res.setHeader('Content-Type', 'text/plain');
+            res.end("Internal Server Error");
+        }
+    }
 };
 
 export default render;

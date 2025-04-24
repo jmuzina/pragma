@@ -2,13 +2,17 @@ import type {
     ReactServerEntrypointComponent,
     RendererServerEntrypointProps,
 } from "@canonical/react-ssr/renderer";
-import React, {StrictMode} from "react";
+import type {ReactNode} from "react";
+import {
+    createRequestHandler,
+    defaultStreamHandler,
+} from '@tanstack/react-start/server'
 
 import {RouterProvider} from "@tanstack/react-router";
 
 const EntryServer: ReactServerEntrypointComponent<
-    RendererServerEntrypointProps
-> = ({lang = "en", scriptTags, linkTags, router}: RendererServerEntrypointProps) => {
+    RendererServerEntrypointProps & {children: ReactNode}
+> = ({lang = "en", scriptTags, linkTags, children}: RendererServerEntrypointProps & {children: ReactNode}) => {
     return (
         <html lang={lang}>
         <head>
@@ -18,7 +22,7 @@ const EntryServer: ReactServerEntrypointComponent<
         </head>
         <body>
         <div id="root">
-            <StrictMode><RouterProvider router={router}/></StrictMode>
+            {children}
         </div>
         </body>
         </html>

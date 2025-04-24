@@ -1,141 +1,135 @@
-import type { IncomingMessage, ServerResponse } from "node:http";
+// src/renderer.ts (Modified for Agnosticism)
+
+import type {IncomingMessage, ServerResponse} from "node:http"; // Removed ServerResponse import here
 import type * as React from "react";
 import { type ReactElement, createElement } from "react";
 import {
   type PipeableStream,
   type RenderToPipeableStreamOptions,
   renderToPipeableStream,
-  renderToString,
 } from "react-dom/server";
+import { PassThrough } from "node:stream";
+// Keep Extractor import if still used elsewhere
 import Extractor from "./Extractor.js";
 
+// Keep existing interfaces (RendererOptions, RendererServerEntrypointProps, etc.)
+// Options might simplify slightly if not handling status/headers directly
 export interface RendererOptions {
-  defaultLocale?: string;
-  loadMessages?: (locale: string) => string;
-  /** The HTML string to extract the script and link tags from */
-  htmlString?: string;
-  /**
-   * Options to pass to `react-dom/server.renderToPipeableStream`
-   * We specifically exclude `onShellReady()`, `onError()`, and `onShellError()` as they are implemented by `JSXRenderer.render().`
-   * See https://react.dev/reference/react-dom/server/renderToPipeableStream#parameters
-   */
+  htmlString?: string; // If Extractor is used
   renderToPipeableStreamOptions?: Omit<
-    RenderToPipeableStreamOptions,
-    "onShellReady" | "onError" | "onShellError"
+      RenderToPipeableStreamOptions,
+      "onShellReady" | "onError" | "onShellError"
   >;
 }
 
-/** The props that the server entrypoint component will receive */
 export interface RendererServerEntrypointProps {
-  /** The language of the page. This is typically read from the request headers. */
-  lang?: string;
-  /** The script tags to include in the page */
+  lang?: string; // Locale/lang might be better handled by caller now
   scriptTags?: string;
-  /** The link tags to include in the page */
   linkTags?: string;
 }
 
-// Expose the types for the rendering function for better type-safety in server code and caller code
-/** The result of rendering a React component */
-export type RenderResult = PipeableStream | any;
-/** A function that renders a React component */
+export type RenderResult = PipeableStream;
 export type RenderHandler = (
-  req: IncomingMessage,
-  res: ServerResponse,
-) => RenderResult | Promise<RenderResult>;
+    req: IncomingMessage,
+    res: ServerResponse
+) => RenderResult;
 
 export type ReactServerEntrypointComponent<
-  TComponentProps extends RendererServerEntrypointProps,
+    TComponentProps extends RendererServerEntrypointProps,
 > = React.ComponentType<TComponentProps>;
 
-// This class is responsible for rendering a React component to a readable stream.
+
 export default class Renderer<
-  TComponent extends ReactServerEntrypointComponent<TComponentProps>,
-  TComponentProps extends
-    RendererServerEntrypointProps = RendererServerEntrypointProps,
+    TComponent extends ReactServerEntrypointComponent<TComponentProps>,
+    TComponentProps extends
+        RendererServerEntrypointProps = RendererServerEntrypointProps,
 > {
-  private locale: string | undefined;
-  // private messages: any;
   private extractor: Extractor | undefined;
 
+  // Constructor remains mostly the same
   constructor(
-    private readonly Component: TComponent,
-    private readonly options: RendererOptions = {},
+      // [Explain your changes]: Accept the component instance directly for simplicity
+      private readonly Component: TComponent,
+      private readonly options: RendererOptions = {},
   ) {
-    // this.prepareLocale = this.prepareLocale.bind(this);
-    this.render = this.render.bind(this);
     this.extractor = this.options.htmlString
-      ? new Extractor(this.options.htmlString)
-      : undefined;
+        ? new Extractor(this.options.htmlString)
+        : undefined;
   }
 
-  //async prepareLocale(header: string | undefined) {
-  //  if (this.options.loadMessages) {
-  //    this.locale = header
-  //      ? header.slice(0, 2)
-  //      : this.options.defaultLocale || "en";
-  //    //this.messages = await this.options.loadMessages(this.locale);
-  //  }
-  //}
-
-  /**
-   * Gets the props needed to render the component
-   * @return The props needed to render the component
-   * @private
-   */
+  // getComponentProps remains similar, but source of props might change
   private getComponentProps(): TComponentProps {
     return {
-      lang: this.locale,
+      // lang: this.locale, // How is locale determined now? Passed via component props?
       scriptTags: this.extractor?.getScriptTags(),
       linkTags: this.extractor?.getLinkTags(),
-      // todo implement message passing
-      // messages: this.messages,
     } as TComponentProps;
   }
 
+  // for backwards compatibility
+  render = this.renderComponentToResponse.bind(this);
+
+  renderComponentToResponse(req: IncomingMessage, res: ServerResponse): ServerResponse {
+    try {
+      const stream = this.renderComponentToPassthrough(req);
+      res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+      stream.pipe(res);
+      res.on("finish", () => {
+        res.end();
+      });
+    } catch(err) {
+      res
+          .writeHead(500, { "Content-Type": "text/html; charset=utf-8" })
+          .end("<h1>Something went wrong</h1>");
+    }
+    return res;
+  }
+
   /**
-   * Renders this renderer's JSX component as a transmittable stream and sends it to the client
-   * TODO add a render function for ReadableStream, and rename this to be focused on PipeableStream
-   * @param req Client's request
-   * @param res Response object that will be sent to the client
-   * @return {RenderResult} The stream that was sent to the client
+   * Renders this renderer's JSX component to a stream.
+   * This method is framework-agnostic and returns the raw React render stream.
+   * The caller is responsible for any further transformations (like state injection)
+   * and piping the final stream to the HTTP response.
+   * @param req Client's request (optional, if needed for context)
+   * @return {PassThrough} A PassThrough stream containing the raw React render output.
    */
-  render: RenderHandler = (req: IncomingMessage, res: ServerResponse, additionalProps = {}): any => {
-    // await this.prepareLocale(req.headers.get("accept-language") || undefined);
-    const jsx = createElement(this.Component, {...this.getComponentProps(), ...additionalProps});
+  renderComponentToPassthrough = (
+      req?: IncomingMessage
+  ): PassThrough => {
 
-    let renderingError: Error;
+    const jsx = createElement(this.Component, this.getComponentProps());
 
-    // const html = renderToString(jsx);
-    // console.log(html);
-    // res.write(html);
-    // return res.end();
+    const passthrough = new PassThrough();
+
+    let didError = false; // Flag to prevent piping after error
 
     const jsxStream = renderToPipeableStream(jsx, {
       ...this.options.renderToPipeableStreamOptions,
-      // Early error, before the shell is prepared
-      onShellError(error) {
-        res
-          .writeHead(500, { "Content-Type": "text/html; charset=utf-8" })
-          .end("<h1>Something went wrong</h1>");
-        throw error;
-      },
+
       onShellReady() {
-        res.writeHead(renderingError ? 500 : 200, {
-          "Content-Type": "text/html; charset=utf-8",
-        });
-
-        jsxStream.pipe(res);
-
-        res.on("finish", () => {
-          res.end();
-        });
+        if (!didError) {
+          jsxStream.pipe(passthrough);
+        } else {
+          console.log("Shell Ready: Error occurred before shell ready, not piping.");
+          // Ensure stream is destroyed if error happened before pipe setup
+          passthrough.destroy();
+        }
       },
-      // Error occurred during rendering, after the shell & headers were sent - store the error for usage after stream is sent
+      onShellError(error) {
+        didError = true;
+        console.error("SSR Shell Error:", error);
+        // Destroy the stream we were going to return, signaling error to consumer
+        passthrough.destroy(error as Error);
+      },
       onError(error) {
-        renderingError = error as Error;
+        // Error *after* shell was sent. Headers potentially sent by consumer.
+        didError = true;
+        console.error("SSR Stream Error (after shell):", error);
+        // Destroy the stream to signal error
+        passthrough.destroy(error as Error);
       },
     });
-    return jsxStream;
+
+    return passthrough;
   };
 }
