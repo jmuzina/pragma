@@ -52,8 +52,8 @@ export const LINE_HEIGHT_FIELD: ExampleControlField = {
   step: 0.25,
 };
 
-export const ROOT_CATEGORY: FieldCategory = {
-  label: "Root",
+export const ROOT_SECTION: FieldsSection = {
+  title: "Root",
   fields: [
     {
       ...FONT_FAMILY_FIELD,

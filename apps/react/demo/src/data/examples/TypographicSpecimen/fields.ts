@@ -1,5 +1,5 @@
-import { ROOT_CATEGORY } from "../../fields.js";
 import type { ExampleSettingValue, FieldsSection } from "../../../ui/index.js";
+import { ROOT_SECTION } from "../../fields.js";
 import {
   BASELINE_MULTIPLE_TRANSFORMER,
   FONT_RELATIVE_TRANSFORMERS,
@@ -7,9 +7,9 @@ import {
 } from "../../transformers.js";
 
 const sections: FieldsSection[] = [
-  ROOT_CATEGORY,
+  ROOT_SECTION,
   {
-    label: "H1",
+    title: "H1",
     fields: [
       {
         name: "--h1-font-size",
@@ -54,7 +54,7 @@ const sections: FieldsSection[] = [
     ],
   },
   {
-    label: "H2",
+    title: "H2",
     fields: [
       {
         name: "--h2-font-size",
@@ -99,7 +99,7 @@ const sections: FieldsSection[] = [
     ],
   },
   {
-    label: "H3",
+    title: "H3",
     fields: [
       {
         name: "--h3-font-size",
@@ -144,7 +144,7 @@ const sections: FieldsSection[] = [
     ],
   },
   {
-    label: "H4",
+    title: "H4",
     fields: [
       {
         name: "--h4-font-size",
@@ -189,7 +189,7 @@ const sections: FieldsSection[] = [
     ],
   },
   {
-    label: "H5",
+    title: "H5",
     fields: [
       {
         name: "--h5-font-size",
@@ -234,7 +234,7 @@ const sections: FieldsSection[] = [
     ],
   },
   {
-    label: "H6",
+    title: "H6",
     fields: [
       {
         name: "--h6-font-size",
@@ -279,7 +279,7 @@ const sections: FieldsSection[] = [
     ],
   },
   {
-    label: "Paragraph",
+    title: "Paragraph",
     fields: [
       {
         name: "--p-font-size",
@@ -334,7 +334,7 @@ const sections: FieldsSection[] = [
     ],
   },
   {
-    label: "Horizontal rule",
+    title: "Horizontal rule",
     fields: [
       {
         name: "--hr-margin-top",
