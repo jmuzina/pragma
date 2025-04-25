@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { ReactElement } from "react";
 import type { ControlsProps } from "./types.js";
 import "./styles.css";
-import { Button, TooltipArea } from "@canonical/react-ds-core";
+import { Button } from "@canonical/react-ds-core";
 import { Field } from "@canonical/react-ds-core-form";
 import { Drawer } from "ui/Drawer/index.js";
 import { useShowcaseContext } from "../../hooks/index.js";
