@@ -68,18 +68,14 @@ const useExampleRHFInterface = (): useGlobalFormResult => {
     [examples],
   );
 
-  useEffect(() => {
-    console.log({ defaultValues, examples });
-  }, [defaultValues, examples]);
-
   const methods = useForm({
     mode: "onChange",
-    defaultValues,
+    defaultValues: exampleSettingDefaultValues,
   });
 
   return useMemo(
-    () => ({ methods, defaultValues, examples }),
-    [methods, defaultValues, examples],
+    () => ({ methods, defaultValues: exampleSettingDefaultValues, examples }),
+    [methods, exampleSettingDefaultValues, examples],
   );
 };
 

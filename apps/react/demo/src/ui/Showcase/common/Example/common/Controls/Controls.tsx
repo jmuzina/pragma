@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { ReactElement } from "react";
 import type { ControlsProps } from "./types.js";
 import "./styles.css";
-import { Button } from "@canonical/react-ds-core";
+import { Button, TooltipArea } from "@canonical/react-ds-core";
 import { Field } from "@canonical/react-ds-core-form";
 import { Drawer } from "ui/Drawer/index.js";
 import { useShowcaseContext } from "../../hooks/index.js";
@@ -89,11 +89,11 @@ const Controls = ({ id, className, style }: ControlsProps): ReactElement => {
           onClick={resetActiveExample}
         />
 
-        {activeExample.fieldCategories.map((category) => (
-          <div className="setting-category" key={category.label}>
-            <h4>{category.label}</h4>
+        {activeExample.sections.map((section) => (
+          <div className="setting-category" key={section.title}>
+            <h4>{section.title}</h4>
             <div className="inputs">
-              {category.fields.map(
+              {section.fields.map(
                 ({
                   name,
                   defaultValue,
