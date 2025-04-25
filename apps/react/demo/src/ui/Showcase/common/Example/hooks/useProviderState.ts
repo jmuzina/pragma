@@ -143,7 +143,7 @@ const useProviderState = ({
       copyOutput,
       activatePrevExample,
       activateNextExample,
-      demoOutput: demoOutput,
+      demoOutput,
       activeExampleFormValues,
       resetActiveExample,
     }),
