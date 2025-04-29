@@ -1,8 +1,10 @@
+import { useCallback, useState } from "react";
 import type { ReactElement } from "react";
 import type { ControlsProps } from "./types.js";
 import "./styles.css";
-import { Button, TooltipArea } from "@canonical/react-ds-core";
+import { Button } from "@canonical/react-ds-core";
 import { Field } from "@canonical/react-ds-core-form";
+import { Drawer } from "ui/Drawer/index.js";
 import { useShowcaseContext } from "../../hooks/index.js";
 
 const componentCssClassname = "ds example-controls";
@@ -16,6 +18,12 @@ const Controls = ({ id, className, style }: ControlsProps): ReactElement => {
     copyOutput,
     resetActiveExample,
   } = useShowcaseContext();
+
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const toggleSettingsOpen = useCallback(
+    () => setSettingsOpen((settingsOpen) => !settingsOpen),
+    [],
+  );
 
   return (
     <div
@@ -37,51 +45,47 @@ const Controls = ({ id, className, style }: ControlsProps): ReactElement => {
           Next
         </Button>
       </div>
-      <TooltipArea
-        // TODO use new form components when ready
-        // TODO make something that can convert example controls into form inputs without having to specifically handle each case
-        preferredDirections={["top"]}
-        targetElementClassName={"config-button"}
-        activateDelay={0}
-        autoFit={true}
-        Message={
-          <>
-            <h4>Example settings</h4>
-            <Button type={"button"} onClick={resetActiveExample}>
-              Reset to defaults
-            </Button>
-            <hr />
-            <div className="inputs">
-              {activeExample.fields.map(
-                ({
-                  name,
-                  defaultValue,
-                  transformer,
-                  disabledOutputFormats,
-                  ...fieldProps
-                }) => (
-                  <Field
-                    name={name}
-                    key={name}
-                    unregisterOnUnmount={false}
-                    {...fieldProps}
-                  />
-                ),
-              )}
-            </div>
-          </>
-        }
+
+      <Drawer
+        title={`${activeExample.name} settings`}
+        isOpenOverride={settingsOpen}
+        onClose={() => setSettingsOpen(false)}
       >
-        <Button>Configure</Button>
-      </TooltipArea>
-      <Button
-        type="button"
-        style={{ marginLeft: "auto" }}
-        disabled={!output?.css}
-        onClick={() => copyOutput("css")}
-      >
-        Copy CSS
-      </Button>
+        <Button type={"button"} onClick={resetActiveExample}>
+          Reset to defaults
+        </Button>
+        <hr />
+        <div className="inputs">
+          {activeExample.fields.map(
+            ({
+              name,
+              defaultValue,
+              transformer,
+              disabledOutputFormats,
+              ...fieldProps
+            }) => (
+              <Field
+                name={name}
+                key={name}
+                unregisterOnUnmount={false}
+                {...fieldProps}
+              />
+            ),
+          )}
+        </div>
+      </Drawer>
+      <div className="end">
+        <Button type="button" onClick={toggleSettingsOpen}>
+          Settings
+        </Button>
+        <Button
+          type="button"
+          disabled={!output?.css}
+          onClick={() => copyOutput("css")}
+        >
+          Copy CSS
+        </Button>
+      </div>
     </div>
   );
 };
