@@ -12,7 +12,7 @@ const componentCssClassname = "ds example-controls";
 const Controls = ({ id, className, style }: ControlsProps): ReactElement => {
   const {
     activeExample,
-    output,
+    demoOutput,
     activatePrevExample,
     activateNextExample,
     copyOutput,
@@ -64,6 +64,7 @@ const Controls = ({ id, className, style }: ControlsProps): ReactElement => {
                 ({
                   name,
                   defaultValue,
+                  demoTransformer,
                   transformer,
                   disabledOutputFormats,
                   ...fieldProps
@@ -86,7 +87,7 @@ const Controls = ({ id, className, style }: ControlsProps): ReactElement => {
         </Button>
         <Button
           type="button"
-          disabled={!output?.css}
+          disabled={!demoOutput?.css}
           onClick={() => copyOutput("css")}
         >
           Copy CSS

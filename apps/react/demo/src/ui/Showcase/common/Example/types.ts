@@ -20,7 +20,7 @@ export interface ContextOptions {
   /** Resets the active example to its default state */
   resetActiveExample: () => void;
   /** The output values (e.g. CSS) for the currently active example */
-  output: Output;
+  demoOutput: Output;
   /** Function to copy the output values of a format  */
   copyOutput: (format: ExampleOutputFormat) => void;
   /** Switches to the previous example */
@@ -49,14 +49,38 @@ export interface FormSection {
   fields: ExampleControlField[];
 }
 
-export interface ExampleControlField extends FieldProps {
+/**
+ * Valid keys for field transformer functions.
+ */
+export type TransformerFnKey =
+  /**
+   * Default transformer function to apply to output values.
+   * This is always applied to export values.
+   * If the `demoTransformer` is not set, this will be used for demo output as well.
+   * */
+  | "transformer"
+  /**
+   * Transformer function to apply to demo output values
+   * If not set, the `transformer` function will be used instead
+   * */
+  | "demoTransformer";
+
+/**
+ * Mapping of transformer function keys to their respective transformer functions
+ * Each function is optional.
+ * */
+export type TransformerFns = {
+  [key in TransformerFnKey]?: (
+    value: ExampleSettingValue,
+  ) => ExampleSettingValue;
+};
+
+export interface ExampleControlField extends FieldProps, TransformerFns {
   name: string;
   /** Formats for which output is disabled */
   disabledOutputFormats?: {
     [key in ExampleOutputFormat]?: boolean;
   };
-  /** Transformer function to apply to output values */
-  transformer?: (value: ExampleSettingValue) => ExampleSettingValue;
   /**
    * A default value for the control field.
    * This is not directly consumed by the field, but it is used to set the initial value in the form state.

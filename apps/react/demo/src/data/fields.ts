@@ -1,6 +1,7 @@
 /** Global field settings for commonly-used fields. */
 
 import type { ExampleControlField, FormSection } from "../ui/index.js";
+import * as transformers from "./transformers.js";
 
 export const FONT_FAMILY_FIELD: ExampleControlField = {
   name: "--font-family",
@@ -22,31 +23,31 @@ export const FONT_SIZE_FIELD: ExampleControlField = {
   min: 12,
   max: 24,
   step: 1,
-  transformer: (fontSize) => `${fontSize}px`,
+  transformer: transformers.convertToPixels,
+};
+
+/**
+ * A field for the baseline height.
+ * This is hidden and held constant to simplify the other settings, as many things currently depend on the baseline height.
+ * By including it in the form, it will be included in the exported CSS, and usable as part of `calc()` expressions in exports.
+ */
+export const BASELINE_HEIGHT_FIELD: ExampleControlField = {
+  name: "--baseline-height",
+  inputType: "hidden",
+  label: "Baseline height",
+  defaultValue: 0.5,
+  min: 0.5,
+  max: 2,
+  step: 0.25,
+  transformer: transformers.convertToRems,
 };
 
 export const LINE_HEIGHT_FIELD: ExampleControlField = {
   name: "--line-height",
-  inputType: "range",
+  inputType: "hidden",
   label: "Root line height",
   defaultValue: 1.5,
-  min: 0.125,
+  min: 1,
   max: 12,
-  step: 0.125,
-  transformer: (lineHeight) => `${lineHeight}rem`,
+  step: 0.25,
 };
-
-export const DEFAULT_SECTIONS: FormSection[] = [
-  {
-    title: "Typeface",
-    fields: [FONT_FAMILY_FIELD],
-  },
-  {
-    title: "Font size",
-    fields: [FONT_SIZE_FIELD],
-  },
-  {
-    title: "Line height",
-    fields: [LINE_HEIGHT_FIELD],
-  },
-];
