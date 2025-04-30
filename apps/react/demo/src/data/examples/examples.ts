@@ -10,12 +10,12 @@ export const SHOWCASE_EXAMPLES: ShowcaseExample[] = [
     name: "Typographic Specimen",
     description: "A typographic specimen with configurable font settings.",
     Component: TypographicSpecimen,
-    fields: TypographicSpecimenFields,
+    sections: TypographicSpecimenFields,
   },
   {
     name: "Button",
     description: "A button example with font settings.",
     Component: ButtonExample,
-    fields: ButtonExampleFields,
+    sections: ButtonExampleFields,
   },
 ];
