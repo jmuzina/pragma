@@ -81,6 +81,8 @@
   display: flex;
   flex-direction: column;
   height: var(--drawer-dialogue-height);
+  /* Need to override browser default `dialogue` styling, otherwise the dialogue may not extend to full height */
+  max-height: var(--drawer-dialogue-height);
   margin: 0;
   max-width: var(--drawer-dialogue-max-width);
   padding: var(--drawer-dialogue-padding-vertical)
