@@ -27,7 +27,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     Message: "Hello world",
-    children: <Button label="Default" />,
+    children: <Button>Default</Button>,
   },
 };
 
@@ -35,7 +35,7 @@ export const Top: Story = {
   args: {
     Message: "Hello world",
     preferredDirections: ["top"],
-    children: <Button label="Top" />,
+    children: <Button>Top</Button>,
   },
 };
 
@@ -43,7 +43,7 @@ export const Left: Story = {
   args: {
     Message: "Hello world",
     preferredDirections: ["left"],
-    children: <Button label="Left" />,
+    children: <Button>Left</Button>,
   },
 };
 
@@ -51,7 +51,7 @@ export const Right: Story = {
   args: {
     Message: "Hello world",
     preferredDirections: ["right", "top"],
-    children: <Button label="Right" />,
+    children: <Button>Right</Button>,
   },
 };
 
@@ -59,7 +59,7 @@ export const Bottom: Story = {
   args: {
     Message: "Hello world",
     preferredDirections: ["bottom", "top", "left", "right"],
-    children: <Button label="Bottom" />,
+    children: <Button>Bottom</Button>,
   },
 };
 
@@ -76,7 +76,7 @@ export const Wrapping: Story = {
         mollit anim id est laborum.
       </span>
     ),
-    children: <Button label="Wrapping" />,
+    children: <Button>Wrapping</Button>,
   },
 };
 
@@ -101,10 +101,9 @@ export const Changeable: StoryFn = () => {
       preferredDirections={[preferredDirection]}
       onBestPositionChange={(p) => setBestPosition(p)}
     >
-      <Button
-        label="Click to change direction"
-        onClick={() => setChangeCount((prev) => prev + 1)}
-      />
+      <Button onClick={() => setChangeCount((prev) => prev + 1)}>
+        Click to change direction
+      </Button>
     </Component>
   );
 };
@@ -131,7 +130,7 @@ export const AutoFit: StoryFn = () => {
       autoFit={true}
       style={{ position: "absolute", bottom: 0, left: 0 }}
     >
-      <Button label={"Autofit"} />
+      <Button>Autofit</Button>
     </Component>
   );
 };
