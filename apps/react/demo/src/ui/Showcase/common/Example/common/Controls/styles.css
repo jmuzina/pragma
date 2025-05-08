@@ -2,11 +2,17 @@
   background-color: black;
   width: 100%;
   padding: var(--spacing-horizontal-small) var(--spacing-vertical-small);
-  position: fixed;
-  left: 0;
-  bottom: 0;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
 
-  & .end {
+  & > #active-example-name {
+    /* TODO we need a way to invert color themes so this is cleaner and can cascade to all color settings  */
+    color: white;
+    margin-bottom: var(--spacing-vertical-medium);
+  }
+
+  & > .end {
     margin-left: auto;
   }
 
@@ -18,10 +24,11 @@
       --wrapper-columns: span 1;
       grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
       grid-column-gap: var(--spacing-horizontal-large);
-    }
-  }
 
-  & .end {
-    margin-left: auto;
+      & .ds.form-field-description {
+        /** todo figure out why the form fields have huge bottom margins beneath their labels now */
+        margin-bottom: 0;
+      }
+    }
   }
 }

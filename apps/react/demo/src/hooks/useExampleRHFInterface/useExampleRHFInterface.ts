@@ -1,8 +1,8 @@
 import { ORIGINAL_VAR_NAME_KEY, SHOWCASE_EXAMPLES } from "data/index.js";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { toGlobalFormStateKey } from "utils/index.js";
-import type { ExampleControlField, ShowcaseExample } from "../../ui/index.js";
+import type { ShowcaseExample } from "../../ui/index.js";
 import type { FormValues, useGlobalFormResult } from "./types.js";
 
 /**
@@ -37,7 +37,7 @@ const useExampleRHFInterface = (): useGlobalFormResult => {
     [],
   );
 
-  const defaultValues = useMemo(
+  const exampleSettingDefaultValues: FormValues = useMemo(
     () =>
       examples.reduce(
         (exampleAcc, example) => {
@@ -67,12 +67,12 @@ const useExampleRHFInterface = (): useGlobalFormResult => {
 
   const methods = useForm({
     mode: "onChange",
-    defaultValues,
+    defaultValues: exampleSettingDefaultValues,
   });
 
   return useMemo(
-    () => ({ methods, defaultValues, examples }),
-    [methods, defaultValues, examples],
+    () => ({ methods, defaultValues: exampleSettingDefaultValues, examples }),
+    [methods, exampleSettingDefaultValues, examples],
   );
 };
 
