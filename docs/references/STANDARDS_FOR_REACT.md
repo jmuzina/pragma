@@ -1,8 +1,8 @@
-# React Standards Reference
+# React Standards Reference (R.)
 
 This document outlines the standards and conventions for developing React components within the Canonical Design System. It aims to ensure consistency, maintainability, readability, and reusability across all React packages.
 
-## 1. Core Principles
+## Introduction
 
 Our React components and development practices are guided by the following core principles:
 
@@ -12,30 +12,54 @@ Our React components and development practices are guided by the following core 
 * **Accessibility:** Aim for [WCAG 2.2 AA](https://www.w3.org/TR/WCAG22/) compliance by default.
 * **Modernity:** Embrace forward-looking technologies and best practices in the React ecosystem.
 
-## 2. File and Folder Structure
+## R.FS - File and Folder Structure
 
-### 2.1. Component Folder
+### R.FS.1 Component Folder Structure
 Each component resides in its own PascalCase named folder (e.g., `Button`, `Tooltip`). The standard files within this folder are:
 
-* `ComponentName.tsx`: The main component implementation.
-* `ComponentName.stories.tsx`: Storybook stories for demonstration and documentation.
-* `ComponentName.tests.tsx`: Unit and integration tests using Vitest and React Testing Library.
-* `index.ts`: The public API of the component, re-exporting the component, types, and related utilities.
-* `styles.css`: Component-specific CSS styles (if applicable).
-* `types.ts`: TypeScript type definitions, primarily for component props.
++ `ComponentName.tsx`: The main component implementation.
++ `ComponentName.stories.tsx`: Storybook stories for demonstration and documentation.
++ `ComponentName.tests.tsx`: Unit and integration tests using Vitest and React Testing Library.
++ `index.ts`: The public API of the component, re-exporting the component, types, and related utilities.
++ `styles.css`: Component-specific CSS styles (if applicable).
++ `types.ts`: TypeScript type definitions, primarily for component props.
 
-### 2.2. Subcomponents
+> ✅ **Do**
+> 
+> Create a component folder that contains all of the above mentioned files.
+
+> ❌ **Don't**
+>
+> + Create a component folder that doesn't contain stories `ComponentName.stories.tsx`. 
+> + Create a component file where the types are not included in `types.ts` but alongside the object.
+> + Create a component folder where the public api is not fully described by `index.ts`. All external imports should always point at "path/to/Component/index.js" or its parents. 
+
+
+### R.FS.2 Subcomponents Location
 For complex components that can be broken down into smaller, manageable parts intended primarily for internal use by the parent component:
 
 * **Location**: A `common/` subdirectory within the parent component's folder.
   *Example:* `src/ui/Tooltip/common/`
-* **Naming**: Prefix subcomponent names with the parent component's name for clarity.
+* **Naming**: Avoiding prefixing subcomponent names with the parent component's name - we assume the folder structure already provides the domain. However, when reexporting a public interface, the prefix can be added
   *Example:* If `Card` is the parent, a subcomponent might be `CardHeader`.
 * **Exports**:
   * Subcomponents should be re-exported from an `index.ts` file within the `common/` directory (e.g., `common/index.ts`).
   * The parent component's main `index.ts` can then choose to import from `common/index.js` and selectively re-export subcomponents if they are intended for public consumption. Otherwise, they remain internal implementation details.
 
-### 2.3. Custom Hooks
+> ✅ **Do**
+> 
+> + Create a `MyComponent/common` directory
+> + Code Generate, or add manually your subcomponents in that folder
+> + Ensure the generated Storybook story file configuration name uses the common domain `MyComponent/common/MySubcomponent`
+> + Reexport in `MyComponent/index.ts` the contents of your common directory with a named prefix as ` export { Icon as CardIcon } from "./common/index.js" `
+
+
+> ❌ **Don't**
+>
+> + Create subcomponents in a directory other than `common`. 
+> + Prefix your subcomponents folder with the name of the parent, for instance `Card/common/CardIcon`
+
+### R.FS.3 Custom Hooks
 * **Local Hooks (Single Component Scope)**:
   * If a hook is used by only one component and has limited applicability to other code, it can be a `<hookName>.ts` file directly within the component's directory.
   * If a component has multiple local hooks, or a local hook requires its own types, create a `hooks/` subdirectory within the component folder (e.g., `src/ui/ComponentName/hooks/`).
@@ -55,7 +79,7 @@ For components managing shared state via Context:
 * `Context.tsx`: Defines the React context using `createContext(null)`.
 * `Provider.tsx`: The component that will provide the context value and wrap children. It often uses a custom hook to manage its state.
 * `types.ts`: Includes type definitions for the context's value (`ContextOptions`).
-* A custom hook (e.g., in `hooks/useMyContextState.ts` or `common/hooks/`) is often created to consume the context via `useContext`.
+* A custom hook (e.g., in `hooks/useMyContextState.ts`) is often created to consume the context via `useContext`.
 
 ## 3. Component Definition
 
