@@ -1,10 +1,10 @@
 ## Creating a React Component
 
-### Goals
+### 1  Goals
 This document will guide you through the process of creating a new React component in the design system, and familiarize you
 with our folder structure and naming conventions.
 
-### Reference Material
+### 2 Reference Material
 Our reference documentation is not necessary reading for this guide, but readers who are curious to read about the standards
 this guide fulfills may read the following relevant reference documents:
 - [Standards for code](../references/STANDARDS_FOR_CODE.md)
@@ -12,7 +12,7 @@ this guide fulfills may read the following relevant reference documents:
 - [Standards for Styling](../references/STANDARDS_FOR_STYLING.md)
 - [Standards for Testing](../references/STANDARDS_FOR_TESTING.md)
 
-### Getting started
+### 3 Getting started
 1. Select a tier. For example, the core tier packages are located in [`packages/react/ds-core`](../../packages/react/ds-core) and [`packages/react/ds-core-form`](../../packages/react/ds-core-form).
 2. Navigate to the `src/ui` folder of the selected tier.
 3. Follow the [generator documentation](../../packages/generator-ds/src/component/README.md) to generate starting files for your component. For the sake of this example, we will assume you have invoked `yo @canonical/ds:component Button --withStyles --withStories`.
@@ -35,7 +35,7 @@ bun run storybook
 
 7. Edit the component files as needed to implement your desired functionality.
 
-### Subcomponents
+### 4 Subcomponents
 In some cases, you may wish to split large components into a primary component and multiple subcomponents that are 
 only meant to be used inside the primary component. Subcomponents are a great way to achieve this while keeping your code organized.
 To create a subcomponent, follow the following steps:
@@ -45,7 +45,7 @@ To create a subcomponent, follow the following steps:
 3. Use the generator as in step #3 of the [getting started section](#getting-started) to generate a subcomponent. Per the [React standards](../references/STANDARDS_FOR_REACT.md#TODO-REACT-SUBCOMPONENTS), it is a good idea to start the subcomponent's name with the same name as the parent component. For example, if your parent component is called `Button`, you might name a subcomponent `ButtonIcon`.
 4. The generator should create `common/index.ts` which re-exports each subcomponent. This will the top-level component (or other subcomponents) to import subcomponents from `common/index.js`. If you would also like to expose the subcomponents outside of the component, you can either re-export `common/index.js` from `index.ts`, or re-export only the subcomponents that you'd like to expose.
 
-### State
+### 5 State
 As noted in the [React standards](../references/STANDARDS_FOR_REACT.md#TODO-REACT-STATE), we recommend that React component
 files themselves be kept as stateless as possible for optimal readability and usability. 
 If your component needs to hold or manage state, we recommend delegating this to custom hooks or context providers, invoking the hooks/context providers in the component file, and binding the resulting state to the component's JSX.
@@ -54,7 +54,7 @@ The [Drawer](../../apps/react/demo/src/ui/Drawer/Drawer.tsx) component is a good
 
 The decisions and steps to create hooks and context providers are explored below.
 
-#### Hooks
+#### 5.1 Hooks
 Hooks are a great way to encapsulate state management and logic that is reusable across multiple components.
 If your component provides context that should be accessible by child components (such as a toast component which provides a notification context), you should consider creating a [context provider](#context-providers).
 
@@ -69,7 +69,7 @@ _Note: hook creation is not yet supported by the generator, but this is planned 
 3. Return your hook's value as a memoized dictionary using [`useMemo`](https://react.dev/reference/react/useMemo).
 4. Invoke the hook in your component file, and bind the returned values to the component's JSX.
 
-### Context providers
+### 5.2 Context providers
 Context providers are a great way to provide state and logic to child components without requiring the child components to declare the context or pass props in.
 
 _Note: context provider creation is not yet supported by the generator, but this is planned functionality._
