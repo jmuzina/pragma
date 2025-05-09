@@ -26,24 +26,25 @@ Aside from files named `index.ts`, all files providing named exports should expo
 > 
 > + Identify the shape of the exports of your file before writing its contents.
 > + Export objects that share the same type.
-> ```ts
-export const myFuncA = (value:str) => {}
-export const myFuncB = (value:str) => {}
-export const myFuncC = (value:str) => {}
-```
+>   ```ts
+>   export const myFuncA = (value:str) => {}
+>   export const myFuncB = (value:str) => {}
+>   export const myFuncC = (value:str) => {}
+>   ```
 
 > ❌ **Don't**
 >
 > + Export objects of different types/shapes from the same file 
-> ```ts
-export const transformer = (value:str) => {}
-export const reducer  = (map:str[]) => {}
-```
-> ```ts
-export const transformer = (value:str) => {}
-Class ABC
-export { ABC } 
-```
+>   ```ts
+>   export const transformer = (value:str) => {}
+>   export const reducer  = (map:str[]) => {}
+>   ```
+>   Or : 
+>   ```ts
+>   export const transformer = (value:str) => {}
+>   Class ABC
+>   export { ABC } 
+>   ```
 
 
 ### FE.03 : Named exports reimport   
@@ -53,10 +54,10 @@ When directly importing the contents of a file containing named exports, use the
 > ✅ **Do**
 > 
 > + Conserve the namespaces of named exports when reimporting. 
-> `import * as transformers from "./transformers.js"`
+>   `import * as transformers from "./transformers.js"`
 
 > ❌ **Don't**
 >
 > + Import directly the contents of a file containing named exports. 
-> `import { myFunc, otherFunc } from "./transformers.js"`
+>   `import { myFunc, otherFunc } from "./transformers.js"`
 
