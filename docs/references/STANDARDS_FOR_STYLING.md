@@ -2,21 +2,21 @@
 
 This document outlines the standards and conventions for writing CSS within the Canonical Design System. It is intended as a reference guide to ensure consistency, maintainability, and scalability of the styles.
 
-## 1. File Organization and Structure
+## File Organization and Structure (`styles/file-structure`)
 
-### 1.1. File Naming
-- Component-specific styles should be located in a file named `styles.css` within their respective component's directory.
+### File Naming (`styles/file-structure/file-naming`)
+- Component-specific styles shall be located in a file named `styles.css` within their respective component's directory.
   *Example:* `src/ui/Button/styles.css`
 
-### 1.2. Global Styles
+### Global Styles (`styles/file-structure/global`)
 - A root `index.css` file (e.g., `src/index.css`) is used to:
   - Import foundational style sheets (e.g., `@import url("@canonical/styles");`).
   - Define global CSS custom properties within the `:root` selector.
 
-### 1.3. Internal File Structure
-Component `styles.css` files should generally follow this order:
+### Source Order (`styles/file-structure/source-order`)
+Component `styles.css` files shall generally follow this order:
 
-1. **Component Variables Block**: A clearly marked block declaring and detailing the CSS custom properties available for that component. Each variable name should follow the [CTI naming convention](https://github.com/amzn/style-dictionary/blob/86c2c30ba289121f7dc9c28f573d1996dbc4a3a8/README.md#categorytypeitem-structure).
+1. **Component Variables Block**: A clearly marked block declaring and detailing the CSS custom properties available for that component. Each variable name shall follow the [CTI naming convention](https://github.com/amzn/style-dictionary/blob/86c2c30ba289121f7dc9c28f573d1996dbc4a3a8/README.md#categorytypeitem-structure).
     ```css
     /** background color for the overlay behind the drawer */
     --drawer-overlay-background: rgba(0, 0, 0, 0.5);
@@ -31,28 +31,52 @@ Component `styles.css` files should generally follow this order:
 5. **State Styles**: Styles for interactive states like `:hover`, `:active`, `:focus`, and accessibility states like `[aria-hidden="true"]`.
 6. **Pseudo-element Styles**: Styles for `::before` and `::after` pseudo-elements used for UI enhancements.
 
-## 2. CSS Class Naming Conventions
+## Intents (`styles/intents`)
 
-### 2.1. Design System Prefix
+Intents are one of our core styling patterns. Any entity in the design system may have one or many "intents", or 
+semantic style contexts that it belongs to in a given scenario.
+
+An intent is associated with one or many CSS variables, which are applied to an element and its descendants. 
+This allows contextual styling to easily apply to an entire section of the interface, and provides a level of customizability
+above design tokens. 
+
+### Style Binding (`styles/intents/binding`)
+Most CSS variables should be bound to variables using a series of fallbacks
+  ```css
+  /* Button component example */
+  color: var(--intent-color-text, var(--button-color-text));
+  background-color: var(--intent-color, var(--button-color-background));
+
+  /* Tooltip component example with an additional global fallback */
+  color: var(
+    --intent-color-text,
+    var(--tooltip-color-text, var(--color-text-default)) /* Global default if component/intent specific not set */
+  );
+  ```
+
+
+## CSS Class Naming Conventions (`styles/class-naming`)
+
+### Design System Prefix (`styles/class-naming/ds-prefix`)
 - All component-specific classes must be prefixed with `ds` to namespace them under the Design System.
 
-### 2.2. Component Base Class
+### Component Base Class (`styles/class-naming/base-class`)
 - Each component has a base class composed of the `ds` prefix and the component's name.
-  *Example:*
-  * Button: `.ds.button`
-  * Chip: `.ds.chip`
-  * Tooltip: `.ds.tooltip`
+- *Example:*
+  - Button: `.ds.button`
+  - Chip: `.ds.chip`
+  - Tooltip: `.ds.tooltip`
 
-### 2.3. Modifier and Variant Classes
+### Modifier and Variant Classes (`styles/class-naming/modifier-variant-classes`)
 - Variations in appearance or state are applied by adding modifier classes directly to the component's element alongside the base class.
   *Example:*
   * A tooltip positioned at the top: `.ds.tooltip.top`
   * A button with "positive" appearance might have a class `.positive` (dynamically added based on props).
   * An autofitting tooltip: `.ds.tooltip.autofit`
 
-### 2.4. Child Element Classes
-- Internal structural elements within a component should be styled using their own classes, or selected relative to the parent component class, often using the direct child selector (`>`). This helps to avoid overly broad selectors that could unintentionally affect other components.
-- Internal elements or more specific selectors should be created using CSS nesting. This helps to keep the styles organized and maintainable.
+### Child Element Classes (`styles/class-naming/child-elements`)
+- Internal structural elements within a component shall be styled using their own classes, or selected relative to the parent component class, using the direct child selector (`>`). This helps to avoid overly broad selectors that could unintentionally affect other components.
+- Internal elements or more specific selectors shall be created using CSS nesting. This helps to keep the styles organized and maintainable.
 
 *Example*:
 ```css
@@ -64,15 +88,15 @@ Component `styles.css` files should generally follow this order:
 }
 ```
 
-## 3. CSS Custom Properties (Variables)
+## CSS Custom Properties / Variables (`styles/custom-properties`)
 
-### 3.1. Purpose and Usage
+### Purpose and Usage (`styles/custom-properties/purpose-and-usage`)
 - Custom properties are the primary method for enabling theming and customization.
 - Primitives and theme variables are provided by the [tokens package](../../packages/tokens).
-  - Generally, most of a component's variables should be mappings to tokens to ensure consistency and maintain the tokens package's ability to effect global changes.
+  - Generally, most of a component's variables shall be mappings to tokens to ensure consistency and maintain the tokens package's ability to effect global changes.
   - Values that are especially simple (like setting opacity to 0 when hidden) may be hard-coded.
 
-### 3.2. Naming Conventions
+### Naming Conventions (`styles/custom-properties/naming`)
 All variables follow [CTI naming convention](https://github.com/amzn/style-dictionary/blob/86c2c30ba289121f7dc9c28f573d1996dbc4a3a8/README.md#categorytypeitem-structure).
 
 - **Global Variables**: Defined in `:root` (e.g., `--baseline-grid-color`, `--color-text-default`).
@@ -89,17 +113,3 @@ All variables follow [CTI naming convention](https://github.com/amzn/style-dicti
     - `--intent-color-active`
     - `--intent-color-text-tinted` (for subtle variations)
     - `--intent-color-tinted-hover`
-
-### 3.3. Variable Fallbacks
-- A common pattern is to attempt to use an intent variable first, fall back to a component-specific variable, and potentially fall back further to a global default.
-  ```css
-  /* Button component example */
-  color: var(--intent-color-text, var(--button-color-text));
-  background-color: var(--intent-color, var(--button-color-background));
-
-  /* Tooltip component example with an additional global fallback */
-  color: var(
-    --intent-color-text,
-    var(--tooltip-color-text, var(--color-text-default)) /* Global default if component/intent specific not set */
-  );
-  ```

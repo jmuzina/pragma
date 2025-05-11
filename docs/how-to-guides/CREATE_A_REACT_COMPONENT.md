@@ -30,7 +30,7 @@ this guide fulfills may read the following relevant reference documents:
 ```bash
 bun run storybook
 ```
-6. Open the [storybook docs](http://localhost:6006/?path=/docs/button--docs) for your new component You should see that a component with our [standard React props](../references/STANDARDS_FOR_REACT.md#TODO-PROP) has been generated. A "Docs" page contains high-level information about the component, a reference table of all of its props, and embeds each of the component's stories.
+6. Open the [storybook docs](http://localhost:6006/?path=/docs/button--docs) for your new component You should see that a component with our [standard React props](../references/STANDARDS_FOR_REACT.md#standard-base-props-reactplaceholder-pathbase) has been generated. A "Docs" page contains high-level information about the component, a reference table of all of its props, and embeds each of the component's stories.
 ![A screenshot of a Storybook project showing a starter "Button" component's documentation. An example of the component is rendered in a "Default" story, which is a simple line of text reading "Hello world!".](../assets/react-component-storybook-default.png)
 
 7. Edit the component files as needed to implement your desired functionality.
@@ -42,11 +42,11 @@ To create a subcomponent, follow the following steps:
 
 1. Create a folder `common` inside a component's directory. 
 2. Set your active directory to `common`. 
-3. Use the generator as in step #3 of the [getting started section](#getting-started) to generate a subcomponent. Per the [React standards](../references/STANDARDS_FOR_REACT.md#TODO-REACT-SUBCOMPONENTS), it is a good idea to start the subcomponent's name with the same name as the parent component. For example, if your parent component is called `Button`, you might name a subcomponent `ButtonIcon`.
+3. Use the generator as in step #3 of the [getting started section](#getting-started) to generate a subcomponent. Per the [React standards](../references/STANDARDS_FOR_REACT.md#subcomponents-location-reactfile-structuresubcomponents), subcomponent names should not be prefixed with their parent component name. For example, if your parent component is called `Button`, you might name a subcomponent `Icon` instead of `ButtonIcon`.
 4. The generator should create `common/index.ts` which re-exports each subcomponent. This will the top-level component (or other subcomponents) to import subcomponents from `common/index.js`. If you would also like to expose the subcomponents outside of the component, you can either re-export `common/index.js` from `index.ts`, or re-export only the subcomponents that you'd like to expose.
 
 ### 5 State
-As noted in the [React standards](../references/STANDARDS_FOR_REACT.md#TODO-REACT-STATE), we recommend that React component
+As noted in the [React standards](../references/STANDARDS_FOR_REACT.md#state-management-reactstate), we recommend that React component
 files themselves be kept as stateless as possible for optimal readability and usability. 
 If your component needs to hold or manage state, we recommend delegating this to custom hooks or context providers, invoking the hooks/context providers in the component file, and binding the resulting state to the component's JSX.
 
