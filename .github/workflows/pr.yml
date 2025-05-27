@@ -16,5 +16,13 @@ jobs:
       - name: Code quality checks
         run: bun run check
 
-      - name: Test
-        run: bun run test
+      - name: Test with coverage
+        uses: ./.github/actions/coverage
+
+        # Set if: always() to also generate the report if tests are failing
+        # Requires`reportOnFailure: true` in vitest config
+      - name: Upload coverage to PR
+        if: always()
+        # TODO maybe we don't want to use this action, but it is helpful for now in demonstrating coverage on the tics prep prs
+        # It's used in a few Canonical repos: https://github.com/search?q=org%3Acanonical%20davelosert%2Fvitest-coverage-report-action&type=code
+        uses: davelosert/vitest-coverage-report-action@v2
