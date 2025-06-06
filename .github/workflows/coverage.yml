@@ -29,6 +29,9 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: coverage
+    permissions:
+      id-token: write
+      pages: write
     steps:
       - name: Download coverage report
         uses: actions/download-artifact@v4
