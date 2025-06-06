@@ -2,7 +2,7 @@
   "extends": "@canonical/typescript-config-react",
   "compilerOptions": {
     "baseUrl": "src",
-    "skipLibCheck": true, // Remove if not using storybook
+    "skipLibCheck": true,
     "types": [
       "node",
       "react",
