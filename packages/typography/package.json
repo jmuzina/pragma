@@ -16,7 +16,7 @@
     "check:ts": "tsc --noEmit"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
+    "@biomejs/biome": "^2.0.0",
     "@canonical/biome-config": "^0.9.0-experimental.12",
     "@types/bun": "latest",
     "jsdom": "^26.0.0",
