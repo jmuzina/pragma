@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.21](https://github.com/canonical/pragma/compare/v0.9.0-experimental.20...v0.9.0-experimental.21) (2025-06-24)
+
+
+### Bug Fixes
+
+* **deps:** update storybook monorepo to v9 (major) ([#242](https://github.com/canonical/pragma/issues/242)) ([3bbdb4b](https://github.com/canonical/pragma/commit/3bbdb4b9299565f84081fe882d9a2fd85197b8ee))
+
+
+### Features
+
+* **ds-core-form:** Middleware examples, MSW, Stories ([#225](https://github.com/canonical/pragma/issues/225)) ([301cbb8](https://github.com/canonical/pragma/commit/301cbb8256531b5ee8ff4a7d0359dd317a6d430f))
+
+
+
+
+
 # [0.9.0-experimental.20](https://github.com/canonical/ds25/compare/v0.9.0-experimental.19...v0.9.0-experimental.20) (2025-05-05)
 
 **Note:** Version bump only for package @canonical/react-boilerplate-vite

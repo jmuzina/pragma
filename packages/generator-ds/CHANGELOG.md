@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.21](https://github.com/canonical/ds25/compare/v0.9.0-experimental.20...v0.9.0-experimental.21) (2025-06-24)
+
+
+### Bug Fixes
+
+* **deps:** update storybook monorepo to v9 (major) ([#242](https://github.com/canonical/ds25/issues/242)) ([3bbdb4b](https://github.com/canonical/ds25/commit/3bbdb4b9299565f84081fe882d9a2fd85197b8ee))
+* Remove Generator index append confirmation prompts ([#250](https://github.com/canonical/ds25/issues/250)) ([18c44f0](https://github.com/canonical/ds25/commit/18c44f0c1fce22153cc085e2f8d9c3929691aabd))
+
+
+### Features
+
+* **ds-core-form:** Middleware examples, MSW, Stories ([#225](https://github.com/canonical/ds25/issues/225)) ([301cbb8](https://github.com/canonical/ds25/commit/301cbb8256531b5ee8ff4a7d0359dd317a6d430f))
+* **svelte-generator:** Generate unit test files and stories ([#248](https://github.com/canonical/ds25/issues/248)) ([d8485cb](https://github.com/canonical/ds25/commit/d8485cb12470a911bf634140bb6f632a1c071218))
+
+
+
+
+
 # [0.9.0-experimental.20](https://github.com/canonical/ds25/compare/v0.9.0-experimental.19...v0.9.0-experimental.20) (2025-05-05)
 
 

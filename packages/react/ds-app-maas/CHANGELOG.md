@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.21](https://github.com/canonical/ds25/compare/v0.9.0-experimental.20...v0.9.0-experimental.21) (2025-06-24)
+
+
+### Bug Fixes
+
+* **deps:** update storybook monorepo to v9 (major) ([#242](https://github.com/canonical/ds25/issues/242)) ([3bbdb4b](https://github.com/canonical/ds25/commit/3bbdb4b9299565f84081fe882d9a2fd85197b8ee))
+* **storybook:** enable addon themes ([#256](https://github.com/canonical/ds25/issues/256)) ([c522fc0](https://github.com/canonical/ds25/commit/c522fc05f48d39ab358773c458a53233a1259835))
+
+
+### Features
+
+* Initialization of app tiers ([#238](https://github.com/canonical/ds25/issues/238)) ([51b88c8](https://github.com/canonical/ds25/commit/51b88c8f8639b47a25b0c2305bf61711df8854f4))
+
+
+
+
+
 # [0.9.0-experimental.20](https://github.com/canonical/ds25/compare/v0.9.0-experimental.19...v0.9.0-experimental.20) (2025-05-05)
 
 **Note:** Version bump only for package @canonical/react-ds-core

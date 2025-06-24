@@ -1,6 +1,6 @@
 {
   "name": "@canonical/typescript-config-react",
-  "version": "0.9.0-experimental.12",
+  "version": "0.9.0-experimental.21",
   "description": "Canonical's standard TypeScript configuration for React projects",
   "main": "tsconfig.json",
   "author": {
@@ -31,6 +31,6 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
-    "@canonical/typescript-config-base": "^0.9.0-experimental.12"
+    "@canonical/typescript-config-base": "^0.9.0-experimental.21"
   }
 }

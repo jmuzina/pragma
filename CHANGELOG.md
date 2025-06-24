@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.21](https://github.com/canonical/ds25/compare/v0.9.0-experimental.20...v0.9.0-experimental.21) (2025-06-24)
+
+
+### Bug Fixes
+
+* **deps:** update storybook monorepo to v9 (major) ([#242](https://github.com/canonical/ds25/issues/242)) ([3bbdb4b](https://github.com/canonical/ds25/commit/3bbdb4b9299565f84081fe882d9a2fd85197b8ee))
+* Remove Generator index append confirmation prompts ([#250](https://github.com/canonical/ds25/issues/250)) ([18c44f0](https://github.com/canonical/ds25/commit/18c44f0c1fce22153cc085e2f8d9c3929691aabd))
+* **storybook:** enable addon themes ([#256](https://github.com/canonical/ds25/issues/256)) ([c522fc0](https://github.com/canonical/ds25/commit/c522fc05f48d39ab358773c458a53233a1259835))
+
+
+### Features
+
+* **Demo site:** Navbar enhancements ([#205](https://github.com/canonical/ds25/issues/205)) ([3a6ef56](https://github.com/canonical/ds25/commit/3a6ef568f362a01ccae17cd40c56c886336e186d)), closes [#199](https://github.com/canonical/ds25/issues/199)
+* **documentation:** Reorganization of the base documentation and guidelines. ([#198](https://github.com/canonical/ds25/issues/198)) ([6e8fb2b](https://github.com/canonical/ds25/commit/6e8fb2bdbff891e14d35dca60e436bbc09a3a34e))
+* **ds-core-form:** Middleware examples, MSW, Stories ([#225](https://github.com/canonical/ds25/issues/225)) ([301cbb8](https://github.com/canonical/ds25/commit/301cbb8256531b5ee8ff4a7d0359dd317a6d430f))
+* Initialization of app tiers ([#238](https://github.com/canonical/ds25/issues/238)) ([51b88c8](https://github.com/canonical/ds25/commit/51b88c8f8639b47a25b0c2305bf61711df8854f4))
+* **storybook:** Storybook addon MSW ([#255](https://github.com/canonical/ds25/issues/255)) ([08e506c](https://github.com/canonical/ds25/commit/08e506c72eb01d599ba5b2fddb66b30095305ea7))
+* **svelte-generator:** Generate unit test files and stories ([#248](https://github.com/canonical/ds25/issues/248)) ([d8485cb](https://github.com/canonical/ds25/commit/d8485cb12470a911bf634140bb6f632a1c071218))
+
+
+
+
+
 # [0.9.0-experimental.20](https://github.com/canonical/ds25/compare/v0.9.0-experimental.19...v0.9.0-experimental.20) (2025-05-05)
 
 
