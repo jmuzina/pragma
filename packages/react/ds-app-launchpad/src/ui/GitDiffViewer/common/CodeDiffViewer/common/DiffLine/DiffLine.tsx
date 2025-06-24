@@ -1,5 +1,6 @@
 /* @canonical/generator-canonical-ds 0.0.1 */
 import type React from "react";
+import commentSvg from "../../../../../assets/comment.svg";
 import { useGitDiffViewer } from "../../../../hooks/index.js";
 import "./styles.css";
 import type { DiffLineProps } from "./types.js";
@@ -54,6 +55,20 @@ const DiffLine = ({
           "\u00A0"
         ) : (
           <div className="diff-line-numbers">
+            {isInteractive && (
+              <span className="comment-icon">
+                <svg
+                  width={16}
+                  height={16}
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <use href="#comment-icon" />
+                  <title>Comment</title>
+                </svg>
+              </span>
+            )}
             <span className="line-num">
               {props.type === "add" ? "+" : props.removeLineNumber}
             </span>
