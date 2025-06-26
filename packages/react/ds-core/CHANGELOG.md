@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.22](https://github.com/canonical/ds25/compare/v0.9.0-experimental.21...v0.9.0-experimental.22) (2025-06-26)
+
+
+### Features
+
+* **generator:** Generate SSR output test file ([#267](https://github.com/canonical/ds25/issues/267)) ([42aea54](https://github.com/canonical/ds25/commit/42aea54ee8c886225c606536f3b4da0b6f1269d3))
+
+
+
+
+
 # [0.9.0-experimental.21](https://github.com/canonical/ds25/compare/v0.9.0-experimental.20...v0.9.0-experimental.21) (2025-06-24)
 
 

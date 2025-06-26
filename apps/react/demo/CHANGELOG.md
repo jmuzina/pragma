@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0-experimental.22](https://github.com/canonical/pragma/compare/v0.9.0-experimental.21...v0.9.0-experimental.22) (2025-06-26)
+
+**Note:** Version bump only for package @canonical/ds-demo-site
+
+
+
+
+
 # [0.9.0-experimental.21](https://github.com/canonical/pragma/compare/v0.9.0-experimental.20...v0.9.0-experimental.21) (2025-06-24)
 
 

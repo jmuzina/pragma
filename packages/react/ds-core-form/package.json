@@ -1,6 +1,6 @@
 {
   "name": "@canonical/react-ds-core-form",
-  "version": "0.9.0-experimental.21",
+  "version": "0.9.0-experimental.22",
   "type": "module",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
@@ -37,7 +37,7 @@
     "init:msw": "npx msw init public/"
   },
   "dependencies": {
-    "@canonical/react-ds-core": "^0.9.0-experimental.21",
+    "@canonical/react-ds-core": "^0.9.0-experimental.22",
     "@canonical/storybook-config": "^0.9.0-experimental.21",
     "@canonical/styles": "^0.9.0-experimental.21",
     "downshift": "^9.0.9",

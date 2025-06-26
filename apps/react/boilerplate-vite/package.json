@@ -1,7 +1,7 @@
 {
   "name": "@canonical/react-boilerplate-vite",
   "private": true,
-  "version": "0.9.0-experimental.21",
+  "version": "0.9.0-experimental.22",
   "type": "module",
   "license": "GPL-3.0-only",
   "scripts": {
@@ -32,7 +32,7 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@canonical/biome-config": "^0.9.0-experimental.12",
-    "@canonical/react-ds-core": "^0.9.0-experimental.21",
+    "@canonical/react-ds-core": "^0.9.0-experimental.22",
     "@canonical/typescript-config-react": "^0.9.0-experimental.21",
     "@chromatic-com/storybook": "^4.0.0",
     "@types/node": "^24.0.0",
