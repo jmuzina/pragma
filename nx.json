@@ -7,6 +7,14 @@
       "dependsOn": ["^build"],
       "cache": true
     },
+    "build:all": {
+      "dependsOn": ["^build:all"],
+      "cache": true
+    },
+    "build:storybook": {
+      "dependsOn": ["^build:storybook"],
+      "cache": true
+    },
     "check": {
       "dependsOn": ["^check"],
       "cache": true
