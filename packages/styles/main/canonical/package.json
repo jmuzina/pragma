@@ -1,7 +1,7 @@
 {
   "name": "@canonical/styles",
   "description": "Canonical's base styles",
-  "version": "0.9.0-experimental.21",
+  "version": "0.9.0",
   "main": "src/index.css",
   "files": ["src"],
   "author": {
@@ -25,15 +25,15 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "@canonical/biome-config": "^0.9.0-experimental.12"
+    "@canonical/biome-config": "^0.9.0"
   },
   "dependencies": {
-    "@canonical/styles-elements": "^0.9.0-experimental.12",
-    "@canonical/styles-modes-canonical": "^0.9.0-experimental.12",
-    "@canonical/styles-modes-density": "^0.9.0-experimental.12",
-    "@canonical/styles-modes-intents": "^0.9.0-experimental.20",
-    "@canonical/styles-modes-motion": "^0.9.0-experimental.12",
-    "@canonical/styles-primitives-canonical": "^0.9.0-experimental.21",
+    "@canonical/styles-elements": "^0.9.0",
+    "@canonical/styles-modes-canonical": "^0.9.0",
+    "@canonical/styles-modes-density": "^0.9.0",
+    "@canonical/styles-modes-intents": "^0.9.0",
+    "@canonical/styles-modes-motion": "^0.9.0",
+    "@canonical/styles-primitives-canonical": "^0.9.0",
     "normalize.css": "^8.0.1"
   }
 }
