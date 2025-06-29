@@ -54,7 +54,7 @@
     "globals": "^16.0.0",
     "storybook": "^8.4.7",
     "typescript": "^5.8.2",
-    "vite": "^6.0.3",
+    "vite": "^7.0.0",
     "vitest": "^3.0.9",
     "vite-tsconfig-paths": "^5.1.4"
   }
