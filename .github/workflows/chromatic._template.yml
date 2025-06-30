@@ -16,7 +16,7 @@ on:
         required: true
         description: Chromatic project token for publishing
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}-${{ inputs.working-directory }}
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ inputs.working-directory }}
   cancel-in-progress: true
 jobs:
   build:
@@ -57,3 +57,4 @@ jobs:
           buildScriptName: "build:storybook"
           onlyChanged: true
           externals: ${{ inputs.externals }}
+          autoAcceptChanges: ${{ github.event_name == 'push' }}

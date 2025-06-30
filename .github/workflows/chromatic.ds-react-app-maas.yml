@@ -8,6 +8,16 @@ on:
       - packages/utils/**
       - packages/react/ds-core/**
       - packages/react/ds-app-maas/**
+  push:
+    branches:
+      - main
+    paths:
+      - configs/storybook/**
+      - packages/tokens/**
+      - packages/styles/**
+      - packages/utils/**
+      - packages/react/ds-core/**
+      - packages/react/ds-app-anbox/**
 jobs:
   test-compile:
     uses: ./.github/workflows/chromatic._template.yml
