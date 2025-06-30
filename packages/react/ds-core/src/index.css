@@ -6,8 +6,3 @@
   /* Temporary, waiting for a better understanding */
   --baseline-shift: 1px;
 }
-
-/*This is a test change to intentionally cause a visual regression */
-* {
-  font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-}
