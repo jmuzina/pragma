@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1-experimental.0](https://github.com/canonical/ds25/compare/v0.9.0...v0.9.1-experimental.0) (2025-07-01)
+
+
+### Bug Fixes
+
+* **generator-svelte:** styles.css fails formatting check ([#279](https://github.com/canonical/ds25/issues/279)) ([0b7820a](https://github.com/canonical/ds25/commit/0b7820aaead7751bcffef59b6fcb12a5367d2059))
+
+
+
+
+
 # [0.9.0](https://github.com/canonical/ds25/compare/v0.9.0-experimental.22...v0.9.0) (2025-06-27)
 
 **Note:** Version bump only for package @canonical/generator-ds

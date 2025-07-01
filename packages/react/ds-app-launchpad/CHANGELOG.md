@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1-experimental.0](https://github.com/canonical/ds25/compare/v0.9.0...v0.9.1-experimental.0) (2025-07-01)
+
+
+### Bug Fixes
+
+* syntax highlighting part 2 ([#281](https://github.com/canonical/ds25/issues/281)) ([af8ed0d](https://github.com/canonical/ds25/commit/af8ed0d642fb3fbfaba85bcf8e89a02f8a539986))
+
+
+
+
+
 # [0.9.0](https://github.com/canonical/ds25/compare/v0.9.0-experimental.22...v0.9.0) (2025-06-27)
 
 **Note:** Version bump only for package @canonical/react-ds-app-launchpad
