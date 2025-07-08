@@ -4,28 +4,41 @@
   },
   "targetDefaults": {
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        "^build"
+      ],
       "cache": true
     },
     "build:all": {
-      "dependsOn": ["^build:all"],
+      "dependsOn": [
+        "^build:all"
+      ],
       "cache": true
     },
     "build:storybook": {
-      "dependsOn": ["^build:storybook"],
+      "dependsOn": [
+        "^build:storybook"
+      ],
       "cache": true
     },
     "check": {
-      "dependsOn": ["^check"],
+      "dependsOn": [
+        "^check"
+      ],
       "cache": true
     },
     "check:fix": {
-      "dependsOn": ["^check:fix"],
+      "dependsOn": [
+        "^check:fix"
+      ],
       "cache": true
     },
     "test": {
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        "^build"
+      ],
       "cache": true
     }
-  }
+  },
+  "nxCloudId": "686cfc14afaf27a9cba250b3"
 }
