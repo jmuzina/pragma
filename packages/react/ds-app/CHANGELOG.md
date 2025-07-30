@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0-experimental.0](https://github.com/canonical/ds25/compare/v0.9.1-experimental.0...v0.10.0-experimental.0) (2025-07-30)
+
+
+### Features
+
+* **react-ds-app:** Added DS-app for react ([#284](https://github.com/canonical/ds25/issues/284)) ([8ae5771](https://github.com/canonical/ds25/commit/8ae577182e1c69f252e8c25bee4bfc1944643113))
+
+
+
+
+
 # [0.9.0](https://github.com/canonical/ds25/compare/v0.9.0-experimental.22...v0.9.0) (2025-06-27)
 
 **Note:** Version bump only for package @canonical/react-ds-app-lxd

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0-experimental.0](https://github.com/canonical/ds25/compare/v0.9.1-experimental.0...v0.10.0-experimental.0) (2025-07-30)
+
+
+### Features
+
+* **generator:** Make generator metadata comment location consistent across files ([#283](https://github.com/canonical/ds25/issues/283)) ([b4ba34e](https://github.com/canonical/ds25/commit/b4ba34ea8a826364bcf9d2725e1ae0ad00cba0ea))
+
+
+
+
+
 ## [0.9.1-experimental.0](https://github.com/canonical/ds25/compare/v0.9.0...v0.9.1-experimental.0) (2025-07-01)
 
 

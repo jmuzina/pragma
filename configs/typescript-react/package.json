@@ -1,6 +1,6 @@
 {
   "name": "@canonical/typescript-config-react",
-  "version": "0.9.0",
+  "version": "0.10.0-experimental.0",
   "description": "Canonical's standard TypeScript configuration for React projects",
   "main": "tsconfig.json",
   "author": {
@@ -23,14 +23,14 @@
     "check:biome:fix": "biome check --write"
   },
   "devDependencies": {
-    "@canonical/biome-config": "^0.9.0",
     "@biomejs/biome": "^2.0.0",
+    "@canonical/biome-config": "^0.10.0-experimental.0",
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
     "typescript": "^5.8.2"
   },
   "dependencies": {
-    "@canonical/typescript-config-base": "^0.9.0"
+    "@canonical/typescript-config-base": "^0.10.0-experimental.0"
   }
 }
