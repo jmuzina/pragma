@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0-experimental.2](https://github.com/canonical/ds25/compare/v0.10.0-experimental.1...v0.10.0-experimental.2) (2025-08-06)
+
+
+### Features
+
+* **generator-svelte:** Generate root element type based props ([#292](https://github.com/canonical/ds25/issues/292)) ([d9247e3](https://github.com/canonical/ds25/commit/d9247e30dee0b5b0752f68204cd01f5672ccc18f))
+* **generator-svelte:** Move styles to .svelte ([#298](https://github.com/canonical/ds25/issues/298)) ([9745fe3](https://github.com/canonical/ds25/commit/9745fe36d5c5e6c9de1523f4c87f1f1bdb861d3f))
+
+
+
+
+
 # [0.10.0-experimental.1](https://github.com/canonical/ds25/compare/v0.10.0-experimental.0...v0.10.0-experimental.1) (2025-07-30)
 
 
