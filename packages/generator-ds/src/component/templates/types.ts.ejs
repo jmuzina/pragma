@@ -1,14 +1,15 @@
 /* <%= generatorPackageName %> <%= generatorPackageVersion %> */
 
-import type React from 'react'
+import type { HTMLAttributes, ReactNode } from 'react'
 
-export interface <%= componentName %>Props {
-  /* A unique identifier for the <%= componentName %> */
-  id?: string;
-  /* Additional CSS classes */
-  className?: string;
-  /* Child elements */
-  children?: React.ReactNode;
-  /* Inline styles */
-  style?: React.CSSProperties;
+/**
+    We have used the `HTMLDivElement` as a default props base.
+    If your component is based on a different HTML element, please update it accordingly.
+    See https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API for a full list of HTML elements interfaces.
+*/
+export interface <%= componentName %>Props extends HTMLAttributes<HTMLDivElement> {
+    /* Additional CSS classes */
+    className?: string;
+    /* Child elements */
+    children?: ReactNode;
 }
