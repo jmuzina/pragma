@@ -303,6 +303,11 @@
   --color-background-caution-tinted-hover: rgba(199, 90, 0, 0.15);
   --color-background-caution-tinted-active: rgba(199, 90, 0, 0.18);
 
+  /*  dimension tokens */
+
+  /* 3px at 16px fontsize, expressed in rems so it scales with text if the root font-size changes at a breakpoint */
+  --tmp-dimension-separator-bar-thickness: 0.1875rem;
+
   /* spacing tokens */
   --spacing-horizontal-xsmall: 0.25rem;
   --spacing-horizontal-small: 0.5rem;
@@ -406,4 +411,10 @@
     var(--badge-line-height) -
     (2 * var(--badge-padding-horizontal))
   );
+
+  --rule-color-background: var(--tmp-color-border-default);
+  --rule-border-width: 0;
+  --rule-height: 1px;
+  --rule-margin-bottom: calc(var(--spacing-vertical-small) - 1px);
+  --rule-margin-top: 0;
 }

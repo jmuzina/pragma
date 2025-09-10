@@ -58,3 +58,17 @@
   --intent-color-border-hover: var(--intent-color-border);
   --intent-color-border-active: var(--intent-color-border);
 }
+
+.highlighted,
+.accented {
+  --intent-separator-bar-height: var(--tmp-dimension-separator-bar-thickness);
+  --intent-separator-bar-color: var(--tmp-color-text-default);
+}
+
+.accented {
+  --intent-separator-bar-color: var(--tmp-color-border-accent);
+}
+
+.muted {
+  --intent-color-background: var(--tmp-color-border-low-contrast);
+}

@@ -1,0 +1,27 @@
+/* @canonical/generator-ds 0.10.0-experimental.2 */
+
+.ds.rule {
+  background-color: var(--intent-color-background, var(--rule-color-background));
+  border-width: var(--rule-border-width);
+  height: var(--rule-height);
+  margin-block-start: var(--rule-margin-top);
+  margin-block-end: var(--rule-margin-bottom);
+
+  position: relative;
+
+  /*  highlighted and accented intents also draw an additional overlay bar to draw further attention */
+  &.highlighted,
+  &.accented {
+    color: var(--intent-separator-bar-color);
+    &::before {
+      content: "";
+      height: var(--intent-separator-bar-height);
+      width: auto;
+      background-color: currentColor;
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+    }
+  }
+}

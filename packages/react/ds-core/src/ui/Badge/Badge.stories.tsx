@@ -40,7 +40,7 @@ export const Severity: StoryFn<typeof Component> = (args) => (
   <div
     style={{ display: "inline-flex", gap: "var(--spacing-horizontal-small)" }}
   >
-    {MODIFIER_FAMILIES.severity.map((severityLevel, i) => (
+    {MODIFIER_FAMILIES.severity.map((severityLevel) => (
       <Component key={severityLevel} {...args} severity={severityLevel} />
     ))}
   </div>
