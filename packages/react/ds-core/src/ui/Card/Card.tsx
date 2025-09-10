@@ -2,11 +2,9 @@
 
 import type React from "react";
 import { useId, useMemo } from "react";
-import { Image, Inner } from "./common/index.js";
+import { Header, Image, Section, Thumbnail } from "./common/index.js";
 import type { CardProps } from "./types.js";
 import "./styles.css";
-import Rule from "../Rule/Rule.js";
-import Thumbnail from "./common/Thumbnail/Thumbnail.js";
 
 const componentCssClassName = "ds card";
 
@@ -19,8 +17,6 @@ const Card = ({
   className,
   children,
   emphasis,
-  thumbnailProps,
-  titleContents,
   ...props
 }: CardProps): React.ReactElement => {
   const generatedId = useId();
@@ -39,24 +35,14 @@ const Card = ({
       role="group"
       {...props}
     >
-      {thumbnailProps && (
-        <>
-          <Thumbnail {...thumbnailProps} />
-          {/*  TODO does this make the Card a pattern? */}
-          <Rule />
-        </>
-      )}
-      {titleContents && (
-        <h3 className="title" id={titleId}>
-          {titleContents}
-        </h3>
-      )}
-      <div className="content">{children}</div>
+      {children}
     </div>
   );
 };
 
-Card.Inner = Inner;
+Card.Header = Header;
+Card.Thumbnail = Thumbnail;
 Card.Image = Image;
+Card.Section = Section;
 
 export default Card;

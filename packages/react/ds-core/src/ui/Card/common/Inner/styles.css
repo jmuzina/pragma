@@ -1,7 +1,0 @@
-/* @canonical/generator-ds 0.10.0-experimental.2 */
-
-.ds.card .card-inner {
-  display: block;
-  padding: var(--card-inner-padding-vertical)
-    var(--card-inner-padding-horizontal);
-}

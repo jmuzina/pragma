@@ -60,22 +60,6 @@
   --intent-color-border-active: var(--intent-color-border);
 }
 
-/* Emphasis modifiers */
-
-.highlighted,
-.accented {
-  --intent-separator-bar-height: var(--tmp-dimension-separator-bar-thickness);
-  --intent-separator-bar-color: var(--tmp-color-text-default);
-}
-
-.accented {
-  --intent-separator-bar-color: var(--tmp-color-border-accent);
-}
 .highlighted {
   --intent-box-shadow: var(--tmp-box-shadow-highlighted);
-}
-
-.muted {
-  --intent-separator-bar-height: inherit;
-  --intent-separator-bar-color: var(--tmp-color-border-low-contrast);
 }

@@ -1,7 +1,8 @@
 /* @canonical/generator-ds 0.10.0-experimental.2 */
 
-.card-thumbnail {
+.ds.card-thumbnail {
   max-height: var(--card-thumbnail-max-height);
+  margin-block-start: var(--card-thumbnail-margin-top);
   margin-block-end: var(--card-thumbnail-margin-bottom);
 
   /* TODO in Vanilla these are globally applied to all imgs, maybe we want to do that here as well */

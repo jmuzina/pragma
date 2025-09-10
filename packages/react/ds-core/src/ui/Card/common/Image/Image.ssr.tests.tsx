@@ -13,11 +13,11 @@ describe("Image SSR", () => {
 
   it("renders", () => {
     const html = renderToString(<Component />);
-    expect(html).toContain('<img class="card-image"/>');
+    expect(html).toContain('<img class="ds card-image"/>');
   });
 
   it("applies className", () => {
     const html = renderToString(<Component className="test-class" />);
-    expect(html).toContain('class="card-image test-class"');
+    expect(html).toContain('class="ds card-image test-class"');
   });
 });

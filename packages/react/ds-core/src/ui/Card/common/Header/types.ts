@@ -2,9 +2,9 @@
 
 import type { HTMLAttributes, ReactNode } from "react";
 
-export interface InnerProps extends HTMLAttributes<HTMLDivElement> {
+export interface HeaderProps extends HTMLAttributes<HTMLElement> {
+  /* Required child contents */
+  children: ReactNode;
   /* Additional CSS classes */
   className?: string;
-  /* Child elements */
-  children?: ReactNode;
 }

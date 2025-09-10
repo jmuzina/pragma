@@ -1,8 +1,8 @@
 /* @canonical/generator-ds 0.10.0-experimental.2 */
 
-.ds.card .card-image {
+.ds.card-image {
   display: block;
-  margin-bottom: var(--spacing-vertical-small);
   height: auto;
   width: 100%;
+  margin-block-end: var(--card-image-margin-bottom);
 }

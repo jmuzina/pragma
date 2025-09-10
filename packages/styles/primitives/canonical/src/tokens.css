@@ -305,9 +305,6 @@
 
   /*  dimension tokens */
 
-  /* 3px at 16px fontsize, expressed in rems so it scales with text if the root font-size changes at a breakpoint */
-  --tmp-dimension-separator-bar-thickness: 0.1875rem;
-
   --tmp-dimension-icon-small: 0.75rem;
   --tmp-dimension-icon-default: 1rem;
   --tmp-dimension-heading-icon--x-small: 1.5rem;
@@ -317,6 +314,15 @@
   --tmp-dimension-thumbnail-large: 6rem;
 
   /* spacing tokens */
+  /*  todo define spacing variables relative to spacing unit? may change in new token system so leaving for now */
+  --spacing-unit: 0.5rem;
+  --spacing-vertical-nudge: 0.375rem;
+  /* a minimum nudge amount applied to components when we want to apply minimum bottom margin to them, while still maintaining baseline alignment */
+  --spacing-vertical-nudge-compensation: calc(
+    var(--spacing-unit) -
+    var(--spacing-vertical-nudge)
+  );
+
   --spacing-horizontal-xsmall: 0.25rem;
   --spacing-horizontal-small: 0.5rem;
   --spacing-horizontal-medium: 1.25rem;
@@ -327,7 +333,6 @@
   --spacing-vertical-medium: 0.75rem;
   --spacing-vertical-large: 1rem;
   --spacing-vertical-xlarge: 1.5rem;
-  --spacing-vertical-nudge: 0.375rem;
 
   --spacing-input-margin-bottom: 0.5rem; /* TODO: needs baseline alignment https://github.com/canonical/vanilla-framework/blob/main/scss/_settings_spacing.scss#L122 */
   --spacing-input-padding-vertical: 0.5rem; /* TODO: needs to take baseline into account https://github.com/canonical/vanilla-framework/blob/main/scss/_settings_spacing.scss#L124 */
@@ -371,18 +376,23 @@
   --card-border-style: solid;
   --card-color-text: var(--tmp-color-text-default);
   --card-color-background: var(--tmp-color-background-default);
-  --card-color-border: var(--tmp-color-border-default);
   --card-border-width: var(--spacing-border-width);
   --card-margin-bottom: var(--spacing-vertical-large);
   --card-margin-left: 0;
-  --card-padding-vertical: calc(var(--spacing-vertical-large) - 1px);
-  --card-padding-horizontal: var(--card-padding-vertical);
+  --card-padding-vertical: var(--spacing-vertical-large);
+  --card-padding-horizontal: var(--spacing-horizontal-large);
+
+  --card-section-margin-bottom: var(--spacing-vertical-medium);
+  --card-section-padding-bottom: var(--spacing-vertical-medium);
+  --card-section-separator-color: var(--tmp-color-border-default);
+  --card-section-separator-border-width: 1px;
+  --card-section-separator-border-style: solid;
+
+  --card-image-margin-bottom: var(--spacing-vertical-small);
 
   --card-thumbnail-max-height: var(--tmp-dimension-heading-icon--small);
   --card-thumbnail-margin-bottom: var(--spacing-vertical-small);
-
-  --card-inner-padding-vertical: var(--spacing-horizontal-medium);
-  --card-inner-padding-horizontal: var(--spacing-horizontal-medium);
+  --card-thumbnail-margin-top: var(--spacing-vertical-small);
 
   --chip-color-background: var(--tmp-color-background-neutral-default);
   --chip-color-background-hover: var(--tmp-color-background-neutral-hover);
@@ -442,10 +452,4 @@
     var(--badge-line-height) -
     (2 * var(--badge-padding-horizontal))
   );
-
-  --rule-color-background: var(--tmp-color-border-default);
-  --rule-border-width: 0;
-  --rule-height: 1px;
-  --rule-margin-top: 0;
-  --rule-height-with-margin: var(--spacing-vertical-small);
 }

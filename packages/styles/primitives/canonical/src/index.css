@@ -12,5 +12,5 @@
 @import url("@canonical/typography");
 @import url("./typography.css");
 
-/* Modifiers */
-@import url("modifiers.css");
+/* Intents */
+@import url("./intents.css");

@@ -9,22 +9,9 @@
   background-color: var(--intent-color, var(--card-color-background));
   border-width: var(--card-border-width);
   border-style: var(--card-border-style);
-  border-color: var(--card-color-border);
+  border-color: var(--card-section-separator-color);
   margin-block-end: var(--card-margin-bottom);
   margin-inline-end: var(--card-margin-left);
   padding-block: var(--card-padding-vertical);
   padding-inline: var(--card-padding-horizontal);
-
-  & .inner {
-    /* prevent overflow of child margins*/
-    overflow: auto;
-    padding: var(--spacing-vertical-large);
-  }
-
-  & > .content {
-    /* The last element should have no bottom margin in order to keep the card's vertical distance from border to content the same on top and bottom */
-    & > *:last-child {
-      --space-after: 0;
-    }
-  }
 }
