@@ -18,7 +18,7 @@ const Card = ({
   children,
   emphasis,
   thumbnailOptions,
-  titleElement,
+  titleContents,
   ...props
 }: CardProps): React.ReactElement => {
   const titleId = useId();
@@ -26,7 +26,7 @@ const Card = ({
   return (
     // biome-ignore lint/a11y/useSemanticElements: TODO figure out what to do with this warning
     <div
-      aria-labelledby={titleElement ? titleId : undefined}
+      aria-labelledby={titleContents ? titleId : undefined}
       className={[componentCssClassName, className, emphasis]
         .filter(Boolean)
         .join(" ")}
@@ -39,9 +39,9 @@ const Card = ({
           <hr className="separator" />
         </>
       )}
-      {titleElement && (
+      {titleContents && (
         <h3 className="title" id={titleId}>
-          {titleElement}
+          {titleContents}
         </h3>
       )}
       <div className="content">{children}</div>
