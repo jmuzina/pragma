@@ -8,7 +8,6 @@ const componentCssClassName = "card-thumbnail";
 
 /**
  * Thumbnail component for Card thumbnails
- * todo the thumbnail is only ever used inside the preamble area, maybe this should be moved to the preamble subcomponent?
  */
 const Thumbnail = ({
   className,

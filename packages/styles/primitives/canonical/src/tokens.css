@@ -378,13 +378,8 @@
   --card-padding-vertical: calc(var(--spacing-vertical-large) - 1px);
   --card-padding-horizontal: var(--card-padding-vertical);
 
-  --card-preamble-border-color: var(--tmp-color-border-low-contrast);
-  --card-preamble-border-style: solid;
-  --card-preamble-border-width: var(--spacing-border-width);
-  --card-preamble-padding-bottom: var(--spacing-vertical-small);
-  --card-preamble-margin-bottom: var(--spacing-vertical-small);
-
   --card-thumbnail-max-height: var(--tmp-dimension-heading-icon--small);
+  --card-thumbnail-margin-bottom: var(--spacing-vertical-small);
 
   --card-inner-padding-vertical: var(--spacing-horizontal-medium);
   --card-inner-padding-horizontal: var(--spacing-horizontal-medium);

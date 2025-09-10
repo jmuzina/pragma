@@ -2,6 +2,7 @@
 
 .card-thumbnail {
   max-height: var(--card-thumbnail-max-height);
+  margin-block-end: var(--card-thumbnail-margin-bottom);
 
   /* TODO in Vanilla these are globally applied to all imgs, maybe we want to do that here as well */
   max-width: 100%;

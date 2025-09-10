@@ -27,11 +27,4 @@
       --space-after: 0;
     }
   }
-
-  & .card-preamble {
-    border-bottom: var(--card-preamble-border-width)
-      var(--card-preamble-border-style) var(--card-preamble-border-color);
-    margin-block-end: var(--card-preamble-margin-bottom);
-    padding-block-end: var(--card-preamble-padding-bottom);
-  }
 }

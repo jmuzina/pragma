@@ -5,6 +5,7 @@ import { useId, useMemo } from "react";
 import { Image, Inner } from "./common/index.js";
 import type { CardProps } from "./types.js";
 import "./styles.css";
+import Rule from "../Rule/Rule.js";
 import Thumbnail from "./common/Thumbnail/Thumbnail.js";
 
 const componentCssClassName = "ds card";
@@ -39,9 +40,11 @@ const Card = ({
       {...props}
     >
       {thumbnailProps && (
-        <div className="card-preamble">
+        <>
           <Thumbnail {...thumbnailProps} />
-        </div>
+          {/*  TODO does this make the Card a pattern? */}
+          <Rule />
+        </>
       )}
       {titleContents && (
         <h3 className="title" id={titleId}>

@@ -1,11 +1,18 @@
 /* @canonical/generator-ds 0.10.0-experimental.2 */
 
+import { MODIFIER_FAMILIES } from "@canonical/ds-types";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import Component from "./Card.js";
 
 const meta = {
   title: "Card",
   component: Component,
+  argTypes: {
+    emphasis: {
+      options: MODIFIER_FAMILIES.emphasis,
+      control: { type: "radio" },
+    },
+  },
 } satisfies Meta<typeof Component>;
 
 export default meta;
