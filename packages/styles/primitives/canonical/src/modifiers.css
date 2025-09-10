@@ -1,3 +1,4 @@
+/** severity intents */
 .positive {
   --intent-color: var(--color-background-positive-default);
   --intent-color-tinted: var(--color-background-positive-tinted-default);
@@ -69,6 +70,9 @@
 
 .accented {
   --intent-separator-bar-color: var(--tmp-color-border-accent);
+}
+.highlighted {
+  --intent-box-shadow: var(--tmp-box-shadow-highlighted);
 }
 
 .muted {

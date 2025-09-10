@@ -24,6 +24,15 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    titleElement: <>We'd love to have you join us as a partner.</>,
+    children: (
+      <p>
+        If you are an independent software vendor or bundle author, it's easy to
+        apply. You can find out more below.
+      </p>
+    ),
+  },
+};
     children: (
       <>
         <Component.Header>This is a title</Component.Header>

@@ -2,5 +2,6 @@
 
 .ds.card .card-inner {
   display: block;
-  padding: var(--spacing-horizontal-medium);
+  padding: var(--card-inner-padding-vertical)
+    var(--card-inner-padding-horizontal);
 }

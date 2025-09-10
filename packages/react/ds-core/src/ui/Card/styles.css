@@ -4,6 +4,7 @@
   /* prevent overflow of child margins */
   overflow: auto;
 
+  box-shadow: var(--intent-box-shadow, var(--card-box-shadow));
   color: var(--intent-color-text, var(--card-color-text));
   background-color: var(--intent-color, var(--card-color-background));
   border-width: var(--card-border-width);
@@ -14,48 +15,16 @@
   padding-block: var(--card-padding-vertical);
   padding-inline: var(--card-padding-horizontal);
 
-  /*
-    TODO https://github.com/canonical/vanilla-framework/blob/e204a57a6c81cc9e78a71bb332fff8d660024097/scss/_patterns_card.scss#L12-L16
-  */
-  & .content {
-    /*
-   TODO find a way to port the Vanilla behavior of using "margin-collapsed" default text that maintains baseline alignment
-    Without adding utility classes for margin collapse
-   @extend %u-no-margin--bottom--default-text;
-  */
-  }
-
   & .inner {
     /* prevent overflow of child margins*/
     overflow: auto;
     padding: var(--spacing-vertical-large);
   }
 
-  /*  TODO we need to discuss further how to globalize the emphasis modifiers - but as-named in Vanilla they aren't consistently applied */
-  &.highlighted {
-    box-shadow: var(--tmp-box-shadow);
+  & > .content {
+    /* The last element should have no bottom margin in order to keep the card's vertical distance from border to content the same on top and bottom */
+    & > *:last-child {
+      --space-after: 0;
+    }
   }
 }
-
-/*
-  TODO
-  The below SCSS comes from Vanilla (https://github.com/canonical/vanilla-framework/blob/e204a57a6c81cc9e78a71bb332fff8d660024097/scss/_patterns_card.scss#L84C1-L99C4)
-  We need to find a way to implement the visual design without relying on complex margin cancellation & selectors if possible
-  [class*='p-card'] {
-    // FIXME: this is overly complex
-    // stylelint-disable selector-max-type
-    > p:not([class*='p-heading--']),
-    > h5,
-    > h6 {
-      &:last-child {
-        margin-bottom: $spv-nudge-compensation;
-      }
-
-      &:first-child {
-        margin-top: -#{$sp-unit};
-      }
-    }
-    // stylelint-enable selector-max-type
-  }
-
-*/

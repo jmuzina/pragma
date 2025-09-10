@@ -3,6 +3,8 @@
 .ds.card .card-header {
   border-bottom: var(--card-header-border-width) var(--card-header-border-style)
     var(--card-header-border-color);
+  /* The border and bottom padding are sufficient for separation from following content - margin is unnecessary */
+  margin-bottom: 0;
   padding-block-end: var(--card-header-padding-bottom);
 }
 
