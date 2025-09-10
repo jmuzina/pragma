@@ -2,6 +2,7 @@
 
 import type { ModifierFamily } from "@canonical/ds-types";
 import type { HTMLAttributes, ReactNode } from "react";
+import type { ThumbnailProps } from "./common/Thumbnail/index.js";
 
 /**
  * @migration 1.0.0 - `overlay` is no longer supported
@@ -16,7 +17,7 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
    * An optional thumbnail image to display in the card.
    * @migration 1.0.0 - `thumbnail` is now `thumbnailOptions`, a set of HTML attributes, rather than a URL string, to allow more flexibility in how the image is rendered.
    */
-  thumbnailOptions?: HTMLAttributes<HTMLImageElement>;
+  thumbnailProps?: ThumbnailProps;
   /**
    * The title of the card.
    * @migration 1.0.0 - Uses `titleContents` instead of `title` from React Components, to allow the `title` prop to be used as a native HTML attribute.

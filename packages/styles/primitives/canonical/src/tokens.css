@@ -308,6 +308,14 @@
   /* 3px at 16px fontsize, expressed in rems so it scales with text if the root font-size changes at a breakpoint */
   --tmp-dimension-separator-bar-thickness: 0.1875rem;
 
+  --tmp-dimension-icon-small: 0.75rem;
+  --tmp-dimension-icon-default: 1rem;
+  --tmp-dimension-heading-icon--x-small: 1.5rem;
+  --tmp-dimension-heading-icon--small: 2rem;
+  --tmp-dimension-heading-icon--default: 2.5rem;
+  --tmp-dimension-thumbnail-default: 3rem;
+  --tmp-dimension-thumbnail-large: 6rem;
+
   /* spacing tokens */
   --spacing-horizontal-xsmall: 0.25rem;
   --spacing-horizontal-small: 0.5rem;
@@ -370,10 +378,13 @@
   --card-padding-vertical: calc(var(--spacing-vertical-large) - 1px);
   --card-padding-horizontal: var(--card-padding-vertical);
 
-  --card-header-border-color: var(--tmp-color-border-low-contrast);
-  --card-header-border-style: solid;
-  --card-header-border-width: var(--spacing-border-width);
-  --card-header-padding-bottom: var(--spacing-vertical-large);
+  --card-preamble-border-color: var(--tmp-color-border-low-contrast);
+  --card-preamble-border-style: solid;
+  --card-preamble-border-width: var(--spacing-border-width);
+  --card-preamble-padding-bottom: var(--spacing-vertical-small);
+  --card-preamble-margin-bottom: var(--spacing-vertical-small);
+
+  --card-thumbnail-max-height: var(--tmp-dimension-heading-icon--small);
 
   --card-inner-padding-vertical: var(--spacing-horizontal-medium);
   --card-inner-padding-horizontal: var(--spacing-horizontal-medium);

@@ -1,10 +1,11 @@
 /* @canonical/generator-ds 0.10.0-experimental.2 */
 
 import type React from "react";
-import { useId } from "react";
-import { Header, Image, Inner, Thumbnail } from "./common/index.js";
+import { useId, useMemo } from "react";
+import { Image, Inner } from "./common/index.js";
 import type { CardProps } from "./types.js";
 import "./styles.css";
+import Thumbnail from "./common/Thumbnail/Thumbnail.js";
 
 const componentCssClassName = "ds card";
 
@@ -17,27 +18,30 @@ const Card = ({
   className,
   children,
   emphasis,
-  thumbnailOptions,
+  thumbnailProps,
   titleContents,
   ...props
 }: CardProps): React.ReactElement => {
-  const titleId = useId();
+  const generatedId = useId();
+  const titleId = useMemo(
+    () => props.id || generatedId,
+    [props.id, generatedId],
+  );
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: TODO figure out what to do with this warning
     <div
-      aria-labelledby={titleContents ? titleId : undefined}
+      aria-labelledby={titleId}
       className={[componentCssClassName, className, emphasis]
         .filter(Boolean)
         .join(" ")}
       role="group"
       {...props}
     >
-      {thumbnailOptions && (
-        <>
-          <Thumbnail {...thumbnailOptions} />
-          <hr className="separator" />
-        </>
+      {thumbnailProps && (
+        <div className="card-preamble">
+          <Thumbnail {...thumbnailProps} />
+        </div>
       )}
       {titleContents && (
         <h3 className="title" id={titleId}>
@@ -49,9 +53,7 @@ const Card = ({
   );
 };
 
-Card.Header = Header;
 Card.Inner = Inner;
-Card.Thumbnail = Thumbnail;
 Card.Image = Image;
 
 export default Card;
