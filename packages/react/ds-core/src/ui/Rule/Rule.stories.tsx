@@ -31,10 +31,10 @@ export const Default: Story = {
 };
 export const Emphasis = (args: RuleProps) => (
   <div>
-    {MODIFIER_FAMILIES.emphasis.map((severityLevel) => (
+    {MODIFIER_FAMILIES.emphasis.map((emphasisLevel) => (
       <>
-        <Component key={severityLevel} {...args} emphasis={severityLevel} />
-        <h4>Text beneath a {severityLevel} rule.</h4>
+        <Component key={emphasisLevel} {...args} emphasis={emphasisLevel} />
+        <h4>Text beneath a {emphasisLevel} rule.</h4>
       </>
     ))}
   </div>

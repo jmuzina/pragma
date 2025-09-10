@@ -415,6 +415,6 @@
   --rule-color-background: var(--tmp-color-border-default);
   --rule-border-width: 0;
   --rule-height: 1px;
-  --rule-margin-bottom: calc(var(--spacing-vertical-small) - 1px);
   --rule-margin-top: 0;
+  --rule-height-with-margin: var(--spacing-vertical-small);
 }
