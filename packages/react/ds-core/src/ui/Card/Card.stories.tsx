@@ -56,6 +56,34 @@ export const WithThumbnail: Story = {
   },
 };
 
+export const WithImage: Story = {
+  args: {
+    children: (
+      <>
+        <Component.Image
+          src="https://assets.ubuntu.com/v1/36f1139e-Design-and-Web-Team-Blog.jpg"
+          alt="Design and web team"
+          height={185}
+          width={330}
+        />
+        <h4>
+          {/** biome-ignore lint/a11y/useValidAnchor: we don't want to use a live link in the example */}
+          <a href="#">Open Source Robotics Challenges</a>
+        </h4>
+        <p>Open Source Robotics Challenges is a series of blogs...</p>
+      </>
+    ),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "To add a full-width image to a card, use `<Card.Image>` as a child of the card component.",
+      },
+    },
+  },
+};
+
 export const Highlighted: Story = {
   args: {
     titleContents: <>We'd love to have you join us as a partner.</>,

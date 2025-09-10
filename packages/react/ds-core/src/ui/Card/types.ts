@@ -19,7 +19,7 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
    */
   thumbnailProps?: ThumbnailProps;
   /**
-   * The title of the card.
+   * The title of the card. Will be wrapped in a `<h3>` element.
    * @migration 1.0.0 - Uses `titleContents` instead of `title` from React Components, to allow the `title` prop to be used as a native HTML attribute.
    */
   titleContents?: ReactNode;

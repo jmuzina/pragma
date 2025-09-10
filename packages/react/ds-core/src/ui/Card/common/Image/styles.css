@@ -3,5 +3,6 @@
 .ds.card .card-image {
   display: block;
   margin-bottom: var(--spacing-vertical-small);
+  height: auto;
   width: 100%;
 }
