@@ -312,6 +312,8 @@
   --tmp-dimension-heading-icon--default: 2.5rem;
   --tmp-dimension-thumbnail-default: 3rem;
   --tmp-dimension-thumbnail-large: 6rem;
+  /* 3px at 16px fontsize, expressed in rems so it scales with text if the root font-size changes at a breakpoint */
+  --tmp-dimension-separator-bar-thickness: 0.1875rem;
 
   /* spacing tokens */
   /*  todo define spacing variables relative to spacing unit? may change in new token system so leaving for now */
@@ -452,4 +454,10 @@
     var(--badge-line-height) -
     (2 * var(--badge-padding-horizontal))
   );
+
+  --rule-color-background: var(--tmp-color-border-default);
+  --rule-border-width: 0;
+  --rule-height: 1px;
+  --rule-margin-top: 0;
+  --rule-height-with-margin: var(--spacing-vertical-small);
 }
