@@ -58,3 +58,20 @@
   --intent-color-border-hover: var(--intent-color-border);
   --intent-color-border-active: var(--intent-color-border);
 }
+
+/* Emphasis modifiers */
+
+.highlighted {
+  --intent-separator-bar-height: var(--tmp-dimension-separator-bar-thickness);
+  --intent-separator-bar-color: var(--tmp-color-text-default);
+}
+
+.accented {
+  --intent-separator-bar-height: var(--tmp-dimension-separator-bar-thickness);
+  --intent-separator-bar-color: var(--tmp-color-border-accent);
+}
+
+.muted {
+  --intent-separator-bar-height: inherit;
+  --intent-separator-bar-color: var(--tmp-color-border-low-contrast);
+}
