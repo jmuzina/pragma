@@ -12,4 +12,14 @@
   border-color: var(--card-section-separator-color);
   margin-block-end: var(--card-margin-bottom);
   margin-inline-end: var(--card-margin-left);
+
+  & .card-section,
+  & .card-image {
+    /* Last section doesn't need a border (the Card itself has a border) */
+    &:not(:last-child) {
+      border-bottom: var(--card-section-separator-border-width)
+        var(--card-section-separator-border-style)
+        var(--card-section-separator-color);
+    }
+  }
 }

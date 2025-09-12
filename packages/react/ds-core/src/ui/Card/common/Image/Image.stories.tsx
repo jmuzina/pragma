@@ -44,6 +44,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    src: "https://discourse-maas-io-uploads.s3.us-east-1.amazonaws.com/optimized/2X/0/0cec65d4c1018c9fbf1ffab87f19a92429f5ffad_2_690x335.jpeg",
+    src: "https://assets.ubuntu.com/v1/5ce214a4-rpi.png",
   },
 };

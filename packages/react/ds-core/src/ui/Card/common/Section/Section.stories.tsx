@@ -21,7 +21,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "`Card.Section` is used for content sections within cards. It adds spacing and borders to separate content from each other.",
+          "`Card.Section` is used for content sections within cards. It adds padding to separate card content sections from each other.",
       },
     },
   },
