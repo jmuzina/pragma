@@ -19,6 +19,6 @@ describe("Card SSR", () => {
 
   it("applies className", () => {
     const html = renderToString(<Component className="test-class" />);
-    expect(html).toContain('class="ds card test-class"');
+    expect(html).toContain('class="ds card neutral test-class"');
   });
 });

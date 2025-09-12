@@ -25,4 +25,6 @@ const Image = ({
   );
 };
 
+Image.displayName = "Card.Image";
+
 export default Image;

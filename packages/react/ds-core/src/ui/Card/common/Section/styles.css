@@ -1,11 +1,10 @@
 /* @canonical/generator-ds 0.10.0-experimental.2 */
 
 .ds.card-section {
-  /* Add padding to all sections */
   padding-block: var(--card-section-padding-vertical);
   padding-inline: var(--card-section-padding-horizontal);
 
-  /* Distinguish a section from following sections with spacing and border */
+  /* Last section doesn't need a border (the Card itself has a border) */
   &:not(:last-child) {
     border-bottom: var(--card-section-separator-border-width)
       var(--card-section-separator-border-style)

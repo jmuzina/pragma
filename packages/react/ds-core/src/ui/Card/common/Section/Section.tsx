@@ -25,4 +25,6 @@ const Section = ({
   );
 };
 
+Section.displayName = "Card.Section";
+
 export default Section;

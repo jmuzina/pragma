@@ -14,11 +14,11 @@ const componentCssClassName = "ds card";
 const Card = ({
   className,
   children,
-  emphasis,
+  emphasis = "neutral",
   ...props
 }: CardProps): React.ReactElement => (
   <div
-    className={[componentCssClassName, className, emphasis]
+    className={[componentCssClassName, emphasis, className]
       .filter(Boolean)
       .join(" ")}
     {...props}
@@ -27,6 +27,7 @@ const Card = ({
   </div>
 );
 
+Card.displayName = "Card";
 Card.Thumbnail = Thumbnail;
 Card.Image = Image;
 Card.Section = Section;

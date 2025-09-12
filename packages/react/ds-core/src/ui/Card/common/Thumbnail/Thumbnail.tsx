@@ -27,4 +27,6 @@ const Thumbnail = ({
   );
 };
 
+Thumbnail.displayName = "Card.Thumbnail";
+
 export default Thumbnail;
