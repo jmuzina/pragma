@@ -4,9 +4,9 @@
   /* prevent overflow of child margins */
   overflow: auto;
 
-  box-shadow: var(--intent-box-shadow, var(--card-box-shadow));
-  color: var(--intent-color-text, var(--card-color-text));
-  background-color: var(--intent-color, var(--card-color-background));
+  box-shadow: var(--modifier-box-shadow, var(--card-box-shadow));
+  color: var(--modifier-color-text, var(--card-color-text));
+  background-color: var(--modifier-color, var(--card-color-background));
   border-width: var(--card-border-width);
   border-style: var(--card-border-style);
   border-color: var(--card-section-separator-color);
