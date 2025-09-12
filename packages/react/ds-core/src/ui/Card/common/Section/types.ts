@@ -7,10 +7,4 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
   /* Additional CSS classes */
   className?: string;
-
-  /**
-   * Whether to display a border at the bottom of the section.
-   * @default true
-   */
-  isBordered?: boolean;
 }

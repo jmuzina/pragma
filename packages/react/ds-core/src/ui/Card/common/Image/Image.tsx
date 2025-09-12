@@ -8,6 +8,7 @@ const componentCssClassName = "ds card-image";
 
 /**
  * Image component for Card
+ * Full-width image with content bleed (no padding)
  * @returns {React.ReactElement} - Rendered Image
  */
 const Image = ({

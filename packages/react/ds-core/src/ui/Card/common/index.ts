@@ -1,5 +1,3 @@
-export type * from "./Header/index.js";
-export { Header } from "./Header/index.js";
 export type * from "./Image/index.js";
 export { Image } from "./Image/index.js";
 export type * from "./Section/index.js";

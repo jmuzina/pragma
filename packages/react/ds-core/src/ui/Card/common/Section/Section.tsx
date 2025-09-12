@@ -13,14 +13,11 @@ const componentCssClassName = "ds card-section";
 const Section = ({
   children,
   className,
-  isBordered = true,
   ...props
 }: SectionProps): React.ReactElement => {
   return (
     <section
-      className={[componentCssClassName, className, isBordered && "bordered"]
-        .filter(Boolean)
-        .join(" ")}
+      className={[componentCssClassName, className].filter(Boolean).join(" ")}
       {...props}
     >
       {children}

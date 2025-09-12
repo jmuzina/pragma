@@ -381,11 +381,9 @@
   --card-border-width: var(--spacing-border-width);
   --card-margin-bottom: var(--spacing-vertical-large);
   --card-margin-left: 0;
-  --card-padding-vertical: var(--spacing-vertical-large);
-  --card-padding-horizontal: var(--spacing-horizontal-large);
 
-  --card-section-margin-bottom: var(--spacing-vertical-medium);
-  --card-section-padding-bottom: var(--spacing-vertical-medium);
+  --card-section-padding-vertical: var(--spacing-vertical-large);
+  --card-section-padding-horizontal: var(--spacing-horizontal-large);
   --card-section-separator-color: var(--tmp-color-border-default);
   --card-section-separator-border-width: 1px;
   --card-section-separator-border-style: solid;
@@ -393,8 +391,6 @@
   --card-image-margin-bottom: var(--spacing-vertical-small);
 
   --card-thumbnail-max-height: var(--tmp-dimension-heading-icon--small);
-  --card-thumbnail-margin-bottom: var(--spacing-vertical-small);
-  --card-thumbnail-margin-top: var(--spacing-vertical-small);
 
   --chip-color-background: var(--tmp-color-background-neutral-default);
   --chip-color-background-hover: var(--tmp-color-background-neutral-hover);

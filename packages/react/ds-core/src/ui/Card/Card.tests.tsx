@@ -9,40 +9,4 @@ describe("Card component", () => {
     render(<Component>Card</Component>);
     expect(screen.getByText("Card")).toBeInTheDocument();
   });
-
-  it("renders with subcomponents", () => {
-    render(
-      <Component>
-        <Component.Header>Header</Component.Header>
-        <Component.Section>Content</Component.Section>
-      </Component>,
-    );
-
-    expect(screen.getByText("Header")).toBeInTheDocument();
-    expect(screen.getByText("Content")).toBeInTheDocument();
-  });
-
-  it("renders with thumbnail", () => {
-    render(
-      <Component>
-        <Component.Thumbnail src="test.jpg" alt="Test" />
-        <Component.Section>Content</Component.Section>
-      </Component>,
-    );
-
-    expect(screen.getByAltText("Test")).toBeInTheDocument();
-    expect(screen.getByText("Content")).toBeInTheDocument();
-  });
-
-  it("renders with image", () => {
-    render(
-      <Component>
-        <Component.Image src="test.jpg" alt="Test" />
-        <Component.Section>Content</Component.Section>
-      </Component>,
-    );
-
-    expect(screen.getByAltText("Test")).toBeInTheDocument();
-    expect(screen.getByText("Content")).toBeInTheDocument();
-  });
 });

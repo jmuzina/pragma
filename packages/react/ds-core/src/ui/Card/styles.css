@@ -12,6 +12,4 @@
   border-color: var(--card-section-separator-color);
   margin-block-end: var(--card-margin-bottom);
   margin-inline-end: var(--card-margin-left);
-  padding-block: var(--card-padding-vertical);
-  padding-inline: var(--card-padding-horizontal);
 }

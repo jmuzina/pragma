@@ -21,16 +21,4 @@ describe("Card SSR", () => {
     const html = renderToString(<Component className="test-class" />);
     expect(html).toContain('class="ds card test-class"');
   });
-
-  it("renders with subcomponents", () => {
-    const html = renderToString(
-      <Component>
-        <Component.Header>Header</Component.Header>
-        <Component.Section>Content</Component.Section>
-      </Component>,
-    );
-
-    expect(html).toContain("<header");
-    expect(html).toContain("<section");
-  });
 });

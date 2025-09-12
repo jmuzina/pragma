@@ -1,26 +1,14 @@
 /* @canonical/generator-ds 0.10.0-experimental.2 */
 
 .ds.card-section {
-  /*   Distinguish a section from following sections with spacing and optional border */
-  &:not(:last-child) {
-    &.bordered {
-      border-bottom: var(--card-section-separator-border-width)
-        var(--card-section-separator-border-style)
-        var(--card-section-separator-color);
-      margin-block-end: var(--card-section-margin-bottom);
-    }
-    padding-block-end: var(--card-section-padding-bottom);
-  }
+  /* Add padding to all sections */
+  padding-block: var(--card-section-padding-vertical);
+  padding-inline: var(--card-section-padding-horizontal);
 
-  /*
-    The last element within the section should have no bottom spacing to avoid applying additional spacing to the card section spacing
-    We specifically target the header because it adds another level of nesting and we need to affect the margin of the text inside it, not the header wrapper itself
-    */
-  & > *:not(.card-header),
-  & > .card-header:last-child > * {
-    &:last-child {
-      margin-bottom: var(--spacing-vertical-nudge-compensation);
-      padding-bottom: 0;
-    }
+  /* Distinguish a section from following sections with spacing and border */
+  &:not(:last-child) {
+    border-bottom: var(--card-section-separator-border-width)
+      var(--card-section-separator-border-style)
+      var(--card-section-separator-color);
   }
 }
