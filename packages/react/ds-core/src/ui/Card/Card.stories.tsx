@@ -25,7 +25,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "A Card component with subcomponents for different content types. Use Card.Thumbnail for small images, Card.Image for full-width images, and Card.Section for content sections.",
+          "A `Card` component with subcomponents for different content types. Use `Card.Thumbnail` for small images, `Card.Image` for full-width images, and `Card.Section` for content sections.",
       },
     },
   },
