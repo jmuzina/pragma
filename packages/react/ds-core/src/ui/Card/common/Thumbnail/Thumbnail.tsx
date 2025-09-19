@@ -12,16 +12,19 @@ const componentCssClassName = "ds card-thumbnail";
  * Extends Section behavior with thumbnail image
  */
 const Thumbnail = ({
-  className,
-  alt,
-  ...props
+  imageProps,
+  ...sectionProps
 }: ThumbnailProps): React.ReactElement => {
+  const { className: imageClassName, alt, ...restImageProps } = imageProps;
+
   return (
-    <Section>
+    <Section {...sectionProps}>
       <img
-        className={[componentCssClassName, className].filter(Boolean).join(" ")}
+        className={[componentCssClassName, imageClassName]
+          .filter(Boolean)
+          .join(" ")}
         alt={alt}
-        {...props}
+        {...restImageProps}
       />
     </Section>
   );

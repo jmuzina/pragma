@@ -8,32 +8,16 @@ const meta = {
   component: Component,
   tags: ["autodocs"],
   argTypes: {
-    src: {
-      control: { type: "text" },
-      description: "Image source URL",
-    },
-    alt: {
-      control: { type: "text" },
-      description: "Alternative text for the image",
-    },
-    className: {
-      control: { type: "text" },
-      description: "Additional CSS classes",
-    },
-    width: {
-      control: { type: "number" },
-      description: "Image width",
-    },
-    height: {
-      control: { type: "number" },
-      description: "Image height",
+    imageProps: {
+      control: { type: "object" },
+      description: "Props for the image element",
     },
   },
   parameters: {
     docs: {
       description: {
         component:
-          "`Card.Thumbnail` is used for small images within cards. It uses the `Card.Section` component to display the thumbnail with appropriate spacing and borders.<br><br>Any valid HTML image attribute can be passed to `Card.Thumbnail`; the props shown below are the most commonly used, for your convenience.",
+          "`Card.Thumbnail` is used for small images within cards. It uses the `Card.Section` component to display the thumbnail with appropriate spacing and borders.<br><br>Any valid HTML image attribute can be passed to `Card.Thumbnail`'s `imageProps` prop, such as `src`, `alt`, `width`, and `height`. The rest of the props are applied to the wrapping `Card.Section` component.",
       },
     },
   },
@@ -44,7 +28,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    src: "https://assets.ubuntu.com/v1/31bd2627-logo-raspberry-pi.svg",
-    alt: "Raspberry Pi Logo",
+    imageProps: {
+      src: "https://assets.ubuntu.com/v1/31bd2627-logo-raspberry-pi.svg",
+      alt: "Raspberry Pi Logo",
+    },
   },
 };
