@@ -1,6 +1,7 @@
 /* @canonical/generator-ds 0.10.0-experimental.2 */
 
 import type { Meta, StoryFn, StoryObj } from "@storybook/react-vite";
+import * as decorators from "storybook/decorators.js";
 import Rule from "../Rule/Rule.js";
 import { SECTION_SPACING } from "./constants.js";
 import Component from "./Section.js";
@@ -48,22 +49,16 @@ export const Default: Story = {
   },
 };
 
-export const Spacing: StoryFn<typeof Component> = (args) => (
-  <div>
-    <Rule />
-    <Component {...args}>
-      <h4>This is a default section.</h4>
+export const Spacing: StoryFn<typeof Component> = (args) => {
+  return SECTION_SPACING.map((spacingLevel) => (
+    <Component key={spacingLevel} {...args} spacing={spacingLevel}>
+      <h4>This is a {spacingLevel} section.</h4>
     </Component>
-    {SECTION_SPACING.map((spacingLevel) => (
-      <div key={spacingLevel}>
-        <Rule />
-        <Component key={spacingLevel} {...args} spacing={spacingLevel}>
-          <h4>This is a {spacingLevel} section.</h4>
-        </Component>
-      </div>
-    ))}
-  </div>
-);
+  ));
+};
+
+Spacing.decorators = [decorators.borderedChildren()];
+
 Spacing.parameters = {
   docs: {
     description: {
