@@ -82,6 +82,7 @@
       "name": "@canonical/storybook-config",
       "version": "0.10.0-experimental.3",
       "dependencies": {
+        "@canonical/ds-assets": "^0.10.0-experimental.3",
         "@canonical/storybook-addon-baseline-grid": "^0.10.0-experimental.3",
         "@chromatic-com/storybook": "^4.0.0",
         "@storybook/addon-a11y": "^9.0.8",
@@ -129,10 +130,7 @@
     },
     "packages/ds-assets": {
       "name": "@canonical/ds-assets",
-      "version": "0.10.0-experimental.0",
-      "dependencies": {
-        "@canonical/styles-primitives-canonical": "^0.10.0-experimental.0",
-      },
+      "version": "0.10.0-experimental.3",
       "devDependencies": {
         "@biomejs/biome": "2.2.4",
         "@canonical/biome-config": "^0.10.0-experimental.0",
@@ -394,6 +392,7 @@
       "name": "@canonical/react-ds-core",
       "version": "0.10.0-experimental.3",
       "dependencies": {
+        "@canonical/ds-assets": "^0.10.0-experimental.3",
         "@canonical/storybook-config": "^0.10.0-experimental.3",
         "@canonical/styles": "^0.10.0-experimental.3",
         "@canonical/utils": "^0.10.0-experimental.3",

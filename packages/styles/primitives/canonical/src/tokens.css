@@ -399,6 +399,8 @@
           This will be implemented once theming DS-wide is added.
     */
 
+  --icon-size: 1em;
+
   --tooltip-color-background: var(--tmp-color-background-default);
   --tooltip-color-background-hover: var(--tmp-color-background-hover);
   --tooltip-color-background-active: var(--tmp-color-background-active);

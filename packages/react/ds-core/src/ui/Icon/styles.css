@@ -1,0 +1,12 @@
+/* @canonical/generator-ds 0.10.0-experimental.2 */
+
+.ds.icon {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+
+  height: var(--icon-size);
+  width: var(--icon-size);
+}
