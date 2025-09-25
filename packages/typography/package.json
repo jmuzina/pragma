@@ -2,7 +2,7 @@
   "name": "@canonical/typography",
   "module": "index.ts",
   "type": "module",
-  "version": "0.10.0-experimental.3",
+  "version": "0.10.0-experimental.4",
   "main": "src/index.css",
   "bin": {
     "extractFontData": "./src/extractFontData.ts"
@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.4",
-    "@canonical/biome-config": "^0.10.0-experimental.3",
+    "@canonical/biome-config": "^0.10.0-experimental.4",
     "@types/bun": "latest"
   },
   "peerDependencies": {

@@ -1,7 +1,7 @@
 {
   "name": "@canonical/tokens",
   "description": "Canonical design tokens: primitives and mode mappings for use with Style Dictionary",
-  "version": "0.10.0-experimental.3",
+  "version": "0.10.0-experimental.4",
   "files": [
     "dist"
   ],
@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.4",
-    "@canonical/biome-config": "^0.10.0-experimental.3"
+    "@canonical/biome-config": "^0.10.0-experimental.4"
   },
   "dependencies": {
     "style-dictionary": "^4.3.3"

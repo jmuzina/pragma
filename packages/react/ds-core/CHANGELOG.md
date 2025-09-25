@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0-experimental.4](https://github.com/canonical/ds25/compare/v0.10.0-experimental.3...v0.10.0-experimental.4) (2025-09-25)
+
+
+### Features
+
+* **React Core:** Build Icon component ([#325](https://github.com/canonical/ds25/issues/325)) ([5319d51](https://github.com/canonical/ds25/commit/5319d518fb75d63787fcd994a0c981e7beadb8ff))
+* **React Core:** Implement Link component ([#321](https://github.com/canonical/ds25/issues/321)) ([bd30a4f](https://github.com/canonical/ds25/commit/bd30a4faa69aa361571ad423e8f106555a59d9c5))
+
+
+
+
+
 # [0.10.0-experimental.3](https://github.com/canonical/ds25/compare/v0.10.0-experimental.2...v0.10.0-experimental.3) (2025-09-18)
 
 

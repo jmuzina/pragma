@@ -1,7 +1,7 @@
 {
   "name": "@canonical/ds-assets",
   "description": "Assets for Pragma.",
-  "version": "0.10.0-experimental.3",
+  "version": "0.10.0-experimental.4",
   "type": "module",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
@@ -38,10 +38,10 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.4",
-    "@canonical/biome-config": "^0.10.0-experimental.0",
-    "@canonical/typescript-config-base": "^0.10.0-experimental.0",
-    "typescript": "^5.8.3",
+    "@canonical/biome-config": "^0.10.0-experimental.4",
+    "@canonical/typescript-config-base": "^0.10.0-experimental.4",
     "@types/node": "^24.0.0",
+    "typescript": "^5.8.3",
     "vite": "^7.0.0",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.3"
