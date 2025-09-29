@@ -25,4 +25,4 @@ runs:
       # "prepare" hook on `bun install` runs `bun run build`
     - name: Install dependencies
       shell: bash
-      run: bun install --frozen-lockfile
+      run: bun install #--frozen-lockfile
