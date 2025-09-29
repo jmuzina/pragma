@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0-experimental.5](https://github.com/canonical/ds25/compare/v0.8.1-experimental.0...v0.10.0-experimental.5) (2025-09-29)
+
+
+### Bug Fixes
+
+* **deps:** update storybook monorepo to v9 (major) ([#242](https://github.com/canonical/ds25/issues/242)) ([3bbdb4b](https://github.com/canonical/ds25/commit/3bbdb4b9299565f84081fe882d9a2fd85197b8ee))
+* **generator-svelte:** styles.css fails formatting check ([#279](https://github.com/canonical/ds25/issues/279)) ([0b7820a](https://github.com/canonical/ds25/commit/0b7820aaead7751bcffef59b6fcb12a5367d2059))
+* Remove Generator index append confirmation prompts ([#250](https://github.com/canonical/ds25/issues/250)) ([18c44f0](https://github.com/canonical/ds25/commit/18c44f0c1fce22153cc085e2f8d9c3929691aabd))
+
+
+### Features
+
+* **ComponentGenerator:** add Svelte component generator ([#215](https://github.com/canonical/ds25/issues/215)) ([13720cf](https://github.com/canonical/ds25/commit/13720cf06143fd684ebd863eaacafced1627f33f))
+* **ds-core-form:** Middleware examples, MSW, Stories ([#225](https://github.com/canonical/ds25/issues/225)) ([301cbb8](https://github.com/canonical/ds25/commit/301cbb8256531b5ee8ff4a7d0359dd317a6d430f))
+* **generator-svelte:** Generate root element type based props ([#292](https://github.com/canonical/ds25/issues/292)) ([d9247e3](https://github.com/canonical/ds25/commit/d9247e30dee0b5b0752f68204cd01f5672ccc18f))
+* **generator-svelte:** Move styles to .svelte ([#298](https://github.com/canonical/ds25/issues/298)) ([9745fe3](https://github.com/canonical/ds25/commit/9745fe36d5c5e6c9de1523f4c87f1f1bdb861d3f))
+* **Generator:** added shorthands properties `-c` for styles and `-s`for stories. ([#124](https://github.com/canonical/ds25/issues/124)) ([6cd4964](https://github.com/canonical/ds25/commit/6cd4964fe6610823b2c969551c09211e2664bf03))
+* **generator:** Generate SSR output test file ([#267](https://github.com/canonical/ds25/issues/267)) ([42aea54](https://github.com/canonical/ds25/commit/42aea54ee8c886225c606536f3b4da0b6f1269d3))
+* **generator:** Include Svelte SSR Test package ([#315](https://github.com/canonical/ds25/issues/315)) ([244dbd0](https://github.com/canonical/ds25/commit/244dbd0b580101ecfdb5495300b012419d7d0769))
+* **generator:** Make generator metadata comment location consistent across files ([#283](https://github.com/canonical/ds25/issues/283)) ([b4ba34e](https://github.com/canonical/ds25/commit/b4ba34ea8a826364bcf9d2725e1ae0ad00cba0ea))
+* **Generator:** React component generator spreads native HTML props by default ([#313](https://github.com/canonical/ds25/issues/313)) ([ee3c1e8](https://github.com/canonical/ds25/commit/ee3c1e819ad70cd744d9e6322b6a57d2b53a960e))
+* **React Core:** Build Icon component ([#325](https://github.com/canonical/ds25/issues/325)) ([5319d51](https://github.com/canonical/ds25/commit/5319d518fb75d63787fcd994a0c981e7beadb8ff))
+* **svelte-generator:** Generate unit test files and stories ([#248](https://github.com/canonical/ds25/issues/248)) ([d8485cb](https://github.com/canonical/ds25/commit/d8485cb12470a911bf634140bb6f632a1c071218))
+* **tokens:** Improved folder structure and added dimension tokens ([#217](https://github.com/canonical/ds25/issues/217)) ([f4188e6](https://github.com/canonical/ds25/commit/f4188e6fd9f3369c678b137518404d0825b2265a))
+
+
+
+
+
 # [0.10.0-experimental.4](https://github.com/canonical/ds25/compare/v0.10.0-experimental.3...v0.10.0-experimental.4) (2025-09-25)
 
 

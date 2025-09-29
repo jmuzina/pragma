@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0-experimental.5](https://github.com/canonical/ds25/compare/v0.8.1-experimental.0...v0.10.0-experimental.5) (2025-09-29)
+
+
+### Features
+
+* **styles:** Implements the base style packages architecture ([#129](https://github.com/canonical/ds25/issues/129)) ([b2a7b15](https://github.com/canonical/ds25/commit/b2a7b15dac0731826d11a8746d2cb99927281191))
+
+
+
+
+
 # [0.10.0-experimental.4](https://github.com/canonical/ds25/compare/v0.10.0-experimental.3...v0.10.0-experimental.4) (2025-09-25)
 
 **Note:** Version bump only for package @canonical/styles-elements

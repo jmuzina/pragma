@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0-experimental.5](https://github.com/canonical/ds25/compare/v0.8.1-experimental.0...v0.10.0-experimental.5) (2025-09-29)
+
+
+### Features
+
+* **Badge:** pt. 1 - utilities for the Badge component ([#304](https://github.com/canonical/ds25/issues/304)) ([f556180](https://github.com/canonical/ds25/commit/f5561801c196a55b6b17f18156f0d9cd736da5ea))
+* **React core:** Implement Card component ([#314](https://github.com/canonical/ds25/issues/314)) ([ad3dd81](https://github.com/canonical/ds25/commit/ad3dd8145e76b214532fb1e0293e97cab93cc819))
+* **react-ds-app:** Added DS-app for react ([#284](https://github.com/canonical/ds25/issues/284)) ([8ae5771](https://github.com/canonical/ds25/commit/8ae577182e1c69f252e8c25bee4bfc1944643113))
+
+
+
+
+
 # [0.10.0-experimental.4](https://github.com/canonical/ds25/compare/v0.10.0-experimental.3...v0.10.0-experimental.4) (2025-09-25)
 
 **Note:** Version bump only for package @canonical/react-ds-app

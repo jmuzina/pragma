@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0-experimental.5](https://github.com/canonical/ds25/compare/v0.8.1-experimental.0...v0.10.0-experimental.5) (2025-09-29)
+
+
+### Bug Fixes
+
+* add missing components exports ([#148](https://github.com/canonical/ds25/issues/148)) ([b7f8252](https://github.com/canonical/ds25/commit/b7f82524a5ede77b5c55b139822f89b7bb1531a2))
+* **CodeDiffViewer:**  improve component rendering ([#227](https://github.com/canonical/ds25/issues/227)) ([efb2919](https://github.com/canonical/ds25/commit/efb29196c2075140f971d8d998a081385191e45b))
+* **CodeDiffViewer:** fix line numbers ([#212](https://github.com/canonical/ds25/issues/212)) ([1cdc6fd](https://github.com/canonical/ds25/commit/1cdc6fda3658538cd4365bdd67a42d00a0284704))
+* **CodeDiffViewer:** Resize observer detaches on view collapse ([#196](https://github.com/canonical/ds25/issues/196)) ([80361d7](https://github.com/canonical/ds25/commit/80361d73aa3be5229ee51feab66ae35c6b60c78e))
+* **deps:** update storybook monorepo to v9 (major) ([#242](https://github.com/canonical/ds25/issues/242)) ([3bbdb4b](https://github.com/canonical/ds25/commit/3bbdb4b9299565f84081fe882d9a2fd85197b8ee))
+* **ds-app-launchpad:** Adapted the forwardRef pattern to R18 for backwards compatibility ([#163](https://github.com/canonical/ds25/issues/163)) ([acd2fab](https://github.com/canonical/ds25/commit/acd2fab76153718b576560b14ca125056171b725))
+* **GitDiffViewer:** correct line highlighting logic in diff viewer ([#208](https://github.com/canonical/ds25/issues/208)) ([1f1fc58](https://github.com/canonical/ds25/commit/1f1fc585883bd5b61e126830776d3a46c021b6b3))
+* remove flexbox from EditableContent content section ([#158](https://github.com/canonical/ds25/issues/158)) ([69a8849](https://github.com/canonical/ds25/commit/69a884943af628f428794c055515ed50e17d16f8))
+* **storybook:** enable addon themes ([#256](https://github.com/canonical/ds25/issues/256)) ([c522fc0](https://github.com/canonical/ds25/commit/c522fc05f48d39ab358773c458a53233a1259835))
+* syntax highlighting part 2 ([#281](https://github.com/canonical/ds25/issues/281)) ([af8ed0d](https://github.com/canonical/ds25/commit/af8ed0d642fb3fbfaba85bcf8e89a02f8a539986))
+* Update collapse rotate logic ([#192](https://github.com/canonical/ds25/issues/192)) ([d9dde41](https://github.com/canonical/ds25/commit/d9dde41dd2bf88d05c9122e72b9a94b6152a0657))
+* wrong import ([#209](https://github.com/canonical/ds25/issues/209)) ([e31f062](https://github.com/canonical/ds25/commit/e31f0625b1549bc9ddce98b3cc81bbc6a781b658))
+
+
+### Features
+
+* add checkbox preview switch to MarkdownEditor component ([#189](https://github.com/canonical/ds25/issues/189)) ([fb1be38](https://github.com/canonical/ds25/commit/fb1be38893403c439513062724b30049703be66e))
+* add FileTree component ([#130](https://github.com/canonical/ds25/issues/130)) ([f55266f](https://github.com/canonical/ds25/commit/f55266f12ac105be72d2fbecd0bc7c2e4080e358))
+* add readonly mode to the editable block component ([#173](https://github.com/canonical/ds25/issues/173)) ([f74626b](https://github.com/canonical/ds25/commit/f74626b8f0839fa9bcc57a1b9feaf4b86473bbac))
+* add RelativeTime component ([#139](https://github.com/canonical/ds25/issues/139)) ([4e55258](https://github.com/canonical/ds25/commit/4e55258298ebe9c392efd7d011ef6d8e8f46b018))
+* Add Svelte SSR testing library renderer ([#305](https://github.com/canonical/ds25/issues/305)) ([da687db](https://github.com/canonical/ds25/commit/da687db2a8f6ad2d1b8cfc9806a041e5d18ea68c))
+* adding an EditableBlock component ([#120](https://github.com/canonical/ds25/issues/120)) ([4bdd22a](https://github.com/canonical/ds25/commit/4bdd22ab230742355855b8cfab9ffe7ca118c0ab))
+* **Badge:** pt. 1 - utilities for the Badge component ([#304](https://github.com/canonical/ds25/issues/304)) ([f556180](https://github.com/canonical/ds25/commit/f5561801c196a55b6b17f18156f0d9cd736da5ea))
+* **CodeDiffViewer:** fix CodeDiffViewer table structure and add option for disabling table width calculation ([#197](https://github.com/canonical/ds25/issues/197)) ([2c83496](https://github.com/canonical/ds25/commit/2c83496c03bb4d2fd67fe78477e24bc9b9f4ff69))
+* **DiffChangeMarker:** add DiffChangeMarker component and include it in GitDiffViewer.FileHeader ([#223](https://github.com/canonical/ds25/issues/223)) ([a659dda](https://github.com/canonical/ds25/commit/a659ddaa7189badd76475865b7b09bd3b032609f))
+* **ds-core-form:** Middleware examples, MSW, Stories ([#225](https://github.com/canonical/ds25/issues/225)) ([301cbb8](https://github.com/canonical/ds25/commit/301cbb8256531b5ee8ff4a7d0359dd317a6d430f))
+* **forms:** Added a base package for the form components ([#128](https://github.com/canonical/ds25/issues/128)) ([6f68ead](https://github.com/canonical/ds25/commit/6f68eade4bcee41988bed4826a2a4211a1c25917))
+* **GitDiffViewer:** Improve code diff add comment interaction ([#207](https://github.com/canonical/ds25/issues/207)) ([20c042a](https://github.com/canonical/ds25/commit/20c042a6a8ce7bdb2066e828f80d848a7d812c56))
+* **GitDiffViewer:** improve syntax highlighting and fix file header collapse button animation ([#206](https://github.com/canonical/ds25/issues/206)) ([d7e8a07](https://github.com/canonical/ds25/commit/d7e8a070c459a8e1e6a2c0f8d116f1021e87ee9b))
+* **GitDiffViewer:** refactor line numbers to add better support for diff lines ([#210](https://github.com/canonical/ds25/issues/210)) ([08c6285](https://github.com/canonical/ds25/commit/08c6285d5d7e3894a8c18d28fd52731a8d8fff17))
+* **launchpad:** Add GitDiffViewer component ([#117](https://github.com/canonical/ds25/issues/117)) ([6737965](https://github.com/canonical/ds25/commit/6737965a21fa3b9c78be30e6f1d22ebb003e1f9a))
+* Markdown Editor Component ([#157](https://github.com/canonical/ds25/issues/157)) ([39f920d](https://github.com/canonical/ds25/commit/39f920dd18dcd507823a96e53284db082e2d1744)), closes [#145](https://github.com/canonical/ds25/issues/145) [#153](https://github.com/canonical/ds25/issues/153)
+* **storybook:** Modularized the config creation for storybook ([#125](https://github.com/canonical/ds25/issues/125)) ([90189d8](https://github.com/canonical/ds25/commit/90189d89b5a1948a417adea245708336225f598d))
+* **Styles:** Extract baseline grid css styles to a "debug" styles package ([#203](https://github.com/canonical/ds25/issues/203)) ([30e69e4](https://github.com/canonical/ds25/commit/30e69e44799a1076c7c0b668ddb3b81b36b7d967))
+
+
+
+
+
 # [0.10.0-experimental.4](https://github.com/canonical/ds25/compare/v0.10.0-experimental.3...v0.10.0-experimental.4) (2025-09-25)
 
 **Note:** Version bump only for package @canonical/react-ds-app-launchpad

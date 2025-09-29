@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0-experimental.5](https://github.com/canonical/ds25/compare/v0.8.1-experimental.0...v0.10.0-experimental.5) (2025-09-29)
+
+
+### Bug Fixes
+
+* **React Core:** fix badge with empty units showing undefined units ([#319](https://github.com/canonical/ds25/issues/319)) ([30f2815](https://github.com/canonical/ds25/commit/30f2815ab177681ddd847660bdae2d7ba1a6dcbf))
+
+
+### Features
+
+* **Badge:** pt. 1 - utilities for the Badge component ([#304](https://github.com/canonical/ds25/issues/304)) ([f556180](https://github.com/canonical/ds25/commit/f5561801c196a55b6b17f18156f0d9cd736da5ea))
+* **Generator:** added shorthands properties `-c` for styles and `-s`for stories. ([#124](https://github.com/canonical/ds25/issues/124)) ([6cd4964](https://github.com/canonical/ds25/commit/6cd4964fe6610823b2c969551c09211e2664bf03))
+* **launchpad:** Add GitDiffViewer component ([#117](https://github.com/canonical/ds25/issues/117)) ([6737965](https://github.com/canonical/ds25/commit/6737965a21fa3b9c78be30e6f1d22ebb003e1f9a))
+* **react-ds-core:** Build Tooltip component ([#140](https://github.com/canonical/ds25/issues/140)) ([8aa436c](https://github.com/canonical/ds25/commit/8aa436cd84a3373b5ae36bbc9ec22ddaf5d3daea))
+* **webarchitect:** Minimal implementation of the webarchitect tool ([#268](https://github.com/canonical/ds25/issues/268)) ([8bf9986](https://github.com/canonical/ds25/commit/8bf9986971a3ec2e3bb656b4087640a8b2a7ffc2))
+
+
+
+
+
 # [0.10.0-experimental.4](https://github.com/canonical/ds25/compare/v0.10.0-experimental.3...v0.10.0-experimental.4) (2025-09-25)
 
 **Note:** Version bump only for package @canonical/utils

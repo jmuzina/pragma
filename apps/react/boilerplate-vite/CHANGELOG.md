@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0-experimental.5](https://github.com/jmuzina/pragma/compare/v0.8.1-experimental.0...v0.10.0-experimental.5) (2025-09-29)
+
+
+### Bug Fixes
+
+* **deps:** update storybook monorepo to v9 (major) ([#242](https://github.com/jmuzina/pragma/issues/242)) ([3bbdb4b](https://github.com/jmuzina/pragma/commit/3bbdb4b9299565f84081fe882d9a2fd85197b8ee))
+* Fix implciit dependencies ([#276](https://github.com/jmuzina/pragma/issues/276)) ([a1b007c](https://github.com/jmuzina/pragma/commit/a1b007c0d6ab26318c745e48f250a0c0c30a0716))
+* **React Core:** UseWindowDimension is SSR-safe ([#156](https://github.com/jmuzina/pragma/issues/156)) ([db3c446](https://github.com/jmuzina/pragma/commit/db3c446cbc2dac3687d44ed5f0061c4449e18115))
+
+
+### Features
+
+* **boilerplate:** Add storybook ([#162](https://github.com/jmuzina/pragma/issues/162)) ([db1fb76](https://github.com/jmuzina/pragma/commit/db1fb7693a48fe076ac11c52e1068845f457216e))
+* **ds-core-form:** Middleware examples, MSW, Stories ([#225](https://github.com/jmuzina/pragma/issues/225)) ([301cbb8](https://github.com/jmuzina/pragma/commit/301cbb8256531b5ee8ff4a7d0359dd317a6d430f))
+* **React Core:** Button uses `children` instead of `label` for contents ([#214](https://github.com/jmuzina/pragma/issues/214)) ([f31bbed](https://github.com/jmuzina/pragma/commit/f31bbed41ca6f3945ee1ac18da7e4068b1f2bd59))
+* **Styles:** Extract baseline grid css styles to a "debug" styles package ([#203](https://github.com/jmuzina/pragma/issues/203)) ([30e69e4](https://github.com/jmuzina/pragma/commit/30e69e44799a1076c7c0b668ddb3b81b36b7d967))
+
+
+
+
+
 # [0.10.0-experimental.4](https://github.com/canonical/pragma/compare/v0.10.0-experimental.3...v0.10.0-experimental.4) (2025-09-25)
 
 **Note:** Version bump only for package @canonical/react-boilerplate-vite
