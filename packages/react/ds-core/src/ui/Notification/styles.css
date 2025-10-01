@@ -1,7 +1,159 @@
 /* @canonical/generator-ds 0.10.0-experimental.4 */
 
-
 .ds.notification {
+  background: var(--notification-background-default);
+  border: 1px solid var(--notification-border-default);
+  color: var(--notification-text-default);
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: var(--notification-z-index);
+  gap: var(--spacing-horizontal-medium);
+  align-items: flex-start;
 
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--tmp-dimension-separator-bar-thickness);
+    background: var(
+      --modifier-color-border,
+      var(--notification-border-default)
+    );
+  }
+
+  &.borderless {
+    border: none;
+    /* Remove pseudo border for borderless */
+    &::before {
+      display: none;
+    }
+    margin-top: 0;
+    padding: 0 0 0 var(--notification-spacing-horizontal);
+  }
+
+  &.inline {
+    display: flex;
+    align-items: center;
+  }
+
+  .content {
+    margin-bottom: var(--notification-spacing-vertical);
+    padding: var(--notification-spacing-vertical)
+      var(--notification-spacing-horizontal);
+    position: relative;
+  }
+
+  .header {
+    display: flex;
+    align-items: baseline;
+    gap: var(--spacing-horizontal-medium);
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1;
+  }
+
+  .icon {
+    display: flex;
+    align-items: baseline;
+    min-width: 1.5em;
+    height: 1.5em;
+  }
+
+  .title {
+    font-size: var(--notification-font-size-title);
+    font-weight: var(--notification-font-weight-title);
+    line-height: var(--notification-line-height-title);
+    margin: 0;
+    padding: 0;
+  }
+
+  .message {
+    margin: 0;
+    padding: 0;
+  }
+
+  .has-icon .message {
+    margin-left: calc(1.5em + var(--spacing-horizontal-medium));
+  }
+
+  .close {
+    background: transparent;
+    border: 0;
+    position: absolute;
+    right: calc(var(--notification-spacing-horizontal) * 0.5);
+    top: var(--notification-spacing-vertical);
+    cursor: pointer;
+  }
+
+  .meta {
+    display: block;
+    margin-top: var(--notification-spacing-vertical);
+    padding: var(--notification-spacing-vertical) var(--notification-spacing-horizontal)
+      var(--notification-spacing-vertical) var(--notification-spacing-horizontal);
+    position: relative;
+  }
+
+  .meta::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background: var(--notification-border-default);
+  }
+
+  .actions {
+    display: flex;
+      justify-content: flex-end;
+    gap: var(--spacing-horizontal-medium);
+  }
+
+  .timestamp {
+    color: var(--notification-text-muted);
+    margin-bottom: var(--notification-spacing-vertical);
+  }
+
+  .action {
+    color: var(--notification-text-link-default);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: var(--notification-spacing-horizontal);
+
+    &:visited {
+      color: var(--notification-text-link-visited);
+    }
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    height: 1.5em; /* Ensures icon height matches text line height */
+    /* Align icon with the title's first line */
+    margin-top: 0.15em; /* Adjust as needed for perfect alignment */
+  }
+
+  .header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+  }
+
+  .header .icon {
+    display: flex;
+    align-items: center;
+    height: 1em;
+    min-width: 1.5em; /* Ensures consistent icon width for alignment */
+  }
 }
-

@@ -470,4 +470,26 @@
   --rule-height: 1px;
   --rule-margin-top: 0;
   --rule-height-with-margin: var(--spacing-vertical-small);
+
+  /* Notification component tokens */
+  --notification-background-default: var(--tmp-color-background-default);
+  --notification-background-positive: var(--tmp-color-background-positive-default);
+  --notification-background-caution: var(--tmp-color-background-caution-default);
+  --notification-background-negative: var(--tmp-color-background-negative-default);
+  --notification-background-information: var(--tmp-color-background-information-default);
+  --notification-border-default: var(--tmp-color-border-default);
+  --notification-border-positive: var(--tmp-color-border-positive);
+  --notification-border-caution: var(--tmp-color-border-caution);
+  --notification-border-negative: var(--tmp-color-border-negative);
+  --notification-border-information: var(--tmp-color-border-information);
+  --notification-text-default: var(--tmp-color-text-default);
+  --notification-text-muted: var(--tmp-color-text-muted);
+  --notification-text-link-default: var(--tmp-color-text-link-default);
+  --notification-text-link-visited: var(--tmp-color-text-link-visited);
+  --notification-spacing-horizontal: var(--spacing-horizontal-large);
+  --notification-spacing-vertical: var(--spacing-vertical-large);
+  --notification-font-size-title: 1rem;
+  --notification-font-weight-title: var(--font-weight-bold);
+  --notification-line-height-title: var(--line-height-default);
+  --notification-z-index: 1;
 }

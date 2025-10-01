@@ -1,59 +1,80 @@
-/* @canonical/generator-ds 0.10.0-experimental.4 */
+import { MODIFIER_FAMILIES } from "@canonical/ds-types";
+import type { Meta, StoryObj } from "@storybook/react";
+import * as decorators from "storybook/decorators.js";
+import Notification from "./Notification.js";
 
-// Needed for function-based story, safe to remove otherwise
-// import type { NotificationProps } from './types.js'
-import type { Meta, StoryObj } from "@storybook/react-vite";
-import Component from "./Notification.js";
-
-// Needed for template-based story, safe to remove otherwise
-// import type { StoryFn } from '@storybook/react'
-
-const meta = {
+const meta: Meta<typeof Notification> = {
   title: "Notification",
-  component: Component,
-} satisfies Meta<typeof Component>;
-
+  component: Notification,
+  tags: ["autodocs"],
+};
 export default meta;
 
-/*
-  CSF3 story
-  Uses object-based story declarations with strong TS support (`Meta` and `StoryObj`).
-  Uses the latest storybook format.
-*/
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Notification>;
 
-export const Default: Story = {
+export const Severities: Story = {
+  render: (args) => (
+    <div>
+      {MODIFIER_FAMILIES.severity.map((severity) => (
+        <Notification
+          key={severity}
+          severity={severity}
+          title={severity.charAt(0).toUpperCase() + severity.slice(1)}
+          {...args}
+        >
+          This is a(n) {severity} notification
+        </Notification>
+      ))}
+    </div>
+  ),
+  args: {},
+  decorators: [decorators.grid()],
+};
+
+export const Borderless: Story = {
   args: {
-    children: <span>Hello world!</span>,
+    severity: "information",
+    borderless: true,
+    title: "Borderless",
+    children: "This notification has no border.",
   },
 };
 
-/*
-  Function-based story
-  Direct arguments passed to the component
-  Simple, but can lead to repetition if used across multiple stories with similar configurations
+export const Inline: Story = {
+  args: {
+    severity: "information",
+    inline: true,
+    title: "Inline Title",
+    children: "Inline message next to title.",
+  },
+};
 
-  export const Default = (args: NotificationProps) => <Component {...args} />;
-  Default.args = { children: <span>Hello world!</span> };
-*/
+export const WithActions: Story = {
+  args: {
+    severity: "information",
+    title: "With Actions",
+    children: "You can take action from here.",
+    actions: [
+      { label: "Action 1", onClick: () => alert("Action 1") },
+      { label: "Action 2", onClick: () => alert("Action 2") },
+    ],
+  },
+};
 
-/*
-  Template-Based story
-  Uses a template function to bind story variations, making it more reusable
-  Slightly more boilerplate but more flexible for creating multiple stories with different configurations
+export const WithTimestamp: Story = {
+  args: {
+    severity: "information",
+    title: "With Timestamp",
+    children: "This notification has a timestamp.",
+    timestamp: "2025-10-01 12:00",
+  },
+};
 
-  const Template: StoryFn<typeof Component> = (args) => <Component {...args} />;
-  export const Default: StoryFn<typeof Component> = Template.bind({});
-  Default.args = {
-    children: <span>Hello world!</span>
-  };
-*/
-
-/*
-  Static story
-  Simple and straightforward, but offers the least flexibility and reusability
-
-  export const Default: StoryFn<typeof Component> = () => (
-    <Component><span>Hello world!</span></Component>
-  );
-*/
+export const Dismissible: Story = {
+  args: {
+    severity: "information",
+    title: "Dismissible",
+    children: "You can dismiss this notification.",
+    onDismiss: () => alert("Notification dismissed"),
+  },
+};
