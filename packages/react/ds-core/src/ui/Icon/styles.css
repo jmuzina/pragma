@@ -9,4 +9,6 @@
 
   height: var(--icon-size);
   width: var(--icon-size);
+
+  color: var(--modifier-color, currentColor);
 }

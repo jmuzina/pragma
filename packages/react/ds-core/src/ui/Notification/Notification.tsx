@@ -7,7 +7,7 @@ import Icon from "../Icon/Icon.js";
 const componentCssClassName = "ds notification";
 
 const Notification = ({
-  actions,
+  actions = [],
   borderless = false,
   children,
   className,
@@ -17,14 +17,14 @@ const Notification = ({
   timeout,
   timestamp,
   title,
-  titleElement: TitleComponent = "h5",
+  as: TitleComponent = "h5",
   ...props
 }: NotificationProps): React.ReactElement => {
   const timeoutId = useRef<number | null>(null);
   const hasActions = actions?.length > 0;
   const showMeta = !!timestamp || hasActions;
 
-  const iconName: IconName = useMemo(() => {
+  const iconName: IconName | undefined = useMemo(() => {
     switch (severity) {
       case "positive":
         return "success";
@@ -32,8 +32,8 @@ const Notification = ({
         return "error";
       case "caution":
         return "warning";
-      default:
-        return severity;
+      case "information":
+        return "information";
     }
   }, [severity]);
 
@@ -62,9 +62,12 @@ const Notification = ({
     >
       <div className="content">
         <div className="header">
-          {severity !== "neutral" && <Icon icon={iconName} className="icon" />}
+          {iconName && <Icon icon={iconName} />}
           <div className="text">
-            {title && <TitleComponent className="title">{title}</TitleComponent>}
+            {title && (
+              <TitleComponent className="title">{title}</TitleComponent>
+            )}
+            {/* TODO clean up this conditional rendering, ideally this switching between span and p should be unnecessary  */}
             {!title && <span className="message">{children}</span>}
             {title && <p className="message">{children}</p>}
           </div>
