@@ -60,7 +60,8 @@
       "html": {
         "formatter": {
           "indentScriptAndStyle": true
-        }
+        },
+        "experimentalFullSupportEnabled": true
       }
     }
   ]
