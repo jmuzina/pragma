@@ -1,5 +1,7 @@
+import { readFileSync } from "node:fs";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import type { StorybookConfig as SvelteViteStorybookConfig } from "@storybook/svelte-vite";
 import type { StorybookConfig } from "storybook/internal/types";
 
 function getAbsolutePath(value: string): string {
@@ -30,6 +32,66 @@ const frameworks = {
   },
 } as const satisfies Record<string, StorybookFrameworkConfig>;
 
+const COMPONENT_COMMENT = /<!--\s*@component\b([\s\S]*?)-->/;
+const DOCGEN_ASSIGNMENT = /;([A-Za-z_$][\w$]*)\.__docgen = \{/g;
+
+function dedent(text: string): string {
+  const lines = text.split("\n");
+  const indent = Math.min(
+    ...lines
+      .filter((line) => line.trim())
+      .map((line) => line.length - line.trimStart().length),
+  );
+  if (!Number.isFinite(indent)) return "";
+  return lines
+    .map((line) => line.slice(indent))
+    .join("\n")
+    .trim();
+}
+
+/**
+ * Storybook's Svelte docgen (`@storybook/svelte-vite`) only extracts prop
+ * docs; it never populates `__docgen.description`, which is where the Svelte
+ * renderer's `extractComponentDescription` looks for the component
+ * description shown on autodocs pages. As a result the standard
+ * `<!-- @component ... -->` documentation comment is dropped. This plugin
+ * runs after Storybook's docgen and injects the `@component` comment body
+ * into `__docgen.description`, matching how react-docgen surfaces the JSDoc
+ * above a React component.
+ */
+function svelteComponentDescriptionPlugin() {
+  return {
+    name: "canonical:svelte-docgen-component-description",
+    transform(code: string, id: string) {
+      if (
+        id.startsWith("\0") ||
+        !id.endsWith(".svelte") ||
+        id.includes("node_modules")
+      ) {
+        return;
+      }
+      const componentName = [...code.matchAll(DOCGEN_ASSIGNMENT)].at(-1)?.[1];
+      if (!componentName) return;
+      const comment = readFileSync(id, "utf8").match(COMPONENT_COMMENT);
+      const description = comment ? dedent(comment[1]) : "";
+      if (!description) return;
+      // Appending does not shift existing code, so the upstream sourcemap
+      // remains valid and `map: null` is correct.
+      return {
+        code: `${code}\n;${componentName}.__docgen.description = ${JSON.stringify(description)};`,
+        map: null,
+      };
+    },
+  };
+}
+
+const svelteViteFinal: SvelteViteStorybookConfig["viteFinal"] = async (
+  config,
+) => ({
+  ...config,
+  plugins: [...(config.plugins ?? []), svelteComponentDescriptionPlugin()],
+});
+
 type CreateConfigOptions = {
   staticDirs?: string[];
   extraAddons?: string[];
@@ -42,7 +104,7 @@ type CreateConfigOptions = {
 function createConfig<T extends keyof typeof frameworks>(
   framework: T,
   options?: CreateConfigOptions,
-): StorybookConfig {
+): StorybookConfig & Pick<SvelteViteStorybookConfig, "viteFinal"> {
   const opts = options ?? {};
   return {
     stories: [
@@ -83,6 +145,7 @@ function createConfig<T extends keyof typeof frameworks>(
       PROJECT_LOGO: opts.projectLogo ?? "",
     },
     ...(opts.refs ? { refs: opts.refs } : {}),
+    ...(framework === "svelte" ? { viteFinal: svelteViteFinal } : {}),
   };
 }
 
