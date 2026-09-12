@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.4",
-    "@canonical/biome-config": "^0.10.0-experimental.5",
+    "@canonical/biome-config": "^0.37.0",
     "@canonical/ds-types": "^0.10.0-experimental.5",
     "@canonical/typescript-config-react": "^0.10.0-experimental.5",
     "@chromatic-com/storybook": "^4.0.0",

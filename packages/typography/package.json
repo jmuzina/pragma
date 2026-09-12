@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.4",
-    "@canonical/biome-config": "^0.10.0-experimental.5",
+    "@canonical/biome-config": "^0.37.0",
     "@types/bun": "latest"
   },
   "peerDependencies": {
