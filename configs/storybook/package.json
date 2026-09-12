@@ -27,7 +27,7 @@
     "check:ts": "tsc --noEmit"
   },
   "dependencies": {
-    "@canonical/ds-assets": "^0.10.0-experimental.5",
+    "@canonical/ds-assets": "^0.37.0",
     "@canonical/storybook-addon-baseline-grid": "^0.10.0-experimental.5",
     "@chromatic-com/storybook": "^4.0.0",
     "@storybook/addon-a11y": "^9.0.8",
