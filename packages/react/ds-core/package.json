@@ -40,7 +40,7 @@
   "dependencies": {
     "@canonical/ds-assets": "^0.10.0-experimental.5",
     "@canonical/storybook-config": "^0.10.0-experimental.5",
-    "@canonical/styles": "^0.10.0-experimental.5",
+    "@canonical/styles": "^0.45.0",
     "@canonical/utils": "^0.10.0-experimental.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
